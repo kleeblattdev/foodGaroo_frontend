@@ -1,7 +1,11 @@
+import Splash from "../components/Splash";
+import Welcome from "../components/Welcome";
+
 const OnBoarding = () => {
 	return (
 		<main className="onBoarding">
-			<h1>Welcome</h1>
+			<Splash />
+			<Welcome />
 		</main>
 	);
 };

@@ -1,8 +1,11 @@
+import "./splash.scss";
+
 const Splash = () => {
 	return (
-		<main>
-			<h1>Splash Page</h1>
-		</main>
+		<section className="splash">
+			<div></div>
+			<h1>FoodGaroo</h1>
+		</section>
 	);
 };
 

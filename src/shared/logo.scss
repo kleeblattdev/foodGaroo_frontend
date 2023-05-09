@@ -1,0 +1,17 @@
+@import "../fonts.scss";
+@import "../variables.scss";
+
+.logo {
+	div {
+		height: 120px;
+		width: 120px;
+		background-image: url(../images/logo.svg);
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	h1 {
+		font-family: "Poppins Medium";
+		font-size: 3, 1rem;
+		color: $chateuGreen;
+	}
+}

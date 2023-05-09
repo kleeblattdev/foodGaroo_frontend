@@ -1,0 +1,22 @@
+@import "../variables.scss";
+@import "../fonts.scss";
+
+.splash {
+	background-color: $limeGreen;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	div {
+		height: 60px;
+		width: 80px;
+		background-image: url("../images/splash_logo.svg");
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	h1 {
+		color: $white;
+		font-family: "Poppins Medium";
+		font-size: 2rem;
+	}
+}
