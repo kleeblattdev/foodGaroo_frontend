@@ -11,18 +11,7 @@
 		flex-direction: column;
 		text-align: center;
 		a {
-			padding: 20px 120px;
-			border-radius: 8px;
-			font-size: 1.1rem;
-		}
-		a:first-of-type {
-			color: $rhinoBlue;
-			background-color: $pastelGreen;
 			margin: 10px 0;
-		}
-		a:last-of-type {
-			color: $white;
-			background-color: $limeGreen;
 		}
 	}
 }

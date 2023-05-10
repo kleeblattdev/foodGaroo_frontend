@@ -1,0 +1,9 @@
+@import "../../variables.scss";
+
+.squareButton {
+	padding: 20px 120px;
+	border-radius: 8px;
+	font-size: 1.1rem;
+	color: $white;
+	background-color: $limeGreen;
+}
