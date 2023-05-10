@@ -2,11 +2,26 @@
 @import "../variables.scss";
 
 .navigation {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: space-around;
+	box-shadow: 6px 15px 62px -8px rgba(0, 0, 0, 0.75);
+	border-radius: 24px 24px 0 0;
+	padding: 10px 0;
 	a {
 		font-family: "Poppins Medium";
 		font-size: 0.8rem;
 		color: $boulderGray;
+		background-position: top;
+		padding: 25px 0 0;
 		background-repeat: no-repeat;
+		margin: 5px 10px;
+	}
+	a:active {
+		text-decoration: underline;
 	}
 	#home {
 		background-image: url("../images/home_icon.svg");
@@ -15,11 +30,25 @@
 		background-image: url("../images/ordes_icon.svg");
 	}
 	#myCart {
+		position: absolute;
+		top: -30px;
+		right: 42%;
+		z-index: 1;
 		padding: 25px;
 		border-radius: 100%;
 		background-color: $chateuGreen;
 		background-image: url("../images/cart_icon.svg");
 		background-position: center;
+		box-shadow: 8px 3px 60px -3px rgba(0, 0, 0, 0.75);
+		p {
+			position: absolute;
+			top: -15px;
+			left: 28px;
+			color: $white;
+			background-color: $sunOrange;
+			padding: 4px;
+			border-radius: 100%;
+		}
 	}
 	#wishlist {
 		background-image: url("../images/heart_icon.svg");

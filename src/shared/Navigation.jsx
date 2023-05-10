@@ -9,7 +9,9 @@ const Navigation = () => {
 			<NavLink to="/orders" id="orders">
 				Orders
 			</NavLink>
-			<NavLink to="myCart" id="myCart"></NavLink>
+			<NavLink to="myCart" id="myCart">
+				<p>01</p>
+			</NavLink>
 			<NavLink to="/wishlist" id="wishlist">
 				Wishlist
 			</NavLink>

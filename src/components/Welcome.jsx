@@ -17,7 +17,6 @@ const Welcome = () => {
 				</SquareButtonLight>
 				<SquareButton link="/login">Sign in</SquareButton>
 			</div>
-			<Navigation />
 		</main>
 	);
 };
