@@ -6,6 +6,7 @@ import "./register.scss";
 
 const Register = () => {
 	const [email, setEmail] = useState("");
+	const [availiableEmail, setAvailiableEmail ]= useState(null)
 
 	const emailRef = useRef();
 	const passwordRef = useRef();
@@ -27,6 +28,12 @@ const Register = () => {
 		}
 	};
 
+	const handleAvailiableEmail = async () => {
+		const response = await fetch(url + "/availiable?email=" + emailRef.current.value)
+		if(response.ok) return setAvailiableEmail(true)
+		return setAvailiableEmail(false)
+	}
+
 	return (
 		<main className="register">
 			<Logo />
@@ -40,7 +47,7 @@ const Register = () => {
 					<input
 						type="email"
 						ref={emailRef}
-						onChange={(event) => setEmail(event.target.value)}
+						onChange={handleAvailiableEmail}
 						placeholder="your email"
 					/>
 				</div>
