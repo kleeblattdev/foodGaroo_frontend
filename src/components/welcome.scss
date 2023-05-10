@@ -6,12 +6,17 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	height: 100vh;
+	text-align: center;
+	p {
+		margin: 10px 10px 40px 10px;
+	}
 	div {
 		display: flex;
 		flex-direction: column;
 		text-align: center;
 		a {
-			margin: 10px 0;
+			margin: 20px 0;
 		}
 	}
 }

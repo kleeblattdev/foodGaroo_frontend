@@ -1,0 +1,30 @@
+@import "../fonts.scss";
+@import "../variables.scss";
+
+.navigation {
+	a {
+		font-family: "Poppins Medium";
+		font-size: 0.8rem;
+		color: $boulderGray;
+		background-repeat: no-repeat;
+	}
+	#home {
+		background-image: url("../images/home_icon.svg");
+	}
+	#orders {
+		background-image: url("../images/ordes_icon.svg");
+	}
+	#myCart {
+		padding: 25px;
+		border-radius: 100%;
+		background-color: $chateuGreen;
+		background-image: url("../images/cart_icon.svg");
+		background-position: center;
+	}
+	#wishlist {
+		background-image: url("../images/heart_icon.svg");
+	}
+	#profile {
+		background-image: url("../images/profile_icon.svg");
+	}
+}
