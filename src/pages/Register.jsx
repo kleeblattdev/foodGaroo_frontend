@@ -10,7 +10,7 @@ const Register = () => {
 
 	const emailRef = useRef();
 	const passwordRef = useRef();
-	const url = import.meta.env.BACKEND_URL + import.meta.env.API_VERSION;
+	const url = import.meta.env.VITE_BACKEND_URL + import.meta.env.VITE_API_VERSION;
 	const navigate = useNavigate();
 
 	const handleSubmit = async () => {
