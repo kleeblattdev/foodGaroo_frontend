@@ -1,5 +1,6 @@
 import { useNavigate} from 'react-router-dom';
 
+import './BackButton.scss';
 
 export const BackButton = () => {
 
@@ -9,8 +10,8 @@ export const BackButton = () => {
 		nav(-1)
 	}
 
-	return <div className="backButton">
-		<button onClick={zurueck}>Back</button>
-	</div>;
+	return <main className="backButton">
+		<article onClick={zurueck}>🔙 Back</article>
+	</main>;
 };
 

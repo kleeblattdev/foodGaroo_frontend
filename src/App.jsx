@@ -27,6 +27,7 @@ function App() {
 					<Route path="/successRegistration" element={<RegisterSuccess />} />
 					<Route path="/home" element={<Home />} />
 					<Route path='/profile' element={ <Profile> </Profile>}></Route>
+					<Route path='*' element={<h1 style={{textAlign:"center", color:"red"}}>404 Page not found <OnBoarding></OnBoarding></h1>  }></Route>
 				</Routes>
 			</BrowserRouter>
 		</>

@@ -1,0 +1,18 @@
+@import "../../variables.scss";
+
+.backButton {
+    color: $white;
+
+    >article {
+        cursor: pointer;
+        color: $sunOrange;
+
+        :hover {
+            background-color: $limeGreen;
+        }
+
+        :active {
+            scale: 2.9;
+        }
+    }
+}
