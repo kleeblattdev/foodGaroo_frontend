@@ -11,11 +11,39 @@
 		background-repeat: no-repeat;
 		background-position: top 50px center;
 		background-color: $white;
-		padding: 50px 50px;
+		margin: 0 20px;
+		padding: 30px 30px;
 		border-radius: 30px;
 		box-shadow: 6px 15px 62px -8px rgba(0, 0, 0, 0.75);
+		animation: shake-bottom 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+		@keyframes shake-bottom {
+			0%,
+			100% {
+				transform: rotate(0deg);
+				transform-origin: 50% 100%;
+			}
+			10% {
+				transform: rotate(2deg);
+			}
+			20%,
+			40%,
+			60% {
+				transform: rotate(-4deg);
+			}
+			30%,
+			50%,
+			70% {
+				transform: rotate(4deg);
+			}
+			80% {
+				transform: rotate(-2deg);
+			}
+			90% {
+				transform: rotate(2deg);
+			}
+		}
 		article {
-			margin-top: 100px;
+			margin-top: 120px;
 			text-align: center;
 		}
 	}

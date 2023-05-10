@@ -1,19 +1,15 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import "./failedLogin.scss";
 
 const FailedLogin = () => {
 	const navigate = useNavigate();
 
-	useEffect(() => {
-		setTimeout(() => {
-			navigate("/login");
-		}, 4000);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	const handleRedirect = () => {
+		navigate("/login");
+	};
 
 	return (
-		<main className="failedLogin">
+		<main className="failedLogin" onClick={handleRedirect}>
 			<section>
 				<article>
 					<h2>Oops...</h2>
