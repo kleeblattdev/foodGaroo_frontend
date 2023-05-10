@@ -6,7 +6,7 @@
 }
 
 .mailAvailiable,
-.mailNotAvailable,
+.mailNotAvailiable,
 .passwordSame,
 .passwordNotSame {
 	background-repeat: no-repeat;
@@ -18,7 +18,7 @@
 	background-image: url("../images/small_checkmark_icon.svg");
 }
 
-.mailNotAvailable {
+.mailNotAvailiable {
 	background-image: url("../images/close_icon.svg");
 }
 
