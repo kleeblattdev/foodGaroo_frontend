@@ -1,0 +1,17 @@
+@import "../variables.scss";
+
+header {
+	display: flex;
+	align-items: center;
+
+	button {
+		width: 20px;
+		height: 20px;
+		border: none;
+		background-color: $white;
+		background-image: url("../images/previous_icon.svg");
+		background-repeat: no-repeat;
+		background-position: center;
+		margin-right: 10px;
+	}
+}

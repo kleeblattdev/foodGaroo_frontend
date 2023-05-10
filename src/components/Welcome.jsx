@@ -1,7 +1,6 @@
 import Logo from "../shared/Logo";
 import SquareButtonLight from "../shared/buttons/SquareButtonLight";
 import SquareButton from "../shared/buttons/SquareButton";
-import Navigation from "../shared/Navigation";
 
 import "./welcome.scss";
 
