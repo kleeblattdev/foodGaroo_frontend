@@ -13,7 +13,7 @@ const Register = () => {
 	const passwordRef = useRef();
 	const repeatPasswordRef = useRef();
 
-	const url = import.meta.env.VITE_BACKEND_URL + import.meta.env.VITE_API_VERSION;
+	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
 
 	const navigate = useNavigate();
 
@@ -21,6 +21,7 @@ const Register = () => {
 		try {
 			const res = await fetch(url + "/register", {
 				method: "POST",
+				credentials: "include",
 				headers: { "content-type": "application/json" },
 				body: JSON.stringify({
 					email: emailRef.current.value,
@@ -37,7 +38,8 @@ const Register = () => {
 
 	const handleAvailiableEmail = async () => {
 		const response = await fetch(
-			url + "/availiable?email=" + emailRef.current.value
+			url + "/availiable?email=" + emailRef.current.value,
+			{ credentials: "include" }
 		);
 		if (response.ok) return setAvailiableEmail(true);
 		return setAvailiableEmail(false);

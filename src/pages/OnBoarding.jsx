@@ -1,25 +1,21 @@
-import { useState } from "react";
-import Splash from "../components/Splash";
-import Welcome from "../components/Welcome";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "./onBoarding.scss";
 
 const OnBoarding = () => {
-	const [loading, setLoading] = useState(true);
+	const navigate = useNavigate();
 
-	const splashScreen = () => {
+	useEffect(() => {
 		setTimeout(() => {
-			setLoading(false);
-		}, 1500);
-
-		if (!loading) return <Splash />;
-		else {
-			return <Welcome />;
-		}
-	};
+			navigate("/welcome");
+		}, 4000);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<main className="onBoarding">
-			<Splash />
-			<Welcome />
+			<div></div>
+			<h1>FoodGaroo</h1>
 		</main>
 	);
 };

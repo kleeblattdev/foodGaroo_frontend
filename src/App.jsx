@@ -8,7 +8,9 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 
 import RegisterSuccess from "./pages/RegisterSuccess";
+
 import Home from "./pages/Home";
+import Welcome from "./components/Welcome";
 
 
 function App() {
@@ -17,6 +19,7 @@ function App() {
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<OnBoarding />} />
+					<Route path="/welcome" element={<Welcome />} />
 					<Route path="/register" element={<Register />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/successRegistration" element={<RegisterSuccess />} />
