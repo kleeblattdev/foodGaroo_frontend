@@ -11,7 +11,7 @@ import RegisterSuccess from "./pages/RegisterSuccess";
 
 import Home from "./pages/Home";
 import Welcome from "./components/Welcome";
-
+import FailedLogin from "./pages/FailedLogin";
 
 function App() {
 	return (
@@ -22,9 +22,9 @@ function App() {
 					<Route path="/welcome" element={<Welcome />} />
 					<Route path="/register" element={<Register />} />
 					<Route path="/login" element={<Login />} />
+					<Route path="/failedLogin" element={<FailedLogin />} />
 					<Route path="/successRegistration" element={<RegisterSuccess />} />
 					<Route path="/home" element={<Home />} />
-
 				</Routes>
 			</BrowserRouter>
 		</>

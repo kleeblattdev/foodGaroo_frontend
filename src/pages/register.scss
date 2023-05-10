@@ -5,15 +5,16 @@
 	flex-direction: column;
 	justify-self: center;
 	align-items: center;
+	height: 100vh;
 	section {
 		margin: 45px 0;
+		text-align: center;
 	}
 	form {
 		div {
 			display: flex;
 			flex-direction: column;
 			margin-bottom: 10px;
-			border-bottom: 1px solid $boulderGray;
 		}
 		button {
 			margin: 15px 0;
@@ -25,7 +26,7 @@
 .mailNotAvailiable,
 .passwordSame,
 .passwordNotSame {
-	display: block;
+	align-self: flex-end;
 	background-repeat: no-repeat;
 	height: 30px;
 	width: 30px;
