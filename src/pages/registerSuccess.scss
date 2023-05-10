@@ -1,0 +1,22 @@
+@import "../variables.scss";
+
+.registerSuccess {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: $boulderGray;
+	height: 100vh;
+	section {
+		background-image: url("../images/success_icon.svg");
+		background-repeat: no-repeat;
+		background-position: top 50px center;
+		background-color: $white;
+		padding: 50px 50px;
+		border-radius: 30px;
+		box-shadow: 6px 15px 62px -8px rgba(0, 0, 0, 0.75);
+		article {
+			margin-top: 100px;
+			text-align: center;
+		}
+	}
+}
