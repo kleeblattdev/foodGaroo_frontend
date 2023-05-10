@@ -1,11 +1,7 @@
-import { Link } from "react-router-dom";
-
-const RoundedButton = ({ children, link }) => {
-	return (
-		<Link className="roundedButton" to={link}>
-			{children}
-		</Link>
-	);
+import "./roundedButton.scss";
+// eslint-disable-next-line react/prop-types
+const RoundedButton = ({ children }) => {
+	return <button className="roundedButton">{children}</button>;
 };
 
 export default RoundedButton;

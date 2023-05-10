@@ -4,3 +4,28 @@
 	justify-self: center;
 	align-items: center;
 }
+
+.mailAvailiable,
+.mailNotAvailable,
+.passwordSame,
+.passwordNotSame {
+	background-repeat: no-repeat;
+	height: 30px;
+	width: 30px;
+}
+
+.mailAvailiable {
+	background-image: url("../images/small_checkmark_icon.svg");
+}
+
+.mailNotAvailable {
+	background-image: url("../images/close_icon.svg");
+}
+
+.passwordSame {
+	background-image: url("../images/small_checkmark_icon.svg");
+}
+
+.passwordNotSame {
+	background-image: url("../images/close_icon.svg");
+}

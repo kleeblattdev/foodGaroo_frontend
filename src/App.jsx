@@ -6,6 +6,7 @@ import "./App.scss";
 import OnBoarding from "./pages/OnBoarding";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import RegisterSuccess from "./pages/RegisterSuccess";
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 					<Route path="/" element={<OnBoarding />} />
 					<Route path="/register" element={<Register />} />
 					<Route path="/login" element={<Login />} />
+					<Route path="/successRegistration" element={<RegisterSuccess />} />
 				</Routes>
 			</BrowserRouter>
 		</>

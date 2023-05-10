@@ -1,15 +1,18 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../shared/Logo";
 
 import "./register.scss";
+import RoundedButton from "../shared/buttons/RoundedButton";
 
 const Register = () => {
-	const [email, setEmail] = useState("");
-	const [availiableEmail, setAvailiableEmail ]= useState(null)
+	const [availiableEmail, setAvailiableEmail] = useState(null);
+	const [passwordCompare, setPasswordCompare] = useState(null);
 
 	const emailRef = useRef();
 	const passwordRef = useRef();
+	const repeatPasswordRef = useRef();
+
 	const url = import.meta.env.BACKEND_URL + import.meta.env.API_VERSION;
 	const navigate = useNavigate();
 
@@ -23,16 +26,29 @@ const Register = () => {
 					password: passwordRef.current.value,
 				}),
 			});
+			if (res.ok) {
+				navigate("/successRegistration");
+			}
 		} catch (err) {
 			console.log(err);
 		}
 	};
 
 	const handleAvailiableEmail = async () => {
-		const response = await fetch(url + "/availiable?email=" + emailRef.current.value)
-		if(response.ok) return setAvailiableEmail(true)
-		return setAvailiableEmail(false)
-	}
+		const response = await fetch(
+			url + "/availiable?email=" + emailRef.current.value
+		);
+		if (response.ok) return setAvailiableEmail(true);
+		return setAvailiableEmail(false);
+	};
+
+	const handleRepeatPassword = () => {
+		if (passwordRef.current.value === repeatPasswordRef.current.value) {
+			return setPasswordCompare(true);
+		} else {
+			return setPasswordCompare(false);
+		}
+	};
 
 	return (
 		<main className="register">
@@ -50,6 +66,9 @@ const Register = () => {
 						onChange={handleAvailiableEmail}
 						placeholder="your email"
 					/>
+					<div
+						className={availiableEmail ? "mailAvailiable" : "mailNotAvailiable"}
+					></div>
 				</div>
 				<div>
 					<label htmlFor="password">Password</label>
@@ -57,9 +76,17 @@ const Register = () => {
 				</div>
 				<div>
 					<label htmlFor="password">Repeat Password</label>
-					<input type="password" placeholder="repeat password" />
+					<input
+						type="password"
+						placeholder="repeat password"
+						ref={repeatPasswordRef}
+						onChange={handleRepeatPassword}
+					/>
+					<div
+						className={passwordCompare ? "passwordSame" : "passwordNotSame"}
+					></div>
 				</div>
-				<button type="submit">Sign Up</button>
+				<RoundedButton type="submit">Sign Up</RoundedButton>
 			</form>
 			<p>
 				Already have an account? <Link to="/login">Sign In</Link>

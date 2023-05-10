@@ -5,7 +5,7 @@ import Welcome from "../components/Welcome";
 const OnBoarding = () => {
 	const [loading, setLoading] = useState(true);
 
-	function splashScreen() {
+	const splashScreen = () => {
 		setTimeout(() => {
 			setLoading(false);
 		}, 1500);
@@ -14,7 +14,7 @@ const OnBoarding = () => {
 		else {
 			return <Welcome />;
 		}
-	}
+	};
 
 	return (
 		<main className="onBoarding">

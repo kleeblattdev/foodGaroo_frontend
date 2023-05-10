@@ -24,3 +24,13 @@ a {
 	text-decoration: none;
 	font-family: "Poppins Medium";
 }
+
+input {
+	font-family: "Poppins Regular";
+	border: none;
+	color: $rhinoBlue;
+}
+
+label {
+	color: $boulderGray;
+}

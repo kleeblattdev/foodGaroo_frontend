@@ -1,5 +1,12 @@
+@import "../../fonts.scss";
 @import "../../variables.scss";
 
 .roundedButton {
-	color: $chateuGreen;
+	font-family: "Poppins Medium";
+	font-size: 1.1rem;
+	background-color: $chateuGreen;
+	color: $white;
+	border: none;
+	border-radius: 100px;
+	padding: 10px 120px;
 }
