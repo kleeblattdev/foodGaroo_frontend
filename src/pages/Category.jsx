@@ -1,7 +1,13 @@
+import Header from "../shared/Header";
+import Searchbar from "../shared/Searchbar";
+import Navigation from "../shared/Navigation";
+
 const Category = () => {
 	return (
 		<main className="category">
-			<h1>Category</h1>
+			<Header>Category</Header>
+			<Searchbar />
+			<Navigation />
 		</main>
 	);
 };

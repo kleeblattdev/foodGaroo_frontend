@@ -1,7 +1,11 @@
+import Header from "../shared/Header";
+import Navigation from "../shared/Navigation";
+
 const UserCart = () => {
 	return (
 		<main className="userCart">
-			<h1>User Cart</h1>
+			<Header>My Cart</Header>
+			<Navigation />
 		</main>
 	);
 };

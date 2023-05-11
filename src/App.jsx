@@ -13,9 +13,12 @@ import Home from "./pages/Home";
 import Welcome from "./components/Welcome";
 import FailedLogin from "./pages/FailedLogin";
 import Profile from "./pages/Profile";
+import Wishlist from "./pages/Wishlist";
+import UserCart from "./pages/UserCart";
 
 import Bouncer from "./bouncer/Bouncer";
 import PageNotFound from "./pages/PageNotFound";
+import OrderList from "./pages/OrderList";
 
 function App() {
 	return (
@@ -28,9 +31,12 @@ function App() {
 					<Route path="/login" element={<Login />} />
 					<Route path="/failedLogin" element={<FailedLogin />} />
 					<Route path="/successRegistration" element={<RegisterSuccess />} />
-					<Route element={<Bouncer/>}>
+					<Route element={<Bouncer />}>
 						<Route path="/home" element={<Home />} />
-						<Route path="/profile" element={<Profile />}></Route>
+						<Route path="/profile" element={<Profile />} />
+						<Route path="/userCart" element={<UserCart />} />
+						<Route path="/wishlist" element={<Wishlist />} />
+						<Route path="/orders" element={<OrderList />} />
 					</Route>
 					<Route path="*" element={<PageNotFound />}></Route>
 				</Routes>

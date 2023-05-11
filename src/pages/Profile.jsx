@@ -97,23 +97,6 @@ const Profile = () => {
 				</form>
 			</section>
 
-			{/* 			<section>
-				<h3>Name </h3>
-				<p>
-					{userDaten?.user?.firstname} {userDaten?.user?.lastname}{" "}
-				</p>
-				<h3>Email </h3>
-				<p>{userDaten?.user?.email}</p>
-				<h3>Shipping Adresse</h3>
-				<p>{userDaten?.user?.address?.street}</p>
-				<p>{userDaten?.user?.address?.number}</p>
-				<p>{userDaten?.user?.address?.zipCode}</p>
-				<p>{userDaten?.user?.address?.city}</p>
-				<h3>Phone Number</h3>
-				<p>{userDaten?.user?.phone}</p>
-				<button onClick={logout}>Logout</button>
-			</section> */}
-
 			<form>
 				<div>
 					<label htmlFor="name">Name</label>

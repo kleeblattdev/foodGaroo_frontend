@@ -1,13 +1,13 @@
 import Header from "../shared/Header";
 import Navigation from "../shared/Navigation";
 
-const Wishlist = () => {
+const OrderList = () => {
 	return (
-		<main className="wishlist">
-			<Header>My Wishlist</Header>
+		<main className="orderList">
+			<Header>My Orders</Header>
 			<Navigation />
 		</main>
 	);
 };
 
-export default Wishlist;
+export default OrderList;
