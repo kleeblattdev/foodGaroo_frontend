@@ -7,23 +7,22 @@
 	box-sizing: border-box;
 }
 
-body {
+body,
+button {
 	font-family: "Poppins Regular";
 	background-color: $white;
+	border: none;
 }
 
-h2 {
+h2,
+a {
 	font-family: "Poppins Medium";
 	color: $rhinoBlue;
+	text-decoration: none;
 }
 
 p {
 	color: $emperorGray;
-}
-
-a {
-	text-decoration: none;
-	font-family: "Poppins Medium";
 }
 
 input {
