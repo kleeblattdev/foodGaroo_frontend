@@ -26,8 +26,12 @@ const Login = () => {
 				credentials: "include",
 				body: JSON.stringify(body),
 			});
-			if (response.ok) return navigate("/Home");
-			console.log(response);
+			if (response.ok) {
+				console.log(response);
+				return navigate("/Home");
+			} else if (response.status == 581) {
+				navigate("/failedLogin");
+			}
 		} catch (err) {
 			console.error(err);
 		}
