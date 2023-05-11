@@ -28,10 +28,9 @@
 .mailNotAvailiable,
 .passwordSame,
 .passwordNotSame {
-	align-self: flex-end;
 	background-repeat: no-repeat;
-	height: 30px;
-	width: 30px;
+	background-position: right;
+	background-size: contain;
 }
 
 .mailAvailiable {
