@@ -17,15 +17,15 @@ const Profile = () => {
 		setNeuRendern(prev => !prev)
 	}, [])
 
-	useEffect ( () => {
+	useEffect(() => {
 		const bildNeuRendern = async () => {
-		
+
 			const bildUrl = userDaten?.user?.userImg
 
 			setBildGeladen(bildUrl)
 		}
 		bildNeuRendern()
-	},[neuRendern])
+	}, [neuRendern])
 
 
 
@@ -62,8 +62,8 @@ const Profile = () => {
 			userDaten.user.userImg = dataBild.url
 			setUserDaten(userDaten)
 			setNeuRendern(prev => !prev)
-			
-		} catch (err){
+
+		} catch (err) {
 			console.log(err)
 		}
 	}
@@ -95,17 +95,17 @@ const Profile = () => {
 				<BackButton></BackButton>
 				<h2>userName</h2>
 				<h2>img</h2>
-				<img src={bildGeladen} alt="UserBild" />
-				{/* <img src={userDaten?.user?.userImg} alt="UserBild" /> */}
+{/* 				<img src={bildGeladen} alt="UserBild" />
+ */}				<img src={userDaten?.user?.userImg} alt="UserBild" />
 				<form>
 					<label htmlFor='file'>Datei zum Hochladen</label>
-					<input ref={imgRef} type='file' id='file' name='file' placeholder='max 1MB'/> 
+					<input ref={imgRef} type='file' id='file' name='file' placeholder='max 1MB' />
 					<button onClick={bildHochladenZumBackEnd} >Hochladen zum BackEnd</button>
 				</form>
 			</section>
 
 			<section>
-				<h3>Name </h3> 	
+				<h3>Name </h3>
 				<p>{userDaten?.user?.firstname} {userDaten?.user?.lastname} </p>			{/*  ? bedeutet, dass es nicht immer da ist und so lange wie Pending gibt es keinen Fehler */}
 				<h3>Eamil </h3>
 				<p>{userDaten?.user?.email}</p>
@@ -122,7 +122,7 @@ const Profile = () => {
 
 			</section>
 
-<button> Zur Profil verändern Seite </button>
+			<button> Zur Profil verändern Seite </button>
 
 		</main>
 	);
