@@ -9,15 +9,26 @@ const Profile = () => {
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION
 	const [userDaten, setUserDaten] = useState({})
 	const imgRef = useRef()
+	const [bildGeladen, setBildGeladen] = useState()
+	const [neuRendern, setNeuRendern] = useState(false)
 
 	useEffect(() => {
 		getProfile()
+		setNeuRendern(prev => !prev)
 	}, [])
 
+	useEffect(() => {
+		const bildNeuRendern = async () => {
+
+			const bildUrl = userDaten?.user?.userImg
+
+			setBildGeladen(bildUrl)
+		}
+		bildNeuRendern()
+	}, [neuRendern])
 
 
-	// die Userdaten holen und in die Felder eintragen
-	// Userdaten aus der secure Cookie Payload holen
+
 	const getProfile = async () => {
 		try {
 			const result = await fetch(url + '/profile', {
@@ -27,7 +38,6 @@ const Profile = () => {
 
 			})
 			const data = await result.json()
-			console.log(data)
 			setUserDaten(data)
 
 		} catch (err) {
@@ -35,8 +45,8 @@ const Profile = () => {
 		}
 	}
 
-	const bildHochladenZumBackEnd = async (e) => {
-		e.preventDefault()
+	const bildHochladenZumBackEnd = async (event) => {
+		event.preventDefault()
 
 		const form = new FormData()
 		form.append('file', imgRef.current.files[0])
@@ -51,14 +61,13 @@ const Profile = () => {
 			const dataBild = await result.json()
 			userDaten.user.userImg = dataBild.url
 			setUserDaten(userDaten)
-			console.log(userDaten)
-			console.log(dataBild)
-		} catch (err){
+			setNeuRendern(prev => !prev)
+
+		} catch (err) {
 			console.log(err)
 		}
 	}
 
-	console.log(userDaten)
 
 	const logout = async () => {
 		try {
@@ -77,7 +86,6 @@ const Profile = () => {
 		}
 	}
 
-	console.log(userDaten)
 
 	return (
 		<main className="profile">
@@ -87,23 +95,34 @@ const Profile = () => {
 				<BackButton></BackButton>
 				<h2>userName</h2>
 				<h2>img</h2>
-				<img src={userDaten?.user?.userImg} alt="" />
+{/* 				<img src={bildGeladen} alt="UserBild" />
+ */}				<img src={userDaten?.user?.userImg} alt="UserBild" />
 				<form>
 					<label htmlFor='file'>Datei zum Hochladen</label>
-					<input ref={imgRef} type='file' id='file' name='file' placeholder='max 1MB'/> 
+					<input ref={imgRef} type='file' id='file' name='file' placeholder='max 1MB' />
 					<button onClick={bildHochladenZumBackEnd} >Hochladen zum BackEnd</button>
 				</form>
 			</section>
 
 			<section>
-				<h3>Name {userDaten?.user?.firstname}</h3> 				{/*  ? bedeutet, dass es nicht immer da ist und so lange wie Pending gibt es keinen Fehler */}
-				<h3>Eamil {userDaten?.user?.email}</h3>
+				<h3>Name </h3>
+				<p>{userDaten?.user?.firstname} {userDaten?.user?.lastname} </p>			{/*  ? bedeutet, dass es nicht immer da ist und so lange wie Pending gibt es keinen Fehler */}
+				<h3>Eamil </h3>
+				<p>{userDaten?.user?.email}</p>
 				<h3>Shipping Adresse</h3>
+				<p>{userDaten?.user?.address?.street}</p>
+				<p>{userDaten?.user?.address?.number}</p>
+				<p>{userDaten?.user?.address?.zipCode}</p>
+				<p>{userDaten?.user?.address?.city}</p>
+
 				<h3>Phone Number</h3>
+				<p>{userDaten?.user?.phone}</p>
 
 				<button onClick={logout}>Logout</button>
 
 			</section>
+
+			<button> Zur Profil verändern Seite </button>
 
 		</main>
 	);
