@@ -16,6 +16,7 @@ import Profile from "./pages/Profile";
 
 import Bouncer from "./bouncer/Bouncer";
 import PageNotFound from "./pages/PageNotFound";
+import Filter from "./pages/Filter";
 
 function App() {
 	return (
@@ -31,6 +32,7 @@ function App() {
 					<Route element={<Bouncer/>}>
 						<Route path="/home" element={<Home />} />
 						<Route path="/profile" element={<Profile />}></Route>
+						<Route path='/filter' element={ <Filter></Filter>} ></Route>
 					</Route>
 					<Route path="*" element={<PageNotFound />}></Route>
 				</Routes>
