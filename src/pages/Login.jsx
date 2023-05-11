@@ -26,6 +26,7 @@ const Login = () => {
 			});
 			if (response.ok) return navigate("/Home");
 			console.log(response);
+			return navigate('/failedLogin')
 		} catch (err) {
 			console.error(err);
 		}
