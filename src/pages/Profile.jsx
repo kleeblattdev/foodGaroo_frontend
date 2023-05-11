@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../shared/Header";
-import SquareButtonLight from "../shared/buttons/SquareButtonLight";
 import Navigation from "../shared/Navigation";
 import "./profile.scss";
 
@@ -120,7 +119,13 @@ const Profile = () => {
 					<label htmlFor="name">Name</label>
 					<input
 						type="text"
-						placeholder={`${userDaten?.user?.firstname} ${userDaten?.user?.lastname}`}
+						name="firstname"
+						placeholder={userDaten?.user?.firstname}
+					/>
+					<input
+						type="text"
+						name="lastname"
+						placeholder={userDaten?.user?.lastname}
 					/>
 				</div>
 				<div>
