@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { BackButton } from '../shared/buttons/BackButton.jsx'
 import { useNavigate } from 'react-router-dom';
 
@@ -8,6 +8,7 @@ const Profile = () => {
 	const nav = useNavigate();
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION
 	const [userDaten, setUserDaten] = useState({})
+	const imgRef = useRef()
 
 	useEffect(() => {
 		getProfile()
@@ -32,9 +33,32 @@ const Profile = () => {
 		} catch (err) {
 			console.log(err)
 		}
-
-
 	}
+
+	const bildHochladenZumBackEnd = async (e) => {
+		e.preventDefault()
+
+		const form = new FormData()
+		form.append('file', imgRef.current.files[0])
+		form.append('name', userDaten?.user?._id)
+
+		try {
+			const result = await fetch(url + '/directupload', {
+				method: 'POST',
+				credentials: 'include',
+				body: form
+			})
+			const dataBild = await result.json()
+			userDaten.user.userImg = dataBild.url
+			setUserDaten(userDaten)
+			console.log(userDaten)
+			console.log(dataBild)
+		} catch (err){
+			console.log(err)
+		}
+	}
+
+	console.log(userDaten)
 
 	const logout = async () => {
 		try {
@@ -63,6 +87,12 @@ const Profile = () => {
 				<BackButton></BackButton>
 				<h2>userName</h2>
 				<h2>img</h2>
+				<img src={userDaten?.user?.userImg} alt="" />
+				<form>
+					<label htmlFor='file'>Datei zum Hochladen</label>
+					<input ref={imgRef} type='file' id='file' name='file' placeholder='max 1MB'/> 
+					<button onClick={bildHochladenZumBackEnd} >Hochladen zum BackEnd</button>
+				</form>
 			</section>
 
 			<section>
