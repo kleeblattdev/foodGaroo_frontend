@@ -1,6 +1,8 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../shared/Logo";
+import RoundedButton from "../shared/buttons/RoundedButton";
 
 import "./login.scss";
 
@@ -24,9 +26,11 @@ const Login = () => {
 				credentials: "include",
 				body: JSON.stringify(body),
 			});
+			
 			if (response.ok) return navigate("/Home");
 			console.log(response);
 			return navigate('/failedLogin')
+
 		} catch (err) {
 			console.error(err);
 		}
@@ -34,7 +38,6 @@ const Login = () => {
 	return (
 		<main className="login">
 			<Logo />
-			<h1>Login</h1>
 			<section>
 				<form onSubmit={handleLogin}>
 					<div>
@@ -49,9 +52,12 @@ const Login = () => {
 							ref={passwordRef}
 						/>
 					</div>
-					<button type="submit">Sign In</button>
+					<RoundedButton>Sign in</RoundedButton>
 				</form>
 			</section>
+			<p>
+				Don't have an account? <Link to="register">Sign Up</Link>
+			</p>
 		</main>
 	);
 };

@@ -38,17 +38,24 @@ const Register = () => {
 	};
 
 	const handleAvailiableEmail = async () => {
-		const response = await fetch(
-			url + "/availiable?email=" + emailRef.current.value,
-			{ credentials: "include" }
-		);
-		if (response.ok) return setAvailiableEmail("mailAvailiable");
-		return setAvailiableEmail("mailNotAvailiable");
+		const email = emailRef.current.value;
+		if (email.includes("@")) {
+			const response = await fetch(url + "/availiable?email=" + email, {
+				credentials: "include",
+			});
+
+			if (response.ok) return setAvailiableEmail("mailAvailiable");
+			return setAvailiableEmail("mailNotAvailiable");
+		} else {
+			setAvailiableEmail(""); //
+		}
 	};
 
 	const handleRepeatPassword = () => {
 		if (passwordRef.current.value === repeatPasswordRef.current.value) {
 			return setPasswordCompare("passwordSame");
+		} else if (repeatPasswordRef.current.value === "") {
+			setPasswordCompare("");
 		} else {
 			return setPasswordCompare("passwordNotSame");
 		}
@@ -69,8 +76,8 @@ const Register = () => {
 						ref={emailRef}
 						onChange={handleAvailiableEmail}
 						placeholder="your email"
+						className={availiableEmail}
 					/>
-					<div className={availiableEmail}></div>
 				</div>
 				<div>
 					<label htmlFor="password">Password</label>
@@ -83,8 +90,8 @@ const Register = () => {
 						placeholder="repeat password"
 						ref={repeatPasswordRef}
 						onChange={handleRepeatPassword}
+						className={passwordCompare}
 					/>
-					<div className={passwordCompare}></div>
 				</div>
 				<RoundedButton type="submit">Sign Up</RoundedButton>
 			</form>

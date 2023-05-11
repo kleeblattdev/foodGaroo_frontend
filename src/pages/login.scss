@@ -1,11 +1,24 @@
+@import "../variables.scss";
+
 .login {
 	display: flex;
 	flex-direction: column;
-	justify-self: center;
+	justify-content: space-evenly;
 	align-items: center;
-    div {
-        label {
-            margin-right: 10px;
-        }
-    }
+	height: 100vh;
+	form {
+		margin: 30px 0;
+		div {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			margin-bottom: 15px;
+			label {
+				margin-right: 10px;
+			}
+			input {
+				border-bottom: 1px solid $boulderGray;
+			}
+		}
+	}
 }
