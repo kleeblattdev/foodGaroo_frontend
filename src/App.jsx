@@ -12,6 +12,7 @@ import RegisterSuccess from "./pages/RegisterSuccess";
 import Home from "./pages/Home";
 import Welcome from "./components/Welcome";
 import FailedLogin from "./pages/FailedLogin";
+import Profile from "./pages/Profile";
 
 function App() {
 	return (
@@ -25,6 +26,8 @@ function App() {
 					<Route path="/failedLogin" element={<FailedLogin />} />
 					<Route path="/successRegistration" element={<RegisterSuccess />} />
 					<Route path="/home" element={<Home />} />
+					<Route path='/profile' element={ <Profile> </Profile>}></Route>
+					<Route path='*' element={<h1 style={{textAlign:"center", color:"red"}}>404 Page not found <OnBoarding></OnBoarding></h1>  }></Route>
 				</Routes>
 			</BrowserRouter>
 		</>
