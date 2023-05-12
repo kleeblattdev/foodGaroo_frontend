@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import SquareButtonLight from "../shared/buttons/SquareButtonLight";
 import SearchItem from "../components/SearchItem";
 import { v4 as uuidv4 } from "uuid";
+import FilterButton from "../shared/buttons/FilterButton";
 
 
 const Filter = () => {
@@ -17,7 +18,7 @@ const Filter = () => {
 
 	const [minValue, set_minValue] = useState(25);
 	const [maxValue, set_maxValue] = useState(400);
-	const handleInput = (e) => {
+	const handleInputSlider = (e) => {
 		set_minValue(e.minValue);
 		setPriceFrom(minValue);
 		set_maxValue(e.maxValue);
@@ -55,14 +56,14 @@ const Filter = () => {
 					method: 'GET',
 					credentials: 'include'
 				})
+
 			const data = await result.json()
-		
+
 			setSearchResult(data.resultCursor)
 			setSearchCount(data.resultCount)
 
 			// das wird jetzt vor zur Seite category geleitet imt den fetch daten 
-			navigate('/category', { state: { searchCount:data.resultCount, searchResult:data.resultCursor } })
-
+			navigate('/category', { state: { searchCount: data.resultCount, searchResult: data.resultCursor } })
 		}
 		catch (err) {
 			console.log(err)
@@ -70,6 +71,26 @@ const Filter = () => {
 	}
 
 
+	// category per fetch holen und in ein array speichern    dann unten drüber mappen und ausgeben in FilterButton.jsx
+	const [categoryArray, setCategoryArray] = useState([])
+	
+	useEffect( () => {
+		getCategory()
+	},[])
+
+	const getCategory = async () => {
+		try {
+			const result = await fetch(url + '/categories', {
+				method: 'GET',
+				credentials: 'include'
+			})
+			const data = await result.json()
+			setCategoryArray(data)
+			console.log(data)
+		} catch (er) {
+			console.log(er)
+		}
+	}
 
 
 	return (
@@ -82,9 +103,8 @@ const Filter = () => {
 				<section>
 					<h2>Sort By: nur einer geht zum auswählen </h2>
 
-					<button  onClick={() => { setAktivButton('lowest'), setSortBy('lowest') }}
+					<button onClick={() => { setAktivButton('lowest'), setSortBy('lowest') }}
 						style={(aktivButton === 'lowest') ? { backgroundColor: 'green' } : { backgroundColor: 'grey' }}
-
 					>Lowest</button>
 
 					<button onClick={() => { setAktivButton('highest'), setSortBy('highest') }}
@@ -116,7 +136,7 @@ const Filter = () => {
 							minValue={minValue}
 							maxValue={maxValue}
 							onInput={(e) => {
-								handleInput(e);
+								handleInputSlider(e);
 							}}
 						/>
 					</article>
@@ -125,10 +145,13 @@ const Filter = () => {
 				</section>
 
 				<section>
-					<h2>Category: mehrere auswählen </h2>{/* category */}
-					<button>Frozen</button>
-					<button>Vegetarian</button>
-					<button>Vegan</button>
+					<h2>Category: </h2>{/* category */}
+							{categoryArray?.map((item) => {
+								return (
+									<FilterButton key={uuidv4() } item={item}  ></FilterButton>
+								)
+							})}
+			
 
 				</section>
 
@@ -151,9 +174,9 @@ const Filter = () => {
 				</section>
 				<section  >
 
-					<button  onClick={handelInputToFetch}> test-Fetch</button>
+					<button onClick={handelInputToFetch}> test-Fetch</button>
 
-					<SquareButtonLight  onClick={handelInputToFetch}
+					<SquareButtonLight onClick={handelInputToFetch}
 						style={{ margin: "200px", color: 'red' }}  >Apply</SquareButtonLight>
 				</section>
 			</>
