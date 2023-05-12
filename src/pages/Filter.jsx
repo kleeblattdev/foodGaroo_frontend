@@ -183,13 +183,10 @@ const Filter = () => {
 
 				<section>
 					<h2>Allergen: mehrere auswählen</h2>
-					<button>organic</button>
-					<button>kosher</button>
-					<button>no_artificial_flavors</button>
-
 
 				</section>
-				<section  >
+
+				<section>
 
 					<button onClick={handelInputToFetch}> test-Fetch</button>
 
