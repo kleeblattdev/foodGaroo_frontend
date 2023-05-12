@@ -10,8 +10,8 @@ const Home = () => {
 	return (
 		<main className="home">
 			<Header>Home</Header>
-			<section>
-				<Link to="/filter"></Link>
+			<section className="searchbarWrapper">
+				<Link to="/filter" id="filterIcon"></Link>
 				<Searchbar />
 			</section>
 			<Navigation />

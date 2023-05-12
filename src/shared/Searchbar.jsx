@@ -1,11 +1,14 @@
 import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import "./searchbar.scss";
+import SearchItem from "../components/SearchItem";
 
 const Searchbar = () => {
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
 	const searchRef = useRef();
 	const [searchItem, setSearchItem] = useState();
+	const [searchState, setSearchState] = useState(false);
 
 	const handleSearch = () => {
 		fetch(
@@ -14,8 +17,12 @@ const Searchbar = () => {
 			.then((res) => res.json())
 			.then((data) => {
 				setSearchItem(data);
+				setSearchState(true);
 				console.log(data);
 			});
+		if (setSearchItem == "") {
+			setSearchState(false);
+		}
 	};
 
 	return (
@@ -26,8 +33,16 @@ const Searchbar = () => {
 				ref={searchRef}
 				onChange={handleSearch}
 			/>
-			{/* 			{searchItem && searchItem.map((item)=>{
-			})} */}
+			<div className={searchState ? "showSearchResult" : "hideSearchResult"}>
+				<ul>
+					{searchItem &&
+						searchItem.map((item) => {
+							return (
+								<SearchItem key={uuidv4()} title={item.title} _id={item._id} />
+							);
+						})}
+				</ul>
+			</div>
 		</section>
 	);
 };
