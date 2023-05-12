@@ -4,7 +4,6 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
-	margin: 10px;
 	.profileImg {
 		position: relative;
 		display: flex;
@@ -53,6 +52,7 @@
 	form {
 		display: flex;
 		flex-direction: column;
+		margin: 0 10px;
 		div {
 			display: flex;
 			flex-direction: column;

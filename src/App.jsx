@@ -15,10 +15,12 @@ import FailedLogin from "./pages/FailedLogin";
 import Profile from "./pages/Profile";
 import Wishlist from "./pages/Wishlist";
 import UserCart from "./pages/UserCart";
+import Filter from "./pages/Filter";
 
 import Bouncer from "./bouncer/Bouncer";
 import PageNotFound from "./pages/PageNotFound";
 import OrderList from "./pages/OrderList";
+import Category from "./pages/Category";
 
 function App() {
 	return (
@@ -37,6 +39,8 @@ function App() {
 						<Route path="/userCart" element={<UserCart />} />
 						<Route path="/wishlist" element={<Wishlist />} />
 						<Route path="/orders" element={<OrderList />} />
+						<Route path="/category" element={<Category />} />
+						<Route path="/filter" element={<Filter />} />
 					</Route>
 					<Route path="*" element={<PageNotFound />}></Route>
 				</Routes>

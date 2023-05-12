@@ -1,7 +1,10 @@
+import Header from "../shared/Header";
+import "./filter.scss";
+
 const Filter = () => {
 	return (
 		<main className="filter">
-			<h1>Filter</h1>
+			<Header>Filters</Header>
 		</main>
 	);
 };
