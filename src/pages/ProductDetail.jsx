@@ -1,7 +1,11 @@
+import Header from "../shared/Header";
+import Navigation from "../shared/Navigation";
+
 const ProductDetail = () => {
 	return (
 		<main className="ProductDetail">
-			<h1>product detail</h1>
+			<Header></Header>
+			<Navigation />
 		</main>
 	);
 };

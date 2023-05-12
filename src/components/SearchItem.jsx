@@ -5,7 +5,7 @@ const SearchItem = ({ title, _id }) => {
 	return (
 		<>
 			<li>
-				<Link to={`/productId/${_id}`}>{title}</Link>
+				<Link to={`/product/${_id}`}>{title}</Link>
 			</li>
 		</>
 	);
