@@ -19,8 +19,11 @@ import Filter from "./pages/Filter";
 
 import Bouncer from "./bouncer/Bouncer";
 import PageNotFound from "./pages/PageNotFound";
+
 import OrderList from "./pages/OrderList";
 import Category from "./pages/Category";
+import Filter from "./pages/Filter";
+
 
 function App() {
 	return (
