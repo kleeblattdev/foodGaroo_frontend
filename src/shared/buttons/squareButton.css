@@ -1,0 +1,16 @@
+/* color-scheme
+#82CD47,
+#40AA54,
+#2C3066,
+#DEFFE4,
+#555555,
+#777777,
+#FFC02D,
+ */
+.squareButton {
+  padding: 20px 60px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  color: #fffefc;
+  background-color: #82cd47;
+}/*# sourceMappingURL=squareButton.css.map */

@@ -1,0 +1,38 @@
+/* color-scheme
+#82CD47,
+#40AA54,
+#2C3066,
+#DEFFE4,
+#555555,
+#777777,
+#FFC02D,
+ */
+.home .searchbarWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.home .searchbarWrapper #filterIcon {
+  display: block;
+  width: 38px;
+  height: 38px;
+  background-image: url("../images/filter_menu_icon.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid #777777;
+  border-radius: 10px;
+  box-shadow: 6px 15px 62px -8px rgba(0, 0, 0, 0.75);
+}
+.home .categories {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  height: 100px;
+  overflow: auto;
+}
+.home .categories a {
+  height: 80px;
+  width: 80px;
+  font-size: 0.8rem;
+  margin-right: 20px;
+}/*# sourceMappingURL=home.css.map */

@@ -1,0 +1,29 @@
+/* 
+font-family: 'Poppins', sans-serif;
+ */
+@font-face {
+  font-family: "Poppins Regular";
+  src: url(./fonts/Poppins/Poppins-Regular.ttf);
+}
+@font-face {
+  font-family: "Poppins Medium";
+  src: url(./fonts/Poppins/Poppins-Medium.ttf);
+}
+/* color-scheme
+#82CD47,
+#40AA54,
+#2C3066,
+#DEFFE4,
+#555555,
+#777777,
+#FFC02D,
+ */
+.roundedButton {
+  font-family: "Poppins Medium";
+  font-size: 1.1rem;
+  background-color: #40aa54;
+  color: #fffefc;
+  border: none;
+  border-radius: 100px;
+  padding: 10px 120px;
+}/*# sourceMappingURL=roundedButton.css.map */

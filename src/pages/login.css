@@ -1,0 +1,31 @@
+/* color-scheme
+#82CD47,
+#40AA54,
+#2C3066,
+#DEFFE4,
+#555555,
+#777777,
+#FFC02D,
+ */
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100vh;
+}
+.login form {
+  margin: 30px 0;
+}
+.login form div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.login form div label {
+  margin-right: 10px;
+}
+.login form div input {
+  border-bottom: 1px solid #777777;
+}/*# sourceMappingURL=login.css.map */

@@ -1,0 +1,16 @@
+/* color-scheme
+#82CD47,
+#40AA54,
+#2C3066,
+#DEFFE4,
+#555555,
+#777777,
+#FFC02D,
+ */
+.squareButtonLight {
+  padding: 20px 60px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  color: #2c3066;
+  background-color: #deffe4;
+}/*# sourceMappingURL=squareButtonLight.css.map */

@@ -1,0 +1,62 @@
+/* 
+font-family: 'Poppins', sans-serif;
+ */
+@font-face {
+  font-family: "Poppins Regular";
+  src: url(./fonts/Poppins/Poppins-Regular.ttf);
+}
+@font-face {
+  font-family: "Poppins Medium";
+  src: url(./fonts/Poppins/Poppins-Medium.ttf);
+}
+/* color-scheme
+#82CD47,
+#40AA54,
+#2C3066,
+#DEFFE4,
+#555555,
+#777777,
+#FFC02D,
+ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+button {
+  font-family: "Poppins Regular";
+  background-color: #fffefc;
+  border: none;
+}
+
+h2,
+h3,
+h4,
+a {
+  font-family: "Poppins Medium";
+  color: #2c3066;
+  text-decoration: none;
+}
+
+h5,
+p {
+  color: #555555;
+}
+
+input {
+  font-family: "Poppins Regular";
+  font-size: 1.1rem;
+  border: none;
+  color: #2c3066;
+}
+
+label {
+  font-size: 0.8rem;
+  color: #777777;
+}
+
+main {
+  padding: 10px;
+}/*# sourceMappingURL=App.css.map */
