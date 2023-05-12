@@ -24,7 +24,6 @@ import OrderList from "./pages/OrderList";
 import Category from "./pages/Category";
 
 
-
 function App() {
 	return (
 		<>

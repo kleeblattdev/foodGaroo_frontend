@@ -11,7 +11,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const Filter = () => {
 
-	const nav = useNavigate();
+	const navigate = useNavigate();
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION
 
 
@@ -28,13 +28,11 @@ const Filter = () => {
 	// lowest, highest, newest, likes, spoonacularScore
 
 	const [priceFrom, setPriceFrom] = useState(0);
-	const [priceTo, setPriceTo] = useState(500);
+	const [priceTo, setPriceTo] = useState(1000);
 	// inputs von values von slider
-	console.log(priceFrom, priceTo)
 
 	const [sortBy, setSortBy] = useState('lowest');
 	// lowest, highest, newest, likes, spoonacularScore
-	console.log(sortBy)
 
 	const [searchResult, setSearchResult] = useState([]);
 	const [searchCount, setSearchCount] = useState(0);
@@ -51,24 +49,24 @@ const Filter = () => {
 	const handelInputToFetch = async (e) => {
 		e.preventDefault();
 		try {
-			const result = await fetch(url + 
+			const result = await fetch(url +
 				`/filter?sortBy=${sortBy}&priceFrom=${priceFrom}&priceTo=${priceTo}&category=${category}&badges=${badges}&importantBadges=${importantBadges}&offset=${offset}&limit=${limit}`,
 				{
 					method: 'GET',
 					credentials: 'include'
 				})
-				const data = await result.json()
-				console.log(data)
-				console.log(data.resultCount)
-				console.log(data.resultCursor)
-				setSearchResult(data.resultCursor)
-				setSearchCount(data.resultCount)
+			const data = await result.json()
+		
+			setSearchResult(data.resultCursor)
+			setSearchCount(data.resultCount)
+
+			// das wird jetzt vor zur Seite category geleitet imt den fetch daten 
+			navigate('/category', { state: { searchCount:data.resultCount, searchResult:data.resultCursor } })
+
 		}
 		catch (err) {
 			console.log(err)
 		}
-
-
 	}
 
 
@@ -78,30 +76,30 @@ const Filter = () => {
 		<main className="filter">
 
 			<Header>Filters</Header>
-			<form onSubmit={handelInputToFetch}>
+			< >
 
 
 				<section>
 					<h2>Sort By: nur einer geht zum auswählen </h2>
 
-					<button onClick={() => { setAktivButton('lowest'), setSortBy('lowest') }}
+					<button  onClick={() => { setAktivButton('lowest'), setSortBy('lowest') }}
 						style={(aktivButton === 'lowest') ? { backgroundColor: 'green' } : { backgroundColor: 'grey' }}
 
 					>Lowest</button>
 
-					<button onClick={() => { setAktivButton('highest'), sortBy('highest') }}
+					<button onClick={() => { setAktivButton('highest'), setSortBy('highest') }}
 						style={(aktivButton === 'highest') ? { backgroundColor: 'green' } : { backgroundColor: 'grey' }}
 					>Highest</button>
 
-					<button onClick={() => { setAktivButton('newest'), sortBy('newest') }}
+					<button onClick={() => { setAktivButton('newest'), setSortBy('newest') }}
 						style={(aktivButton === 'newest') ? { backgroundColor: 'green' } : { backgroundColor: 'grey' }}
 					>Newest</button>
 
-					<button onClick={() => { setAktivButton('likes'), sortBy('likes') }}
+					<button onClick={() => { setAktivButton('likes'), setSortBy('likes') }}
 						style={(aktivButton === 'likes') ? { backgroundColor: 'green' } : { backgroundColor: 'grey' }}
 					>Likes</button>
 
-					<button onClick={() => { setAktivButton('sponnacularScore') , sortBy('sponnacularScore') }}
+					<button onClick={() => { setAktivButton('sponnacularScore'), setSortBy('sponnacularScore') }}
 						style={(aktivButton === 'sponnacularScore') ? { backgroundColor: 'green' } : { backgroundColor: 'grey' }}
 					>sponnacular Score</button>
 				</section>
@@ -113,7 +111,7 @@ const Filter = () => {
 
 						<MultiRangeSlider style={{ borderRadius: '30px', backgroundColor: 'orange' }} className="slider"
 							min={0}
-							max={500}
+							max={1000}
 							step={10}
 							minValue={minValue}
 							maxValue={maxValue}
@@ -153,18 +151,18 @@ const Filter = () => {
 				</section>
 				<section  >
 
-							<button onClick={handelInputToFetch}> test-Fetch</button>
+					<button  onClick={handelInputToFetch}> test-Fetch</button>
 
-					<SquareButtonLight type='submit' onClick={handelInputToFetch}
+					<SquareButtonLight  onClick={handelInputToFetch}
 						style={{ margin: "200px", color: 'red' }}  >Apply</SquareButtonLight>
 				</section>
-			</form>
-							{searchCount}
-							{ searchResult?.map( (item) => {
-								return (
-									<SearchItem key={ uuidv4() } title={item.title} _id={item._id} item={item} > </SearchItem>
-								)
-							}) }
+			</>
+			{searchCount}
+			{searchResult?.map((item) => {
+				return (
+					<SearchItem key={uuidv4()} title={item.title} _id={item._id} item={item} > </SearchItem>
+				)
+			})}
 
 		</main>
 	);
