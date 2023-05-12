@@ -33,7 +33,7 @@ const Home = () => {
 						return (
 							<Link
 								key={uuidv4()}
-								to={`/products?/category=${category.aisle}&offset=0&limit=20`}
+								to={`/products?category=${category.aisle}&offset=0&limit=20`}
 							>
 								{category.aisle}
 							</Link>
