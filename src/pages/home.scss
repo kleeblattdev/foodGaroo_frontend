@@ -1,18 +1,33 @@
 @import "../variables.scss";
 
-.searchbarWrapper {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	#filterIcon {
-		display: block;
-		width: 38px;
-		height: 38px;
-		background-image: url("../images/filter_menu_icon.svg");
-		background-repeat: no-repeat;
-		background-position: center;
-		border: 1px solid $boulderGray;
-		border-radius: 10px;
-		box-shadow: 6px 15px 62px -8px rgba(0, 0, 0, 0.75);
+.home {
+	.searchbarWrapper {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		#filterIcon {
+			display: block;
+			width: 38px;
+			height: 38px;
+			background-image: url("../images/filter_menu_icon.svg");
+			background-repeat: no-repeat;
+			background-position: center;
+			border: 1px solid $boulderGray;
+			border-radius: 10px;
+			box-shadow: 6px 15px 62px -8px rgba(0, 0, 0, 0.75);
+		}
+	}
+	.categories {
+		margin-top: 30px;
+		display: flex;
+		align-items: center;
+		height: 100px;
+		overflow: auto;
+		a {
+			height: 80px;
+			width: 80px;
+			font-size: 0.8rem;
+			margin-right: 20px;
+		}
 	}
 }
