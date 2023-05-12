@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./searchItem.scss";
 // eslint-disable-next-line react/prop-types
-const SearchItem = ({ title, _id }) => {
+const SearchItem = ({ item,  title, _id }) => {
 	return (
 		<>
 			<li>

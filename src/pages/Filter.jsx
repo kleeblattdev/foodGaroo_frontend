@@ -5,6 +5,8 @@ import { useState, useEffect, useRef } from "react";
 import MultiRangeSlider from "multi-range-slider-react";
 import { useNavigate } from "react-router-dom";
 import SquareButtonLight from "../shared/buttons/SquareButtonLight";
+import SearchItem from "../components/SearchItem";
+import { v4 as uuidv4 } from "uuid";
 
 
 const Filter = () => {
@@ -17,9 +19,9 @@ const Filter = () => {
 	const [maxValue, set_maxValue] = useState(400);
 	const handleInput = (e) => {
 		set_minValue(e.minValue);
-		setPriceFrom(e.minValue);
+		setPriceFrom(minValue);
 		set_maxValue(e.maxValue);
-		setPriceTo(e.maxValue);
+		setPriceTo(maxValue);
 	};
 
 	const [aktivButton, setAktivButton] = useState(false);
@@ -30,10 +32,12 @@ const Filter = () => {
 	// inputs von values von slider
 	console.log(priceFrom, priceTo)
 
-	const [sortBy, setSortBy] = useState();
+	const [sortBy, setSortBy] = useState('lowest');
 	// lowest, highest, newest, likes, spoonacularScore
 	console.log(sortBy)
 
+	const [searchResult, setSearchResult] = useState([]);
+	const [searchCount, setSearchCount] = useState(0);
 
 	// ! zum testen
 	const category = 'Frozen'
@@ -57,6 +61,8 @@ const Filter = () => {
 				console.log(data)
 				console.log(data.resultCount)
 				console.log(data.resultCursor)
+				setSearchResult(data.resultCursor)
+				setSearchCount(data.resultCount)
 		}
 		catch (err) {
 			console.log(err)
@@ -153,6 +159,13 @@ const Filter = () => {
 						style={{ margin: "200px", color: 'red' }}  >Apply</SquareButtonLight>
 				</section>
 			</form>
+							{searchCount}
+							{ searchResult?.map( (item) => {
+								return (
+									<SearchItem key={ uuidv4() } title={item.title} _id={item._id} item={item} > </SearchItem>
+								)
+							}) }
+
 		</main>
 	);
 };
