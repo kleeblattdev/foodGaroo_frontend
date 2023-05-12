@@ -62,7 +62,8 @@ const Profile = () => {
 		}
 	};
 
-	const logout = async () => {
+	const logout = async (event) => {
+		event.preventDefault();
 		try {
 			const res = await fetch(url + "/logout", {
 				method: "GET",
