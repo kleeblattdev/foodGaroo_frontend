@@ -1,4 +1,4 @@
-EAD
+
 import Header from "../shared/Header";
 import "./filter.scss";
 import { useState, useEffect, useRef } from "react";
