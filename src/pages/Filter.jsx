@@ -35,8 +35,34 @@ const Filter = () => {
 	console.log(sortBy)
 
 
+	// ! zum testen
+	const category = 'Frozen'
+	const badges = 'egg_free'
+	const importantBadges = ''
+
+
+	// offste = 0  limit = 20  => die 1. 20Stk
+	const offset = 0
+	const limit = 20
 	const handelInputToFetch = async (e) => {
 		e.preventDefault();
+		try {
+			const result = await fetch(url + 
+				`/filter?sortBy=${sortBy}&priceFrom=${priceFrom}&priceTo=${priceTo}&category=${category}&badges=${badges}&importantBadges=${importantBadges}&offset=${offset}&limit=${limit}`,
+				{
+					method: 'GET',
+					credentials: 'include'
+				})
+				const data = await result.json()
+				console.log(data)
+				console.log(data.resultCount)
+				console.log(data.resultCursor)
+		}
+		catch (err) {
+			console.log(err)
+		}
+
+
 	}
 
 
@@ -120,7 +146,10 @@ const Filter = () => {
 
 				</section>
 				<section  >
-					<SquareButtonLight type='submit'
+
+							<button onClick={handelInputToFetch}> test-Fetch</button>
+
+					<SquareButtonLight type='submit' onClick={handelInputToFetch}
 						style={{ margin: "200px", color: 'red' }}  >Apply</SquareButtonLight>
 				</section>
 			</form>
