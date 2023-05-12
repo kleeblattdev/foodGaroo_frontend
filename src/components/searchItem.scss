@@ -1,7 +1,15 @@
+@import "../variables.scss";
+
 li {
 	list-style-type: none;
 	margin-bottom: 10px;
+	border: 1px solid $boulderGray;
+	border-radius: 10px;
+	padding: 10px;
 	a {
 		font-size: 0.8rem;
+	}
+	:hover {
+		text-decoration: underline;
 	}
 }
