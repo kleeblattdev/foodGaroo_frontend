@@ -72,12 +72,13 @@ const Filter = () => {
 
 
 	// category per fetch holen und in ein array speichern    dann unten drüber mappen und ausgeben in FilterButton.jsx
-	const [categoryArray, setCategoryArray] = useState([])
 	
 	useEffect( () => {
 		getCategory()
+		getBadges()
 	},[])
 
+	const [categoryArray, setCategoryArray] = useState([])
 	const getCategory = async () => {
 		try {
 			const result = await fetch(url + '/categories', {
@@ -92,6 +93,20 @@ const Filter = () => {
 		}
 	}
 
+	const [badgesArray, setBadgesArray] = useState([])
+	const getBadges = async () => {
+		try {
+			const result = await fetch(url + '/badges',{
+				method: 'GET',
+				credentials: 'include'
+			})
+			const data = await result.json()
+			setBadgesArray(data)
+			console.log(data)
+		} catch (err) {
+			console.log(err)
+		}
+	}
 
 	return (
 		<main className="filter">
@@ -156,11 +171,13 @@ const Filter = () => {
 				</section>
 
 				<section>
-					<h2>Inhaltsstoffe: mehrere auswählen</h2> {/* badges */}
-					<button>egg_free</button>
-					<button>peanut_free</button>
-					<button>sugar_free</button>
-
+					<h2>Inhaltsstoffe: </h2> {/* badges */}
+							{badgesArray?.map((item) => {
+								return (
+									<FilterButton key={uuidv4()} item={item} ></FilterButton>
+								)
+							})}
+				
 
 				</section>
 
