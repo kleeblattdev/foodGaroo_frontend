@@ -5,6 +5,7 @@ import Header from "../shared/Header";
 import Navigation from "../shared/Navigation";
 
 import "./productDetail.scss";
+import WishlistButton from "../shared/buttons/WishlistButton";
 
 const ProductDetail = () => {
 	const params = useParams();
@@ -39,6 +40,18 @@ const ProductDetail = () => {
 		return setIngredient(true);
 	};
 
+	const increment = () => {
+		setQuantity(quantity + 1);
+	};
+
+	const decrement = () => {
+		if (quantity == 1) {
+			return quantity;
+		} else {
+			setQuantity(quantity - 1);
+		}
+	};
+
 	const handleAddToCart = async () => {};
 
 	return (
@@ -47,32 +60,52 @@ const ProductDetail = () => {
 			<section className="productWrapper">
 				<section className="product">
 					<img src={product?.image} alt={product?.title} />
-					<h3>{product?.price}€</h3>
-					<h4>
-						{product?.servings.size}
-						{product?.servings.unit}
-					</h4>
+					<article>
+						<h2>{product?.title}</h2>
+					</article>
+				</section>
+				<section className="setQuantity">
+					<article className="price">
+						<h3>{product?.price}€</h3>
+						<h5>
+							{product?.servings.size}
+							{product?.servings.unit}
+						</h5>
+					</article>
+					<div>
+						<button
+							onClick={decrement}
+							className={quantity == 1 ? "disableBtn" : ""}
+						>
+							-
+						</button>
+						<h3>{quantity}</h3>
+						<button onClick={increment}>+</button>
+					</div>
 				</section>
 				<article className="description">
-					<button onClick={handleDescription}>Description</button>
+					<button
+						onClick={handleDescription}
+						className={description ? "arrowDown" : "arrowUp"}
+					>
+						Description
+					</button>
 					<p className={description ? "showDescription" : "hideDescription"}>
 						{product?.description}
 					</p>
 				</article>
 				<article className="description">
-					<button onClick={handleIngredient}>Ingredients</button>
+					<button
+						onClick={handleIngredient}
+						className={ingredient ? "arrowDown" : "arrowUp"}
+					>
+						Ingredients
+					</button>
 					<p className={ingredient ? "showDescription" : "hideDescription"}>
 						{product?.ingredientList}
 					</p>
 				</article>
-				<section className="setQuantity">
-					<h5>Quantity</h5>
-					<article>
-						<button onClick={() => setQuantity(quantity - 1)}>-</button>
-						<h3>{quantity}</h3>
-						<button onClick={() => setQuantity(quantity + 1)}>+</button>
-					</article>
-				</section>
+
 				<button onClick={handleAddToCart} id="addToCartBtn">
 					Add to Cart
 				</button>

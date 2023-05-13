@@ -3,37 +3,59 @@
 	.productWrapper {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
-		align-items: center;
 		.product {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
+			position: relative;
 		}
 		.setQuantity {
 			display: flex;
-			flex-direction: column;
-			justify-content: center;
+			justify-content: space-between;
 			align-items: center;
-			article {
+			.price {
 				display: flex;
-				justify-content: space-around;
+				align-items: flex-end;
+				gap: 5px;
+			}
+			div {
+				display: flex;
 				align-items: center;
-				gap: 40px;
+				gap: 25px;
+				border: 1px solid $boulderGray;
+				border-radius: 30px;
+				padding: 10px;
+				height: 40px;
+				overflow: hidden;
 				button {
-					font-size: 1.5rem;
+					padding: 10px;
+					font-size: 2rem;
 					color: $rhinoBlue;
-					border: 1px solid $boulderGray;
-					border-radius: 100%;
-					padding: 15px;
+				}
+				.disableBtn {
+					color: $emperorGray;
 				}
 			}
 		}
 		.description {
 			align-self: flex-start;
-			padding: 15px;
+
 			p {
 				font-size: 0.7rem;
+			}
+			button {
+				padding-right: 30px;
+			}
+			.arrowDown,
+			.arrowUp {
+				background-repeat: no-repeat;
+				background-position: right;
+			}
+			.arrowDown {
+				background-image: url("../images/chevron-down.svg");
+			}
+			.arrowUp {
+				background-image: url("../images/chevron-up.svg");
 			}
 		}
 		.showDescription {
@@ -42,13 +64,13 @@
 		.hideDescription {
 			display: none;
 		}
-		#addToCartBtn {
-			margin-top: 50px;
-			padding: 20px 60px;
-			border-radius: 8px;
-			font-size: 1.1rem;
-			color: $rhinoBlue;
-			background-color: $pastelGreen;
-		}
+	}
+	#addToCartBtn {
+		margin-top: 50px;
+		padding: 20px 60px;
+		border-radius: 8px;
+		font-size: 1.1rem;
+		color: $rhinoBlue;
+		background-color: $pastelGreen;
 	}
 }
