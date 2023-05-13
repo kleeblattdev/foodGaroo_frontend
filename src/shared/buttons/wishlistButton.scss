@@ -1,0 +1,16 @@
+.wishBtnActive,
+.wishBtnNotActive {
+	height: 25px;
+	width: 25px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+.wishBtnNotActive {
+	background-image: url("../../images/favorite_icon.svg");
+}
+
+.wishBtnActive {
+	background-image: url("../../images/red_heart_icon.svg");
+}
