@@ -17,6 +17,7 @@ const Filter = () => {
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION
 
 
+	// Slider
 	const [minValue, set_minValue] = useState(25);
 	const [maxValue, set_maxValue] = useState(400);
 	const handleInputSlider = (e) => {
@@ -39,15 +40,13 @@ const Filter = () => {
 	const [searchResult, setSearchResult] = useState([]);
 	const [searchCount, setSearchCount] = useState(0);
 
-	// ! zum testen
-	//const category = 'Frozen'
-	//const badges = 'egg_free'
-	const importantBadges = ''
+
 
 
 	// offste = 0  limit = 20  => die 1. 20Stk
 	const offset = 0
 	const limit = 20
+	const importantBadges = ''
 	const handelInputToFetch = async (e) => {
 		e.preventDefault();
 		try {
@@ -74,10 +73,7 @@ const Filter = () => {
 
 	// category per fetch holen und in ein array speichern    dann unten drüber mappen und ausgeben in FilterButton.jsx
 
-	useEffect(() => {
-		getCategory()
-		getBadges()
-	}, [])
+
 
 	const [categoryArray, setCategoryArray] = useState([])
 	const getCategory = async () => {
@@ -110,25 +106,7 @@ const Filter = () => {
 	}
 
 
-	// filterStore für die category
-	/* 	const useFilterCategoryStore = create((set) => ({
-			selectedCategoryValues: [],
-			setSelectedCategoryValues: (selectedCategoryValues) => set({ selectedCategoryValues }),
-		}));
-	
-		const [selectedCategoryValues, setSelectedCategoryValues] = useFilterCategoryStore((state) => [
-			state.selectedCategoryValues,
-			state.setSelectedCategoryValues,
-		]);
-		console.log(selectedCategoryValues);
-	
-		const handelButtonClickCategory = (item) => {
-			if (selectedCategoryValues.includes(item)) {
-				setSelectedCategoryValues(selectedCategoryValues.filter((val) => val !== item));
-			} else {
-				setSelectedCategoryValues([...selectedCategoryValues, item]);
-			}
-		}; */
+
 
 	// category 
 
@@ -163,6 +141,42 @@ const Filter = () => {
 			setBadges([...aktivButtonBadges, item])
 		}
 	}
+
+	// count fetch
+	const [count, setCount] = useState(0)
+	const handelFetchCount = async () => {
+		try{
+			const result = await fetch(url +
+				`/filter?sortBy=${sortBy}&priceFrom=${priceFrom}&priceTo=${priceTo}&category=${category}&badges=${badges}&importantBadges=${importantBadges}&offset=${offset}&limit=${limit}`,
+				{
+					method: 'GET',
+				credentials: 'include'
+			})
+			const data = await result.json()
+			setCount(data.resultCount)
+		} catch (err) {
+			console.log(err)
+		}
+	}
+
+
+
+	useEffect(() => {
+		getCategory()
+		getBadges()
+	}, [])
+
+	// Count holen immer wenn eine Eingabe gemacht wird
+	useEffect(() => {
+		handelFetchCount()
+	},[
+		sortBy,
+		priceFrom,
+		priceTo,
+		category,
+		badges,
+		importantBadges,
+	])
 
 
 	return (
@@ -256,7 +270,11 @@ const Filter = () => {
 						style={{ margin: "200px", color: 'red' }}  >Apply</SquareButtonLight>
 				</section>
 			</>
-			{searchCount}
+
+		<h4>Alle Produkte auf die die Eingaben zutreffen:</h4>			{count}
+
+			
+
 			{searchResult?.map((item) => {
 				return (
 					<SearchItem key={uuidv4()} title={item.title} _id={item._id} item={item} > </SearchItem>
