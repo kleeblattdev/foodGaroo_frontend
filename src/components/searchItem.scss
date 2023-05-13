@@ -2,12 +2,16 @@
 
 li {
 	list-style-type: none;
-	margin-bottom: 10px;
-	border: 1px solid $boulderGray;
+	margin-bottom: 5px;
+	padding: 5px 10px;
 	border-radius: 10px;
-	padding: 10px;
+	box-shadow: 10px 10px 22px -17px rgba(0, 0, 0, 0.75);
 	a {
 		font-size: 0.8rem;
+		background-image: url(../images/arrow-up-left.svg);
+		background-repeat: no-repeat;
+		background-position: left;
+		padding: 0 25px;
 	}
 	:hover {
 		text-decoration: underline;
