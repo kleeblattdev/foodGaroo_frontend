@@ -20,8 +20,9 @@
 		background-repeat: no-repeat;
 		margin: 5px 10px;
 	}
-	a:active {
+	.active {
 		text-decoration: underline;
+		text-decoration-thickness: 2px;
 	}
 	#home {
 		background-image: url("../images/home_icon.svg");

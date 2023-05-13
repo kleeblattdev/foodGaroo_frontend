@@ -86,7 +86,7 @@ const Profile = () => {
 				{/* 				<img src={bildGeladen} alt="UserBild" />
 				 */}
 				<img src={userDaten?.user?.userImg} alt="UserBild" />
-				<form>
+				<form className="imageForm">
 					<input
 						ref={imgRef}
 						type="file"
@@ -98,14 +98,15 @@ const Profile = () => {
 				</form>
 			</section>
 
-			<form>
-				<div>
-					<label htmlFor="name">Name</label>
+			<form className="userInfo">
+				<div className="name">
+					<label htmlFor="name">Firstname</label>
 					<input
 						type="text"
 						name="firstname"
 						placeholder={userDaten?.user?.firstname}
 					/>
+					<label htmlFor="name">Lastname</label>
 					<input
 						type="text"
 						name="lastname"
@@ -123,26 +124,34 @@ const Profile = () => {
 				</div>
 				<div>
 					<label htmlFor="address">Shipping Address</label>
-					<input
-						type="text"
-						name="street"
-						placeholder={userDaten?.user?.address?.street}
-					/>
-					<input
-						type="text"
-						name="number"
-						placeholder={userDaten?.user?.address?.number}
-					/>
-					<input
-						type="text"
-						name="zipCode"
-						placeholder={userDaten?.user?.address?.zipCode}
-					/>
-					<input
-						type="text"
-						name="city"
-						placeholder={userDaten?.user?.address?.city}
-					/>
+					<div className="street">
+						<label htmlFor="street">Street</label>
+						<input
+							type="text"
+							name="street"
+							placeholder={userDaten?.user?.address?.street}
+						/>
+						<label htmlFor="streetnumber">Street number</label>
+						<input
+							type="text"
+							name="streetnumber"
+							placeholder={userDaten?.user?.address?.number}
+						/>
+					</div>
+					<div className="city">
+						<label htmlFor="zipCode">Zipcode</label>
+						<input
+							type="text"
+							name="zipCode"
+							placeholder={userDaten?.user?.address?.zipCode}
+						/>
+						<label htmlFor="city">City</label>
+						<input
+							type="text"
+							name="city"
+							placeholder={userDaten?.user?.address?.city}
+						/>
+					</div>
 				</div>
 				<div>
 					<label htmlFor="phone">Phone Number</label>
