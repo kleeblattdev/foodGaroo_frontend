@@ -1,0 +1,54 @@
+@import "../variables.scss";
+.productDetail {
+	.productWrapper {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		.product {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		.setQuantity {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			article {
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				gap: 40px;
+				button {
+					font-size: 1.5rem;
+					color: $rhinoBlue;
+					border: 1px solid $boulderGray;
+					border-radius: 100%;
+					padding: 15px;
+				}
+			}
+		}
+		.description {
+			align-self: flex-start;
+			padding: 15px;
+			p {
+				font-size: 0.7rem;
+			}
+		}
+		.showDescription {
+			display: block;
+		}
+		.hideDescription {
+			display: none;
+		}
+		#addToCartBtn {
+			margin-top: 50px;
+			padding: 20px 60px;
+			border-radius: 8px;
+			font-size: 1.1rem;
+			color: $rhinoBlue;
+			background-color: $pastelGreen;
+		}
+	}
+}
