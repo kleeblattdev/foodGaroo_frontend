@@ -1,18 +1,18 @@
 @import "../../variables.scss";
 
-.filterButton{
+.filterButton {
 
     color: $chateuGreen;
     border: 2px solid $sunOrange;
 
-    &:hover{
+    &:hover {
         background-color: $sunOrange;
         color: $white;
     }
 
-    &:active{
+         &:active{
         background-color: $chateuGreen;
         color: $white;
-    }
+    } 
 
 }
