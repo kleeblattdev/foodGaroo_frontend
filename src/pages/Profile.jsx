@@ -131,7 +131,7 @@ const Profile = () => {
 							name="street"
 							placeholder={userDaten?.user?.address?.street}
 						/>
-						<label htmlFor="streetnumber">Street git stanumber</label>
+						<label htmlFor="streetnumber">Streetnumber</label>
 						<input
 							type="text"
 							name="streetnumber"

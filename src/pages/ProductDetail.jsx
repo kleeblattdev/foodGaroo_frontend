@@ -68,8 +68,8 @@ const ProductDetail = () => {
 					<article className="price">
 						<h3>{product?.price}€</h3>
 						<h5>
-							{product?.servings.size}
-							{product?.servings.unit}
+							({product?.servings.size}
+							{product?.servings.unit})
 						</h5>
 					</article>
 					<div>
@@ -105,7 +105,6 @@ const ProductDetail = () => {
 						{product?.ingredientList}
 					</p>
 				</article>
-
 				<button onClick={handleAddToCart} id="addToCartBtn">
 					Add to Cart
 				</button>
