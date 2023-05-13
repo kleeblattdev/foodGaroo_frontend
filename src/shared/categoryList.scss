@@ -1,0 +1,13 @@
+.categoryList {
+	margin-top: 30px;
+	display: flex;
+	height: 50px;
+	overflow-x: auto;
+	overflow-y: hidden;
+	gap: 15px;
+	a {
+		height: 50px;
+		font-size: 0.8rem;
+		margin-right: 20px;
+	}
+}
