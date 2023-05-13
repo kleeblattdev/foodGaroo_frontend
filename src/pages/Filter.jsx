@@ -214,7 +214,7 @@ const Filter = () => {
 					<h2>Price:</h2>
 
 					<article style={{ width: "50vw" }} className="slider">
-
+						<p>{priceFrom}</p>
 						<MultiRangeSlider style={{ borderRadius: '30px', backgroundColor: 'orange' }} className="slider"
 							min={0}
 							max={1000}
@@ -225,6 +225,7 @@ const Filter = () => {
 								handleInputSlider(e);
 							}}
 						/>
+						<p>{priceTo}</p>
 					</article>
 
 
@@ -271,7 +272,7 @@ const Filter = () => {
 				</section>
 			</>
 
-		<h4>Alle Produkte auf die die Eingaben zutreffen:</h4>			{count}
+		<h4>Live - Alle Produkte auf die die Eingaben zutreffen:</h4>			{count}
 
 			
 
