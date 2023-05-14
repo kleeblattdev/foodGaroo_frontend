@@ -1,0 +1,60 @@
+@import "../variables.scss";
+.filter {
+	display: flex;
+	flex-direction: column;
+	padding-bottom: 50px;
+	section {
+		margin-bottom: 20px;
+	}
+	.buttonWrapper {
+		margin: 20px 0;
+		align-self: center;
+		a {
+			padding: 10px 60px;
+		}
+	}
+
+	.multi-range-slider {
+		border: none;
+		box-shadow: none;
+		.ruler {
+			display: none;
+		}
+		.label {
+			display: none;
+		}
+		.thumb::before {
+			background-color: $limeGreen;
+			border: 1px solid $boulderGray;
+			width: 15px;
+			height: 15px;
+			box-shadow: none;
+			margin: -5px -12px;
+		}
+		.bar-left,
+		.bar-right {
+			box-shadow: none;
+			background-color: $pastelGreen;
+		}
+		.bar-inner {
+			background-color: $limeGreen;
+			border: none;
+			box-shadow: none;
+		}
+	}
+}
+
+.activeBtn,
+.regularBtn {
+	margin: 5px;
+	padding: 5px 20px;
+	border-radius: 3px;
+}
+.activeBtn {
+	background-color: $limeGreen;
+	color: $white;
+}
+.regularBtn {
+	color: $rhinoBlue;
+	background-color: $pastelGreen;
+}
