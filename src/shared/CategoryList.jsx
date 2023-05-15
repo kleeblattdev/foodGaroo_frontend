@@ -13,6 +13,7 @@ const CategoryList = () => {
 			.then((data) => {
 				setCategories(data);
 			});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
@@ -20,7 +21,11 @@ const CategoryList = () => {
 			{categories &&
 				categories.map((category) => {
 					return (
-						<Link key={uuidv4()} to={`/category`}>
+						<Link
+							key={uuidv4()}
+							to={`/category`}
+							state={{ category: category.aisle }}
+						>
 							{category.aisle}
 						</Link>
 					);

@@ -15,7 +15,7 @@ const Filter = () => {
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
 
 	// Slider
-	const [minValue, set_minValue] = useState(25);
+	const [minValue, set_minValue] = useState(0);
 	const [maxValue, set_maxValue] = useState(400);
 	const handleInputSlider = (e) => {
 		set_minValue(e.minValue);
@@ -270,7 +270,7 @@ const Filter = () => {
 			</section>
 			<div className="buttonWrapper">
 				<SquareButtonLight onClick={handelInputToFetch}>
-					Apply
+					Show {count} results
 				</SquareButtonLight>
 			</div>
 			{/* 

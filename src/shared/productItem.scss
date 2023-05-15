@@ -1,0 +1,44 @@
+@import "../variables.scss";
+
+.productItem {
+	margin: 10px;
+	font-size: 0.8rem;
+	position: relative;
+	border-radius: 10px;
+	box-shadow: 10px 10px 30px -14px rgba(0, 0, 0, 0.75);
+	button {
+		position: absolute;
+		top: 5px;
+		right: 5px;
+	}
+	a {
+		padding: 8px;
+		width: 160px;
+		height: 160px;
+		display: grid;
+		grid-template-columns: 1fr 2fr 1fr;
+		grid-template-rows: 2fr 1fr;
+		grid-template-areas:
+			". img wishBtn"
+			"imgtext imgtext imgtext"
+			"price price likes";
+	}
+	img {
+		height: 90px;
+		grid-area: img;
+	}
+	h4:first-of-type {
+		grid-area: imgtext;
+		margin-bottom: 5px;
+	}
+	h4:last-of-type {
+		grid-area: price;
+	}
+	p {
+		grid-area: likes;
+		background-image: url("../images/star_icon.svg");
+		background-repeat: no-repeat;
+		background-position: left;
+		padding-left: 15px;
+	}
+}
