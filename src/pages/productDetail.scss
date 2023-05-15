@@ -3,6 +3,10 @@
 	.productWrapper {
 		display: flex;
 		flex-direction: column;
+		.wishBtnActive,
+		.wishBtnNotActive {
+			align-self: flex-end;
+		}
 		.product {
 			display: flex;
 			flex-direction: column;

@@ -68,21 +68,21 @@
 			input {
 				margin-bottom: 5px;
 			}
-			button {
-				margin: 10px 0;
-				align-self: flex-start;
-				color: $sunOrange;
-				border: none;
-				background-color: $white;
-			}
-		}
-		#updateProfile {
-			margin: 20px auto 100px;
-			padding: 10px 50px;
-			border-radius: 8px;
-			font-size: 1.1rem;
-			color: $rhinoBlue;
-			background-color: $pastelGreen;
 		}
 	}
+}
+#logout {
+	margin: 10px 0;
+	align-self: flex-start;
+	color: $sunOrange;
+	border: none;
+	background-color: $white;
+}
+#updateProfile {
+	margin: 20px auto 100px;
+	padding: 10px 50px;
+	border-radius: 8px;
+	font-size: 1.1rem;
+	color: $rhinoBlue;
+	background-color: $pastelGreen;
 }
