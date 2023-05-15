@@ -4,12 +4,15 @@ import Navigation from "../shared/Navigation";
 import WishlistItem from "../components/WishlistItem";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { useNavigate } from "react-router-dom";
+
 
 
 const Wishlist = () => {
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
 
 	const [wishlistItem, setWishlistItem] = useState([])
+	const [neuRender, setNeuRender] = useState(false)
 
 	const getWishlistWithFetch = async () => {
 		try {
@@ -28,7 +31,7 @@ const Wishlist = () => {
 
 	useEffect(() => {
 		getWishlistWithFetch()
-	} , [])
+	} , [neuRender])
 
 	console.log(wishlistItem)
 
@@ -38,8 +41,8 @@ const Wishlist = () => {
 			<Header>My Wishlist</Header>
 			<Navigation />
 			<section>
-				{wishlistItem?.map((item) => {
-					return <WishlistItem key={uuidv4()} item={item}></WishlistItem>;
+				{ wishlistItem?.items?.map((item) => {
+					return <WishlistItem key={uuidv4()} item={item} neuRender={neuRender} setNeuRender={setNeuRender}></WishlistItem>;
 				})}
 {/* 				<WishlistItem  />
  */}			</section>
