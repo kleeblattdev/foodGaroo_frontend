@@ -74,9 +74,10 @@ const WishlistButton = ({ item }) => {   // item is the product object  ganz Obj
 
 			const wishlist = await getWishlistWithFetch()
 			// wenn item in wishlist ist dann setLike(true) sonst setLike(false)
-
+			console.log(wishlist)
+			console.log(item)
 			// mit filter durchsucht wishlist.items und item   nach der gleichen _id
-			if (wishlist.items.filter((e) => e._id === item._id).length > 0) {
+			if (wishlist?.items?.filter((e) => e?._id === item?._id)?.length > 0) {
 				setLike(true)
 			}
 			else {
@@ -86,7 +87,7 @@ const WishlistButton = ({ item }) => {   // item is the product object  ganz Obj
 		fetchDaten()
 
 
-	}, [])
+	}, [item])
 
 
 	return (

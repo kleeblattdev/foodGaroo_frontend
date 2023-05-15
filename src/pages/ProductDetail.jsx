@@ -16,17 +16,18 @@ const ProductDetail = () => {
 	const [description, setDescription] = useState(false);
 	const [ingredient, setIngredient] = useState(false);
 	const [quantity, setQuantity] = useState(1);
-	const price = product.price.toFixed(2);
+	const price = product?.price?.toFixed(2);
+
 
 	useEffect(() => {
 		fetch(url + "/product/" + params.id)
 			.then((res) => res.json())
 			.then((data) => {
 				setProduct(data);
-				console.log(data);
 			});
 	}, []);
 
+	
 	const handleDescription = () => {
 		if (description == true) {
 			return setDescription(false);
@@ -72,7 +73,7 @@ const ProductDetail = () => {
 		<main className="productDetail">
 			<Header></Header>
 			<section className="productWrapper">
-				<WishlistButton />
+				<WishlistButton item={product} />    {/* // das item für den WishlistButton ist hier in dem fall in product drin */}
 				<section className="product">
 					<img src={product?.image} alt={product?.title} />
 					<article>
