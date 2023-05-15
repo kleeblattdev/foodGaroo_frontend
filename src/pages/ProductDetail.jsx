@@ -7,7 +7,7 @@ import Navigation from "../shared/Navigation";
 import "./productDetail.scss";
 import WishlistButton from "../shared/buttons/WishlistButton";
 
-const ProductDetail = () => {
+const ProductDetail = ({ item }) => {
 	const params = useParams();
 
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
@@ -16,7 +16,6 @@ const ProductDetail = () => {
 	const [description, setDescription] = useState(false);
 	const [ingredient, setIngredient] = useState(false);
 	const [quantity, setQuantity] = useState(1);
-	const price = product.price.toFixed(2);
 
 	useEffect(() => {
 		fetch(url + "/product/" + params.id)
@@ -72,7 +71,7 @@ const ProductDetail = () => {
 		<main className="productDetail">
 			<Header></Header>
 			<section className="productWrapper">
-				<WishlistButton />
+				<WishlistButton item={item} />
 				<section className="product">
 					<img src={product?.image} alt={product?.title} />
 					<article>
@@ -81,7 +80,7 @@ const ProductDetail = () => {
 				</section>
 				<section className="setQuantity">
 					<article className="price">
-						<h3>{price}€</h3>
+						<h3>{product?.price}€</h3>
 						<h5>
 							({product?.servings.size}
 							{product?.servings.unit})
