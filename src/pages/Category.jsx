@@ -32,9 +32,7 @@ const Category = () => {
 						title={item.title}
 						_id={item._id}
 						item={item}
-					>
-						{" "}
-					</SearchItem>
+					></SearchItem>
 				);
 			})}
 		</main>
