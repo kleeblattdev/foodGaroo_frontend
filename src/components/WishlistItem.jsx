@@ -6,13 +6,15 @@ const WishlistItem = () => {
 	return (
 		<article className="wishlistItem">
 			<img src="" alt="Artikelname" />
-			<h2>Artikelname</h2>
-			<div>
-				<p>Artikeleinheit</p>
-				<p>Artikellikes</p>
-				<button onClick={handleDelete}></button>
-			</div>
-			<h4>Artikelpreis€</h4>
+			<article>
+				<h2>Artikelname</h2>
+				<div>
+					<p>Artikeleinheit</p>
+					<p>Artikellikes</p>
+				</div>
+				<h4>Artikelpreis€</h4>
+			</article>
+			<button onClick={handleDelete}></button>
 		</article>
 	);
 };
