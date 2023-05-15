@@ -20,7 +20,11 @@ const CategoryList = () => {
 			{categories &&
 				categories.map((category) => {
 					return (
-						<Link key={uuidv4()} to={`/category`}>
+						<Link
+							key={uuidv4()}
+							to={`/category`}
+							state={{ category: category.aisle }}
+						>
 							{category.aisle}
 						</Link>
 					);
