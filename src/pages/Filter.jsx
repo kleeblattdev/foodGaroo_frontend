@@ -225,7 +225,7 @@ const Filter = () => {
 			<section className="price">
 				<h2>Price:</h2>
 				<p>
-					From: {priceFrom} To: {priceTo}
+					From: {priceFrom}€ To: {priceTo}€
 				</p>
 				<MultiRangeSlider
 					min={0}
