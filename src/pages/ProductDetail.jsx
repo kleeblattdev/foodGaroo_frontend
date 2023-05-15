@@ -26,8 +26,8 @@ const ProductDetail = () => {
 				setProduct(data);
 			});
 	}, []);
-
 	
+
 	const handleDescription = () => {
 		if (description == true) {
 			return setDescription(false);
@@ -74,6 +74,7 @@ const ProductDetail = () => {
 			<Header></Header>
 			<section className="productWrapper">
 				<WishlistButton item={product} />    {/* // das item für den WishlistButton ist hier in dem fall in product drin */}
+				
 				<section className="product">
 					<img src={product?.image} alt={product?.title} />
 					<article>
@@ -82,7 +83,7 @@ const ProductDetail = () => {
 				</section>
 				<section className="setQuantity">
 					<article className="price">
-						<h3>{price}€</h3>
+						<h3>{product?.price}€</h3>
 						<h5>
 							({product?.servings.size}
 							{product?.servings.unit})

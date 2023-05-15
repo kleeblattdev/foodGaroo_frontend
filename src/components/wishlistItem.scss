@@ -1,0 +1,22 @@
+.wishlistItem {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	div {
+		display: flex;
+		justify-content: space-around;
+		p:last-of-type {
+			background-image: url("../images/star_icon.svg");
+			background-repeat: no-repeat;
+			background-position: left;
+			padding-left: 20px;
+		}
+	}
+	button {
+		height: 20px;
+		width: 20px;
+		background-image: url("../images/bin.svg");
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+}
