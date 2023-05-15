@@ -46,15 +46,13 @@ const Category = () => {
 
 			<h4>Results: {location?.state?.searchCount}</h4>
 			<section className="productList">
-				{location?.state?.searchResult?.map((item) => {
-					return <ProductItem key={uuidv4()} item={item}></ProductItem>;
-				})}
-			</section>
-			<section>
 				{categoryItems &&
 					categoryItems.map((item) => {
 						return <ProductItem key={uuidv4()} item={item} />;
 					})}
+				{location?.state?.searchResult?.map((item) => {
+					return <ProductItem key={uuidv4()} item={item}></ProductItem>;
+				})}
 			</section>
 		</main>
 	);

@@ -10,6 +10,7 @@ const Profile = () => {
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
 	const [userDaten, setUserDaten] = useState({});
 	const imgRef = useRef();
+	// eslint-disable-next-line no-unused-vars
 	const [bildGeladen, setBildGeladen] = useState();
 	const [neuRendern, setNeuRendern] = useState(false);
 
@@ -36,7 +37,7 @@ const Profile = () => {
 			});
 			const data = await result.json();
 			setUserDaten(data);
-			return data;     // für userInputDatenUpdaten
+			return data; // für userInputDatenUpdaten
 		} catch (err) {
 			console.log(err);
 		}
@@ -80,56 +81,81 @@ const Profile = () => {
 		}
 	};
 
-
 	// Button Update Profile
 	const handleUpdateProfile = async (event) => {
 		event.preventDefault();
-		// ProfilBild extra hochladen 
+		// ProfilBild extra hochladen
 		// bildHochladenZumBackEnd(event)   // geht nicht, wenn Bild nicht geändert wurde da als antwort kein secUrl kommt und backEnd server abstürzt
-		userInputDatenUpdaten(event)
-
-	}
+		userInputDatenUpdaten(event);
+	};
 
 	// Funktion um die UserDaten zu updaten
-	const [neuRendernBeiInputs, setNeuRendernBeiInputs] = useState(false)
+	const [neuRendernBeiInputs, setNeuRendernBeiInputs] = useState(false);
 
-	const firstnameRef = useRef()
-	const lastnameRef = useRef()
-	const emailRef = useRef()
-	const streetRef = useRef()
-	const numberRef = useRef()
-	const zipCodeRef = useRef()
-	const cityRef = useRef()
-	const phoneRef = useRef()
+	const firstnameRef = useRef();
+	const lastnameRef = useRef();
+	const emailRef = useRef();
+	const streetRef = useRef();
+	const numberRef = useRef();
+	const zipCodeRef = useRef();
+	const cityRef = useRef();
+	const phoneRef = useRef();
 
-	let firstname = ''
-	let lastname = ''
-	let email = ''
-	let street = ''
-	let number = ''
-	let zipCode = ''
-	let city = ''
-	let phone = ''
+	let firstname = "";
+	let lastname = "";
+	let email = "";
+	let street = "";
+	let number = "";
+	let zipCode = "";
+	let city = "";
+	let phone = "";
 
 	// const history = useHistory()
 
 	const userInputDatenUpdaten = async (event) => {
-		event.preventDefault()
-
+		event.preventDefault();
 
 		// wenn input leer ist, dann den Wert aus der DB nehmen und nicht den leeren Wert
-		const getDbProfil = await getProfile()
-		const dbUser = await getDbProfil?.user
+		const getDbProfil = await getProfile();
+		const dbUser = await getDbProfil?.user;
 
 		// Vergleich ob input leer ist oder nicht und entsprechend den Wert aus der DB oder den Wert aus dem input nehmen
-		if (firstnameRef.current.value === "") { firstname = dbUser?.firstname } else { firstname = firstnameRef.current.value }
-		if (lastnameRef.current.value === '') { lastname = dbUser?.lastname } else { lastname = lastnameRef.current.value }
+		if (firstnameRef.current.value === "") {
+			firstname = dbUser?.firstname;
+		} else {
+			firstname = firstnameRef.current.value;
+		}
+		if (lastnameRef.current.value === "") {
+			lastname = dbUser?.lastname;
+		} else {
+			lastname = lastnameRef.current.value;
+		}
 		// if (emailRef.current.value === '') { email = dbUser?.email } else { email = emailRef.current.value }
-		if (streetRef.current.value === '') { street = dbUser?.address?.street } else { street = streetRef.current.value }
-		if (numberRef.current.value === '') { number = dbUser?.address?.number } else { number = numberRef.current.value }
-		if (zipCodeRef.current.value === '') { zipCode = dbUser?.address?.zipCode } else { zipCode = zipCodeRef.current.value }
-		if (cityRef.current.value === '') { city = dbUser?.address?.city } else { city = cityRef.current.value }
-		if (phoneRef.current.value === '') { phone = dbUser?.phone } else { phone = phoneRef.current.value }
+		if (streetRef.current.value === "") {
+			street = dbUser?.address?.street;
+		} else {
+			street = streetRef.current.value;
+		}
+		if (numberRef.current.value === "") {
+			number = dbUser?.address?.number;
+		} else {
+			number = numberRef.current.value;
+		}
+		if (zipCodeRef.current.value === "") {
+			zipCode = dbUser?.address?.zipCode;
+		} else {
+			zipCode = zipCodeRef.current.value;
+		}
+		if (cityRef.current.value === "") {
+			city = dbUser?.address?.city;
+		} else {
+			city = cityRef.current.value;
+		}
+		if (phoneRef.current.value === "") {
+			phone = dbUser?.phone;
+		} else {
+			phone = phoneRef.current.value;
+		}
 
 		const editUserDaten = {
 			firstname: firstname,
@@ -141,45 +167,37 @@ const Profile = () => {
 				zipCode: zipCode,
 				city: city,
 			},
-			phone: phone
-		}
+			phone: phone,
+		};
 
 		try {
-			const result = await fetch(url + '/editUserProfile', {
-				method: 'PUT',
-				credentials: 'include',
-				headers: { 'content-type': 'application/json' },
-				body: JSON.stringify(editUserDaten)
-
-			})
-			const data = await result.json()
-			console.log(data)
-			setUserDaten(data)
-			setNeuRendernBeiInputs(true)
+			const result = await fetch(url + "/editUserProfile", {
+				method: "PUT",
+				credentials: "include",
+				headers: { "content-type": "application/json" },
+				body: JSON.stringify(editUserDaten),
+			});
+			const data = await result.json();
+			console.log(data);
+			setUserDaten(data);
+			setNeuRendernBeiInputs(true);
 			//	window.location.reload() // damit die Daten sofort neu geladen werden
 			//	history.push('/profile') // damit die Daten sofort neu geladen werden
-
 		} catch (err) {
-			console.log(err)
+			console.log(err);
 		}
-
-	}
-
+	};
 
 	useEffect(() => {
 		const neuRendern = async () => {
-			const data = await getProfile()
-			setUserDaten(data)
-			setNeuRendernBeiInputs(false)
-		}
-		neuRendern()
-	}, [neuRendernBeiInputs])
-
-
-
+			const data = await getProfile();
+			setUserDaten(data);
+			setNeuRendernBeiInputs(false);
+		};
+		neuRendern();
+	}, [neuRendernBeiInputs]);
 
 	return (
-
 		<main className="profile">
 			<Header>My Profile</Header>
 			<section className="profileImg">
@@ -196,24 +214,21 @@ const Profile = () => {
 						sofort gändert  */
 						onChange={bildHochladenZumBackEnd}
 					/>
-
 				</form>
 			</section>
 
-
-			<form >
+			<form className="userInfo">
 				<div>
-					<label htmlFor="name">Name</label>
+					<label htmlFor="firstname">Firstname</label>
 					<input
-
 						ref={firstnameRef}
 						// value={userDaten?.user?.firstname}
 						type="text"
 						name="firstname"
 						placeholder={userDaten?.user?.firstname || "Firstname ?"}
 					/>
+					<label htmlFor="lastname">Lastname</label>
 					<input
-
 						ref={lastnameRef}
 						type="text"
 						name="lastname"
@@ -227,7 +242,7 @@ const Profile = () => {
 						type="email"
 						name="email"
 						placeholder={userDaten?.user?.email || "Email ?"}
-						disabled    /* Email soll/darf nicht geändert werden */
+						disabled /* Email soll/darf nicht geändert werden */
 						value={userDaten?.user?.email}
 						style={{ color: "purple" }}
 					/>
@@ -267,20 +282,18 @@ const Profile = () => {
 						name="phone"
 						placeholder={userDaten?.user?.phone || "Phone Number ?"}
 					/>
-
 				</div>
 				<div>
 					<button onClick={logout} id="logout">
 						Logout
 					</button>
 				</div>
-				<button onClick={handleUpdateProfile} id="updateProfile">Update Profile</button>
+				<button onClick={handleUpdateProfile} id="updateProfile">
+					Update Profile
+				</button>
 			</form>
 			<Navigation />
-
-
 		</main>
-
 	);
 };
 

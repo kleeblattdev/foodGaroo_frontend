@@ -34,7 +34,9 @@ const Filter = () => {
 	const [sortBy, setSortBy] = useState("lowest");
 	// lowest, highest, newest, likes, spoonacularScore
 
+	// eslint-disable-next-line no-unused-vars
 	const [searchResult, setSearchResult] = useState([]);
+	// eslint-disable-next-line no-unused-vars
 	const [searchCount, setSearchCount] = useState(0);
 
 	// offste = 0  limit = 20  => die 1. 20Stk
