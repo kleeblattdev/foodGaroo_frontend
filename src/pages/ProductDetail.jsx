@@ -55,7 +55,11 @@ const ProductDetail = () => {
 	};
 
 	const handleAddToCart = async () => {
-		const body = { item: product };
+
+		const item = product
+		item.quantity = quantity
+		const body = {item: item}
+
 		try {
 			const response = await fetch(url + "/cart", {
 				method: "post",
