@@ -2,15 +2,54 @@ import { useState } from "react";
 
 import "./wishlistButton.scss";
 
-const WishlistButton = () => {
+const WishlistButton = ({ item }) => {   // item is the product object  ganz Object durchreichen {title:"",price."",...}
 	const [like, setLike] = useState(false);
 
 	const handleWishlist = () => {
-		if (like == true) return setLike(false);
+		if (like == true) {
+			deleteItemFromWishlistWithFetch();
+			return setLike(false)
+		}
+
 		else {
+			addItemToWishlistWithFetch();
 			setLike(true);
 		}
 	};
+
+	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
+
+
+	const addItemToWishlistWithFetch = async () => {
+		try {
+			const result = await fetch(url + '/addWishlist', {
+				method: 'POST',
+				credentials: 'include',
+				headers: { 'content-type': 'application/json' },
+				body: JSON.stringify(item)
+			})
+			const data = await result.json()
+			console.log(data)
+		} catch (err) {
+			console.log(err)
+		}
+	}
+
+	const deleteItemFromWishlistWithFetch = async () => {
+		try {
+			const result = await fetch(url + '/deleteWishlist', {
+				method: 'DELETE',
+				credentials: 'include',
+				headers: { 'content-type': 'application/json' },
+				body: JSON.stringify(item)
+			})
+			const data = await result.json()
+			console.log(data)
+		} catch (err) {
+			console.log(err)
+		}
+	}
+
 
 	return (
 		<button

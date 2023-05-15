@@ -184,7 +184,7 @@ const Profile = () => {
 			<Header>My Profile</Header>
 			<section className="profileImg">
 				<img src={userDaten?.user?.userImg} alt="UserBild" />
-				<form className="imageForm">
+				<form>
 					<input
 						ref={imgRef}
 						type="file"
@@ -201,10 +201,9 @@ const Profile = () => {
 			</section>
 
 
-			<form className="userInfo">
-				<div className="name">
-					<label htmlFor="name">Firstname</label>
-
+			<form >
+				<div>
+					<label htmlFor="name">Name</label>
 					<input
 
 						ref={firstnameRef}
@@ -213,7 +212,6 @@ const Profile = () => {
 						name="firstname"
 						placeholder={userDaten?.user?.firstname || "Firstname ?"}
 					/>
-					<label htmlFor="name">Lastname</label>
 					<input
 
 						ref={lastnameRef}
@@ -236,8 +234,6 @@ const Profile = () => {
 				</div>
 				<div>
 					<label htmlFor="address">Shipping Address</label>
-					<div className="street">
-					
 					<input
 						ref={streetRef}
 						type="text"
@@ -256,14 +252,12 @@ const Profile = () => {
 						name="zipCode"
 						placeholder={userDaten?.user?.address?.zipCode || "Zip Code ?"}
 					/>
-					</div>
 					<input
 						ref={cityRef}
 						type="text"
 						name="city"
 						placeholder={userDaten?.user?.address?.city || "City ?"}
 					/>
-					
 				</div>
 				<div>
 					<label htmlFor="phone">Phone Number</label>
