@@ -23,7 +23,7 @@ import PageNotFound from "./pages/PageNotFound";
 import OrderList from "./pages/OrderList";
 import Category from "./pages/Category";
 import ProductDetail from "./pages/ProductDetail";
-
+import OrderDetails from "./pages/OrderDetails";
 
 function App() {
 	return (
@@ -45,6 +45,7 @@ function App() {
 						<Route path="/category" element={<Category />} />
 						<Route path="/filter" element={<Filter />} />
 						<Route path="/product/:id" element={<ProductDetail />} />
+						<Route path="/orders/:id" element={<OrderDetails />} />
 					</Route>
 					<Route path="*" element={<PageNotFound />}></Route>
 				</Routes>
