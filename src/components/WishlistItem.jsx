@@ -1,8 +1,20 @@
+import { useEffect } from "react";
 import "./wishlistItem.scss";
 
-const WishlistItem = () => {
+const WishlistItem = ({item}) => {
+
+	console.log(item)
+
+	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
+
+
 	//Hier die Funktion um das WishlistItem zu löschen
-	const handleDelete = () => {};
+	const handleDelete = () => {
+
+
+	};
+
+
 	return (
 		<article className="wishlistItem">
 			<img src="" alt="Artikelname" />
