@@ -5,7 +5,6 @@ const OrderDetails = () => {
 	return (
 		<main className="orderDetails">
 			<Header />
-
 			<h1>Order Details</h1>
 			<Navigation />
 		</main>
