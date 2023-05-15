@@ -52,7 +52,21 @@ const ProductDetail = () => {
 		}
 	};
 
-	const handleAddToCart = async () => {};
+	const handleAddToCart = async () => {
+		const body = {item: product}
+		try {
+			const response = await fetch(url + "/cart", {
+				method: "post",
+				credentials: "include",
+				headers: { "content-type": "application/json" },
+				body: JSON.stringify(body)
+			});
+			if(response.ok) return console.log("added to cart", response)
+			
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
 	return (
 		<main className="productDetail">
