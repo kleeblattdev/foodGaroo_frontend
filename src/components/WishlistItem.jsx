@@ -39,7 +39,7 @@ const WishlistItem = ({ item, neuRender, setNeuRender }) => {
 	console.log(item._id)
 
 	return (
-		<article state={neuRender} className="wishlistItem">
+		<article className="wishlistItem">
 			<img
 				onClick={handleNavigateByClick}
 				style={{ width: '70px' }} src={item?.image} alt="Artikelname" />
