@@ -8,9 +8,13 @@ const ProductItem = ({ item }) => {
 	console.log(item);
 	const price = item.price.toFixed(2);
 	const title = item.title.slice(0, 29);
+
+	
+
+
 	return (
 		<article className="productItem">
-			<WishlistButton />
+			<WishlistButton item={item} />
 			<Link to={`/product/${item._id}`}>
 				<img src={item.image} alt={item.title} />
 				<h4>{title}</h4>
