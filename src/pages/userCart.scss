@@ -1,0 +1,29 @@
+@import "../variables.scss";
+
+.userCart {
+	.product {
+		display: flex;
+		align-items: center;
+		img {
+			height: 80px;
+			width: 80px;
+		}
+		div {
+			width: 200px;
+			font-size: 0.7rem;
+		}
+	}
+	.quantity {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin: 20px 0;
+	}
+	#bin {
+		height: 20px;
+		width: 20px;
+		background-image: url("../images/bin.svg");
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+}

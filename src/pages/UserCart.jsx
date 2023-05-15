@@ -1,88 +1,105 @@
 import { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 import Header from "../shared/Header";
 import Navigation from "../shared/Navigation";
 
+import "./userCart.scss";
+
 const UserCart = () => {
-	const [cart, setCart] = useState(null)
+	const [cart, setCart] = useState(null);
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
 
-	useEffect(()=>{
-		
-		getCart()
-	},[])
-	const getCart = async () =>{
+	useEffect(() => {
+		getCart();
+	}, []);
+	const getCart = async () => {
 		const response = await fetch(url + "/cart", {
 			method: "get",
 			credentials: "include",
 			headers: { "content-type": "application/json" },
 		});
-		const data = await response.json()
+		const data = await response.json();
 		console.log(data);
-		setCart(data)
-	}
+		setCart(data);
+	};
 
-	const modifyItem = async (item,index) => {
-		const body = {item: item, index: index}
+	const modifyItem = async (item, index) => {
+		const body = { item: item, index: index };
 		try {
 			const response = await fetch(url + "/cart/modify", {
 				method: "put",
 				credentials: "include",
 				headers: { "content-type": "application/json" },
-				body: JSON.stringify(body)
+				body: JSON.stringify(body),
 			});
-			if(response.ok) return await getCart()
-			
+			if (response.ok) return await getCart();
 		} catch (err) {
 			console.log(err);
 		}
-	}
-	const handleDelete = async (item, ) => {
-		const body = {item: item}
+	};
+	const handleDelete = async (item) => {
+		const body = { item: item };
 		try {
 			const response = await fetch(url + "/cart", {
 				method: "delete",
 				credentials: "include",
 				headers: { "content-type": "application/json" },
-				body: JSON.stringify(body)
+				body: JSON.stringify(body),
 			});
-			if(response.ok) return await getCart()
-			
+			if (response.ok) return await getCart();
 		} catch (err) {
 			console.log(err);
 		}
-	}
+	};
 
 	return (
 		<main className="userCart">
 			<Header>My Cart</Header>
-			{
-				cart && cart.items.map((item, index) =>{
-					return <div className="product">
-						<h3>{item.title}</h3>
-						<p>{item.price}</p>
-						<div>
-						<button
-							onClick={async ()=>{
-								item.quantity = item.quantity - 1
-								await modifyItem(item,index)
-
-							}}
-							className={item.quantity == 1 ? "disableBtn" : ""}
-						>
-							-
-						</button>
-						<h3>{item.quantity}</h3>
-						<button onClick={async ()=>{
-							item.quantity= item.quantity + 1
-							
-							await modifyItem(item,index)
-						}}>+</button>
-					</div>
-					<button onClick={()=>{handleDelete(item)}}>delete</button>
-					</div>
-				})
-			}
-			
+			<section>
+				{cart &&
+					cart.items.map((item, index) => {
+						return (
+							<article className="product" key={uuidv4()}>
+								<img src={item.image} alt={item.title} />
+								<div>
+									<h4>{item.title}</h4>
+									<p>{item.price}€</p>
+								</div>
+								<div className="quantity">
+									<button
+										onClick={async () => {
+											item.quantity = item.quantity - 1;
+											await modifyItem(item, index);
+										}}
+										className={item.quantity == 1 ? "disableBtn" : ""}
+									>
+										-
+									</button>
+									<h3>{item.quantity}</h3>
+									<button
+										onClick={async () => {
+											item.quantity = item.quantity + 1;
+											await modifyItem(item, index);
+										}}
+									>
+										+
+									</button>
+								</div>
+								<button
+									onClick={() => {
+										handleDelete(item);
+									}}
+									id="bin"
+								></button>
+							</article>
+						);
+					})}
+			</section>
+			<section>
+				<p>Total:</p>
+				<p>€</p>
+			</section>
+			<button>Checkout</button>
 			<Navigation />
 		</main>
 	);
