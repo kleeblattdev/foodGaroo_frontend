@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import Header from "../shared/Header";
 import Navigation from "../shared/Navigation";
@@ -7,7 +7,7 @@ import Navigation from "../shared/Navigation";
 import "./productDetail.scss";
 import WishlistButton from "../shared/buttons/WishlistButton";
 
-const ProductDetail = ({ reload, setReload }) => {
+const ProductDetail = () => {
 	const params = useParams();
 
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
@@ -17,6 +17,8 @@ const ProductDetail = ({ reload, setReload }) => {
 	const [ingredient, setIngredient] = useState(false);
 	const [quantity, setQuantity] = useState(1);
 	const price = product?.price?.toFixed(2);
+
+	const nav = useNavigate()
 
 	useEffect(() => {
 		fetch(url + "/product/" + params.id, {
@@ -68,14 +70,22 @@ const ProductDetail = ({ reload, setReload }) => {
 				body: JSON.stringify(body),
 			});
 			if (response.ok) {
+				window.location.reload() // ! besser wäre mit reload state und neu rendern
+
 				alert("Item successfully added to Cart");
-				setReload(true);
-				return;
+				// setReload(true);
+				return
+
 			}
 		} catch (err) {
 			console.log(err);
 		}
 	};
+
+	useEffect(() => {
+		// getCartCount();
+		// setReload(false);
+	}, []); // reload 
 
 	return (
 		<main className="productDetail">
