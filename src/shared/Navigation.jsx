@@ -1,6 +1,20 @@
 import { NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 import "./navigation.scss";
 const Navigation = () => {
+	const [cartCount, setCartCount] = useState();
+
+	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
+
+	useEffect(() => {
+		fetch(url + "/cart/count", { method: "GET", credentials: "include" })
+			.then((response) => response.json())
+			.then((data) => {
+				setCartCount(data);
+			});
+	}, [cartCount]);
+
 	return (
 		<nav className="navigation">
 			<NavLink to="/home" id="home">
@@ -10,7 +24,7 @@ const Navigation = () => {
 				Orders
 			</NavLink>
 			<NavLink to="/userCart" id="myCart">
-				<p>01</p>
+				<p key={uuidv4()}>{cartCount?.count}</p>
 			</NavLink>
 			<NavLink to="/wishlist" id="wishlist">
 				Wishlist

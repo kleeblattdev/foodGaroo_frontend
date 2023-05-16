@@ -83,7 +83,6 @@ const Filter = () => {
 			});
 			const data = await result.json();
 			setCategoryArray(data);
-			console.log(data);
 		} catch (er) {
 			console.log(er);
 		}
@@ -98,7 +97,6 @@ const Filter = () => {
 			});
 			const data = await result.json();
 			setBadgesArray(data);
-			console.log(data);
 		} catch (err) {
 			console.log(err);
 		}
@@ -108,8 +106,6 @@ const Filter = () => {
 
 	const [aktivButtonCategory, setAktivButtonCategory] = useState([]);
 	const [category, setCategory] = useState([]);
-	console.log(aktivButtonCategory);
-	console.log(category);
 	const handelButtonClickCategory = (item) => {
 		if (aktivButtonCategory.includes(item)) {
 			// wenn aktivButtonCategory item enthält
@@ -127,8 +123,6 @@ const Filter = () => {
 
 	const [aktivButtonBadges, setAktivButtonBadges] = useState([]);
 	const [badges, setBadges] = useState([]);
-	console.log(aktivButtonBadges);
-	console.log(badges);
 	const handelButtonClickBadges = (item) => {
 		if (aktivButtonBadges.includes(item)) {
 			setAktivButtonBadges(aktivButtonBadges.filter((val) => val !== item));
