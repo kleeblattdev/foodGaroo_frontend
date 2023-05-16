@@ -21,19 +21,20 @@ const Category = () => {
 	const [categoryItems, setCategoryItems] = useState([]);
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
 
-
 	useEffect(() => {
 		fetch(
 			url +
-			`/products?category=${category?.state?.category}&offset=0&limit=20&sort=price&order=asc&minPrice=0&maxPrice=100`
-		)
-			.then((response) => response.json())
-			.then((data) => {
-				setCategoryItems(data)
-
-			});
+				`/products?category=${category?.state?.category}&offset=0&limit=20&sort=price&order=asc&minPrice=0&maxPrice=100`
+		),
+			{
+				method: "GET",
+				credentials: "include",
+			}
+				.then((response) => response.json())
+				.then((data) => {
+					setCategoryItems(data);
+				});
 	}, [category?.state?.category, url]);
-
 
 	return (
 		<main className="category">
