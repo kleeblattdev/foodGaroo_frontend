@@ -23,7 +23,6 @@ const Wishlist = () => {
 				credentials: "include",
 			});
 			const data = await result.json();
-			console.log(data);
 			setWishlistItem(data);
 			return data;
 		} catch (err) {
