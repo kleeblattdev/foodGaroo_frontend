@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from "uuid";
 
 //scss import
 import "./navigation.scss";
-import ProductDetail from "../pages/ProductDetail";
 
 const Navigation = () => {
 	const [cartCount, setCartCount] = useState();
@@ -26,12 +25,9 @@ const Navigation = () => {
 		}
 	};
 
-
-
-
 	useEffect(() => {
 		getCartCount();
-	}, []);  // reload
+	}, []); // reload
 
 	return (
 		<nav className="navigation">
@@ -50,9 +46,9 @@ const Navigation = () => {
 			<NavLink to="/profile" id="profile">
 				Profile
 			</NavLink>
-{/* 			<ProductDetail reload={reload} setReload={setReload}  ></ProductDetail>
- */}		</nav>
-
+			{/* 			<ProductDetail reload={reload} setReload={setReload}  ></ProductDetail>
+			 */}{" "}
+		</nav>
 	);
 };
 

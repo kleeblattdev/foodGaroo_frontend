@@ -1,12 +1,17 @@
+@import "../variables.scss";
 .categoryList {
 	margin-top: 30px;
 	display: flex;
-	height: 50px;
+	justify-content: center;
+	height: 100px;
 	overflow-x: auto;
 	overflow-y: hidden;
 	gap: 15px;
 	a {
-		height: 50px;
+		padding: 25px 0 0;
+		margin: 5px 10px;
+		height: 80px;
+		width: 80px;
 		font-size: 0.8rem;
 		margin-right: 20px;
 	}
