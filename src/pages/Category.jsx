@@ -18,22 +18,23 @@ const Category = () => {
 	const location = useLocation();
 	const category = useLocation();
 
-	const [categoryItems, setCategoryItems] = useState();
+	const [categoryItems, setCategoryItems] = useState([]);
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
 
-	{
-		useEffect(() => {
-			fetch(
-				url +
-					`/products?category=${category?.state?.category}&offset=0&limit=20`
-			)
-				.then((response) => response.json())
-				.then((data) => {
-					setCategoryItems(data);
-					console.log(data);
-				});
-		}, [category?.state?.category, url]);
-	}
+
+	useEffect(() => {
+		fetch(
+			url +
+			`/products?category=${category?.state?.category}&offset=0&limit=20&sort=price&order=asc&minPrice=0&maxPrice=100`
+		)
+			.then((response) => response.json())
+			.then((data) => {
+				setCategoryItems(data)
+
+			});
+	}, [category?.state?.category, url]);
+
+
 	return (
 		<main className="category">
 			<Header>Category</Header>
