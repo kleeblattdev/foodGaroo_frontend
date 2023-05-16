@@ -66,7 +66,21 @@ const UserCart = () => {
 		const data = await response.json();
 		console.log(data);
 		setTotal(data.totalPrice);
-	};
+	}
+
+	const handlCheckout = async () => {
+		const response = await fetch(url + '/cart/checkout', {
+			method: 'GET',
+			credentials: 'include',
+			headers: { 'content-type': 'application/json' },
+		})
+		const data = await response.json()
+		console.log(data)
+		if (data.ok) {
+			setCart(null)
+			setTotal('')
+		}
+	}
 
 	return (
 		<main className="userCart">
@@ -120,7 +134,7 @@ const UserCart = () => {
 				<p>{total}€</p>
 			</section>
 			<div className="btnWrapper">
-				<SquareButton>Checkout</SquareButton>
+				<SquareButton onClick={handlCheckout}>Checkout</SquareButton>
 				<Navigation />
 			</div>
 		</main>
