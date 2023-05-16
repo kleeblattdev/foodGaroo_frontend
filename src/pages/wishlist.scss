@@ -1,0 +1,10 @@
+.wishlist {
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+		height: 80vh;
+		overflow: scroll;
+		padding: 15px;
+	}
+}

@@ -3,10 +3,18 @@
 	justify-content: space-between;
 	align-items: center;
 	border-radius: 10px;
-	box-shadow: 20px 10px 41px -26px rgba(0, 0, 0, 0.75);
+	box-shadow: 10px 10px 56px -26px rgba(0, 0, 0, 0.75);
+	img {
+		height: 80px;
+	}
+	article {
+		padding: 5px;
+		font-size: 0.8rem;
+		line-height: 1.2rem;
+	}
 	div {
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-between;
 		p:last-of-type {
 			background-image: url("../images/star_icon.svg");
 			background-repeat: no-repeat;
@@ -15,6 +23,7 @@
 		}
 	}
 	button {
+		margin: 0 10px;
 		height: 20px;
 		width: 20px;
 		background-image: url("../images/bin.svg");

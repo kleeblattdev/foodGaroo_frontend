@@ -18,7 +18,6 @@ const ProductDetail = () => {
 	const [quantity, setQuantity] = useState(1);
 	const price = product?.price?.toFixed(2);
 
-
 	useEffect(() => {
 		fetch(url + "/product/" + params.id)
 			.then((res) => res.json())
@@ -26,7 +25,6 @@ const ProductDetail = () => {
 				setProduct(data);
 			});
 	}, []);
-	
 
 	const handleDescription = () => {
 		if (description == true) {
@@ -55,10 +53,9 @@ const ProductDetail = () => {
 	};
 
 	const handleAddToCart = async () => {
-
-		const item = product
-		item.quantity = quantity
-		const body = {item: item}
+		const item = product;
+		item.quantity = quantity;
+		const body = { item: item };
 
 		try {
 			const response = await fetch(url + "/cart", {
@@ -77,8 +74,8 @@ const ProductDetail = () => {
 		<main className="productDetail">
 			<Header></Header>
 			<section className="productWrapper">
-				<WishlistButton item={product} />    {/* // das item für den WishlistButton ist hier in dem fall in product drin */}
-				
+				<WishlistButton item={product} />{" "}
+				{/* // das item für den WishlistButton ist hier in dem fall in product drin */}
 				<section className="product">
 					<img src={product?.image} alt={product?.title} />
 					<article>
@@ -87,7 +84,7 @@ const ProductDetail = () => {
 				</section>
 				<section className="setQuantity">
 					<article className="price">
-						<h3>{product?.price}€</h3>
+						<h3>{price}€</h3>
 						<h5>
 							({product?.servings.size}
 							{product?.servings.unit})
