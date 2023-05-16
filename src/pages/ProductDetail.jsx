@@ -19,11 +19,15 @@ const ProductDetail = () => {
 	const price = product?.price?.toFixed(2);
 
 	useEffect(() => {
-		fetch(url + "/product/" + params.id)
-			.then((res) => res.json())
-			.then((data) => {
-				setProduct(data);
-			});
+		fetch(url + "/product/" + params.id),
+			{
+				method: "GET",
+				credentials: "include",
+			}
+				.then((res) => res.json())
+				.then((data) => {
+					setProduct(data);
+				});
 	}, []);
 
 	const handleDescription = () => {
@@ -64,7 +68,8 @@ const ProductDetail = () => {
 				headers: { "content-type": "application/json" },
 				body: JSON.stringify(body),
 			});
-			if (response.ok) return console.log("added to cart", response);
+			if (response.ok) return alert("Item successfully added to Cart");
+			console.log("added to cart", response);
 		} catch (err) {
 			console.log(err);
 		}
