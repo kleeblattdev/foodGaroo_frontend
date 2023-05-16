@@ -24,16 +24,16 @@ const Category = () => {
 	useEffect(() => {
 		fetch(
 			url +
-				`/products?category=${category?.state?.category}&offset=0&limit=20&sort=price&order=asc&minPrice=0&maxPrice=100`
-		),
+				`/products?category=${category?.state?.category}&offset=0&limit=20&sort=price&order=asc&minPrice=0&maxPrice=100`,
 			{
 				method: "GET",
 				credentials: "include",
 			}
-				.then((response) => response.json())
-				.then((data) => {
-					setCategoryItems(data);
-				});
+		)
+			.then((response) => response.json())
+			.then((data) => {
+				setCategoryItems(data);
+			});
 	}, [category?.state?.category, url]);
 
 	return (

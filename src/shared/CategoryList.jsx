@@ -8,7 +8,10 @@ const CategoryList = () => {
 	const [categories, setCategories] = useState();
 
 	useEffect(() => {
-		fetch(url + "/categories")
+		fetch(url + "/categories", {
+			method: "GET",
+			credentials: "include",
+		})
 			.then((res) => res.json())
 			.then((data) => {
 				setCategories(data);
