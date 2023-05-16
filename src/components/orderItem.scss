@@ -1,3 +1,4 @@
+@import "../variables.scss";
 .orderItem {
 	margin: 10px;
 
@@ -7,5 +8,6 @@
 		justify-content: space-between;
 		border-radius: 10px;
 		box-shadow: 20px 10px 41px -26px rgba(0, 0, 0, 0.75);
+		background-color: $white;
 	}
 }

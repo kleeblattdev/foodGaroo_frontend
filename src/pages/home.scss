@@ -1,6 +1,9 @@
 @import "../variables.scss";
 
 .home {
+	#intro {
+		color: $chateuGreen;
+	}
 	.searchbarWrapper {
 		display: flex;
 		justify-content: space-between;
@@ -16,6 +19,7 @@
 			border: 1px solid $boulderGray;
 			border-radius: 10px;
 			box-shadow: 6px 15px 62px -8px rgba(0, 0, 0, 0.75);
+			background-color: $white;
 		}
 	}
 }
