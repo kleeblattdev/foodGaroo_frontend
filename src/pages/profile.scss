@@ -58,16 +58,24 @@
 		margin: 0 10px;
 		height: 60vh;
 		overflow: scroll;
-		div {
-			display: flex;
-			flex-direction: column;
+		div:not(:last-of-type) {
 			border-bottom: 1px solid $boulderGray;
+			padding: 5px 0;
 			label {
 				margin: 5px 0;
 			}
 			input {
 				margin-bottom: 5px;
 			}
+		}
+		.address {
+			display: flex;
+			flex-direction: column;
+		}
+		.name,
+		.street,
+		.city {
+			display: flex;
 		}
 	}
 }

@@ -218,22 +218,27 @@ const Profile = () => {
 			</section>
 
 			<form className="userInfo">
-				<div>
-					<label htmlFor="firstname">Firstname</label>
-					<input
-						ref={firstnameRef}
-						// value={userDaten?.user?.firstname}
-						type="text"
-						name="firstname"
-						placeholder={userDaten?.user?.firstname || "Firstname ?"}
-					/>
-					<label htmlFor="lastname">Lastname</label>
-					<input
-						ref={lastnameRef}
-						type="text"
-						name="lastname"
-						placeholder={userDaten?.user?.lastname || "Lastname ?"}
-					/>
+				<div className="name">
+					<label htmlFor="firstname">
+						Firstname
+						<input
+							ref={firstnameRef}
+							// value={userDaten?.user?.firstname}
+							type="text"
+							name="firstname"
+							placeholder={userDaten?.user?.firstname || "Firstname ?"}
+						/>
+					</label>
+
+					<label htmlFor="lastname">
+						Lastname
+						<input
+							ref={lastnameRef}
+							type="text"
+							name="lastname"
+							placeholder={userDaten?.user?.lastname || "Lastname ?"}
+						/>
+					</label>
 				</div>
 				<div>
 					<label htmlFor="email">Email</label>
@@ -247,32 +252,50 @@ const Profile = () => {
 						style={{ color: "purple" }}
 					/>
 				</div>
-				<div>
-					<label htmlFor="address">Shipping Address</label>
-					<input
-						ref={streetRef}
-						type="text"
-						name="street"
-						placeholder={userDaten?.user?.address?.street || "Street ?"}
-					/>
-					<input
-						ref={numberRef}
-						type="text"
-						name="number"
-						placeholder={userDaten?.user?.address?.number || "Number ?"}
-					/>
-					<input
-						ref={zipCodeRef}
-						type="text"
-						name="zipCode"
-						placeholder={userDaten?.user?.address?.zipCode || "Zip Code ?"}
-					/>
-					<input
-						ref={cityRef}
-						type="text"
-						name="city"
-						placeholder={userDaten?.user?.address?.city || "City ?"}
-					/>
+				<div className="address">
+					<h5>Shipping Address</h5>
+					<div className="street">
+						<label htmlFor="street">
+							Street
+							<input
+								ref={streetRef}
+								type="text"
+								name="street"
+								placeholder={userDaten?.user?.address?.street || "Street ?"}
+							/>
+						</label>
+
+						<label htmlFor="number">
+							Streetnumber
+							<input
+								ref={numberRef}
+								type="text"
+								name="number"
+								placeholder={userDaten?.user?.address?.number || "Number ?"}
+							/>
+						</label>
+					</div>
+					<div className="city">
+						<label htmlFor="zipCode">
+							Zipcode
+							<input
+								ref={zipCodeRef}
+								type="text"
+								name="zipCode"
+								placeholder={userDaten?.user?.address?.zipCode || "Zip Code ?"}
+							/>
+						</label>
+
+						<label htmlFor="city">
+							City
+							<input
+								ref={cityRef}
+								type="text"
+								name="city"
+								placeholder={userDaten?.user?.address?.city || "City ?"}
+							/>
+						</label>
+					</div>
 				</div>
 				<div>
 					<label htmlFor="phone">Phone Number</label>
