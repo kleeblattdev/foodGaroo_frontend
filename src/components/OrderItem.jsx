@@ -20,7 +20,7 @@ const OrderItem = ({ items, order, index }) => {
 		 */
 
 
-		<Link to={`/orders/:${order[index]?._id}`} className="orderItem">
+		<Link to={`/orders/${order[index]?._id}`} order={order} index={index} className="orderItem">
 			<section>
 				<article>
 					<h2>OrderId: {order[index]?._id} </h2>
