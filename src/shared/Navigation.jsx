@@ -7,13 +7,13 @@ import { v4 as uuidv4 } from "uuid";
 import "./navigation.scss";
 import ProductDetail from "../pages/ProductDetail";
 
-const Navigation = () => {
-	const [cartCount, setCartCount] = useState();
-	const [reload, setReload] = useState(false);
+const Navigation = ( {setNeuRendern, neuRendern}) => {
+	const [cartCount, setCartCount] = useState(false);
 
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
 
 	const getCartCount = async () => {
+		setNeuRendern = false
 		try {
 			const result = await fetch(url + "/cart/count", {
 				method: "GET",
@@ -21,17 +21,17 @@ const Navigation = () => {
 			});
 			const data = await result.json();
 			setCartCount(data.count);
+			return 
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
 
-
-
 	useEffect(() => {
-		getCartCount();
-	}, []);  // reload
+		setNeuRendern=false
+				getCartCount();
+	}, [neuRendern]);  // reload
 
 	return (
 		<nav className="navigation">
@@ -42,7 +42,7 @@ const Navigation = () => {
 				Orders
 			</NavLink>
 			<NavLink to="/userCart" id="myCart">
-				<p key={uuidv4()}>{cartCount}</p>
+				<p key={uuidv4()}>{cartCount}  </p>
 			</NavLink>
 			<NavLink to="/wishlist" id="wishlist">
 				Wishlist
@@ -50,8 +50,7 @@ const Navigation = () => {
 			<NavLink to="/profile" id="profile">
 				Profile
 			</NavLink>
-{/* 			<ProductDetail reload={reload} setReload={setReload}  ></ProductDetail>
- */}		</nav>
+	</nav>
 
 	);
 };

@@ -9,6 +9,7 @@ const OrderList = () => {
 
 	const [orderItems, setOrderItems] = useState([])
 	const [order, setOrder] = useState([])
+	const [orderCount, setOrderCount] = useState(0)
 
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION
 
@@ -21,10 +22,12 @@ const OrderList = () => {
 			});
 			if (response.ok) {
 				const data = await response.json()
-				setOrderItems(data[0]?.items)
-				console.log(data?.items)
+				setOrderItems(data?.orders[0]?.items)
+				console.log(orderItems)
 				console.log(data[0]?.items[0]?.price)
-				setOrder(data[0])
+				setOrder(data?.orders)
+				console.log(order)
+				setOrderCount(data.ordersCount)
 			}
 		} catch (err) {
 			console.log(err)
@@ -39,12 +42,15 @@ const OrderList = () => {
 
 	return (
 		<main className="orderList">
-			<Header>My Orders</Header>
+			<Header>My Orders {orderCount}</Header>
 			<Navigation />
 			<section>
-				{orderItems?.map((items) => {
+				{/* // !  evtl. hier der Fehler, da es mehrere Bestellungen gibt, 
+				// ! die dann noch weitere items = Produkte enthalten  */}
+				{order?.map((items, index) => {
 					return	<OrderItem
 						key={uuidv4()}
+						index={index}
 						items={items}
 						order={order}
 					> </OrderItem>

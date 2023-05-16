@@ -13,10 +13,13 @@ const UserCart = () => {
 	const [total, setTotal] = useState("");
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
 
+	const [neuRendern, setNeuRendern] = useState(false);
+
 	useEffect(() => {
 		getCart();
 		getTotal();
-	}, []);
+		setNeuRendern(false)
+	}, [neuRendern]);
 
 	const getCart = async () => {
 		const response = await fetch(url + "/cart", {
@@ -64,23 +67,24 @@ const UserCart = () => {
 			headers: { "content-type": "application/json" },
 		});
 		const data = await response.json();
-		console.log(data);
 		setTotal(data.totalPrice);
 	}
 
 	const handlCheckout = async () => {
+		setNeuRendern(true)
 		const response = await fetch(url + '/cart/checkout', {
 			method: 'GET',
 			credentials: 'include',
 			headers: { 'content-type': 'application/json' },
 		})
 		const data = await response.json()
-		console.log(data)
 		if (data.ok) {
 			setCart(null)
 			setTotal('')
+			setNeuRendern(false)
 		}
 	}
+
 
 	return (
 		<main className="userCart">
@@ -135,7 +139,7 @@ const UserCart = () => {
 			</section>
 			<div className="btnWrapper">
 				<SquareButton onClick={handlCheckout}>Checkout</SquareButton>
-				<Navigation />
+				<Navigation  setNeuRendern={setNeuRendern} neuRendern={neuRendern} />
 			</div>
 		</main>
 	);
