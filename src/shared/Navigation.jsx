@@ -8,16 +8,27 @@ import "./navigation.scss";
 
 const Navigation = () => {
 	const [cartCount, setCartCount] = useState();
+	const [reload, setReload] = useState(false);
 
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
 
-	useEffect(() => {
-		fetch(url + "/cart/count", { method: "GET", credentials: "include" })
-			.then((response) => response.json())
-			.then((data) => {
-				setCartCount(data);
+	const getCartCount = async () => {
+		try {
+			const result = await fetch(url + "/cart/count", {
+				method: "GET",
+				credentials: "include",
 			});
-	}, []);
+			const data = await result.json();
+			setCartCount(data.count);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	useEffect(() => {
+		getCartCount();
+		setReload(false);
+	}, [reload]);
 
 	return (
 		<nav className="navigation">
@@ -28,7 +39,7 @@ const Navigation = () => {
 				Orders
 			</NavLink>
 			<NavLink to="/userCart" id="myCart">
-				<p key={uuidv4()}>{cartCount?.count}</p>
+				<p key={uuidv4()}>{cartCount}</p>
 			</NavLink>
 			<NavLink to="/wishlist" id="wishlist">
 				Wishlist

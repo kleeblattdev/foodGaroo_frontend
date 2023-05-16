@@ -7,7 +7,7 @@ import Navigation from "../shared/Navigation";
 import "./productDetail.scss";
 import WishlistButton from "../shared/buttons/WishlistButton";
 
-const ProductDetail = () => {
+const ProductDetail = ({ reload, setReload }) => {
 	const params = useParams();
 
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
@@ -69,6 +69,7 @@ const ProductDetail = () => {
 			});
 			if (response.ok) {
 				alert("Item successfully added to Cart");
+				setReload(true);
 				return;
 			}
 		} catch (err) {
