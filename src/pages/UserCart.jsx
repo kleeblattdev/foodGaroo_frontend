@@ -10,11 +10,14 @@ import "./userCart.scss";
 
 const UserCart = () => {
 	const [cart, setCart] = useState(null);
+	const [total, setTotal] = useState("");
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
 
 	useEffect(() => {
 		getCart();
+		getTotal();
 	}, []);
+
 	const getCart = async () => {
 		const response = await fetch(url + "/cart", {
 			method: "get",
@@ -22,7 +25,6 @@ const UserCart = () => {
 			headers: { "content-type": "application/json" },
 		});
 		const data = await response.json();
-		console.log(data);
 		setCart(data);
 	};
 
@@ -53,6 +55,17 @@ const UserCart = () => {
 		} catch (err) {
 			console.log(err);
 		}
+	};
+
+	const getTotal = async () => {
+		const response = await fetch(url + "/cart/totalPrice", {
+			method: "get",
+			credentials: "include",
+			headers: { "content-type": "application/json" },
+		});
+		const data = await response.json();
+		console.log(data);
+		setTotal(data.totalPrice);
 	};
 
 	return (
@@ -104,7 +117,7 @@ const UserCart = () => {
 			</section>
 			<section className="total">
 				<p>Total:</p>
-				<p>€</p>
+				<p>{total}€</p>
 			</section>
 			<div className="btnWrapper">
 				<SquareButton>Checkout</SquareButton>
