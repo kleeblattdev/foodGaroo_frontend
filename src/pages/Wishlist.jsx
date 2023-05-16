@@ -34,7 +34,6 @@ const Wishlist = () => {
 		getWishlistWithFetch();
 	}, [neuRender]);
 
-	console.log(wishlistItem);
 
 	return (
 		<main className="wishlist">
