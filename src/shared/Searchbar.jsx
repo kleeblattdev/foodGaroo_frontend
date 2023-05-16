@@ -12,7 +12,8 @@ const Searchbar = () => {
 
 	const handleSearch = () => {
 		fetch(
-			url + "/search?search=" + searchRef.current.value + "&offset=0&limit=20"
+			url + "/search?search=" + searchRef.current.value + "&offset=0&limit=20",
+			{ method: "GET", credentials: "include" }
 		)
 			.then((res) => res.json())
 			.then((data) => {

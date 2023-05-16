@@ -1,7 +1,11 @@
+//library import
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
+
+//scss import
 import "./navigation.scss";
+
 const Navigation = () => {
 	const [cartCount, setCartCount] = useState();
 
@@ -13,7 +17,7 @@ const Navigation = () => {
 			.then((data) => {
 				setCartCount(data);
 			});
-	}, [cartCount]);
+	}, []);
 
 	return (
 		<nav className="navigation">

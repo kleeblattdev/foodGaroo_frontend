@@ -5,12 +5,8 @@ import WishlistButton from "../shared/buttons/WishlistButton";
 import "./productItem.scss";
 
 const ProductItem = ({ item }) => {
-	console.log(item);
 	const price = item.price.toFixed(2);
 	const title = item.title.slice(0, 29);
-
-	
-
 
 	return (
 		<article className="productItem">
