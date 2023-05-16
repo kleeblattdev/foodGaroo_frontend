@@ -72,6 +72,7 @@ const UserCart = () => {
 
 	const handlCheckout = async () => {
 		setNeuRendern(true)
+		window.location.reload()  // !  hartes neuRendern, weil Item oder Einkaufswagen nicht wollen
 		const response = await fetch(url + '/cart/checkout', {
 			method: 'GET',
 			credentials: 'include',
