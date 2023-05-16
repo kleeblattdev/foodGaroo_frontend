@@ -1,4 +1,5 @@
 //library import
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 //components import
@@ -95,9 +96,13 @@ const UserCart = () => {
 					cart.items.map((item, index) => {
 						return (
 							<article className="product" key={uuidv4()}>
-								<img src={item.image} alt={item.title} />
+								<Link to={`/product/${item._id}`}>
+									<img src={item.image} alt={item.title} />
+								</Link>
 								<div className="info">
-									<h4>{item.title}</h4>
+									<Link to={`/product/${item._id}`}>
+										<h4>{item.title}</h4>
+									</Link>
 									<p>{item.price.toFixed(2)}€</p>
 								</div>
 								<div className="quantity">

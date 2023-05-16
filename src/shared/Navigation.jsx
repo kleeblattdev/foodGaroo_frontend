@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from "uuid";
 
 //scss import
 import "./navigation.scss";
-import ProductDetail from "../pages/ProductDetail";
 
 const Navigation = ( {setNeuRendern, neuRendern}) => {
 	const [cartCount, setCartCount] = useState(false);
@@ -29,9 +28,11 @@ const Navigation = ( {setNeuRendern, neuRendern}) => {
 
 
 	useEffect(() => {
-		setNeuRendern=false
+		getCartCount();
+	
 				getCartCount();
-	}, [neuRendern]);  // reload
+	}, []);  // reload
+
 
 	return (
 		<nav className="navigation">
@@ -50,6 +51,7 @@ const Navigation = ( {setNeuRendern, neuRendern}) => {
 			<NavLink to="/profile" id="profile">
 				Profile
 			</NavLink>
+	
 	</nav>
 
 	);

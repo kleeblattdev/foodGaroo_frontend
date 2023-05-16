@@ -22,4 +22,11 @@
 			background-color: $white;
 		}
 	}
+	.deals {
+		margin: 20px 0;
+		section {
+			display: flex;
+			overflow: auto;
+		}
+	}
 }
