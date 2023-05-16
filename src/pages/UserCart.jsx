@@ -1,8 +1,11 @@
+//library import
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
+//components import
 import Header from "../shared/Header";
 import Navigation from "../shared/Navigation";
-
+import SquareButton from "../shared/buttons/SquareButton";
+//scss import
 import "./userCart.scss";
 
 const UserCart = () => {
@@ -55,20 +58,24 @@ const UserCart = () => {
 	return (
 		<main className="userCart">
 			<Header>My Cart</Header>
-			<section>
+			<section className="cartList">
 				{cart &&
 					cart.items.map((item, index) => {
 						return (
 							<article className="product" key={uuidv4()}>
 								<img src={item.image} alt={item.title} />
-								<div>
+								<div className="info">
 									<h4>{item.title}</h4>
-									<p>{item.price}€</p>
+									<p>{item.price.toFixed(2)}€</p>
 								</div>
 								<div className="quantity">
 									<button
 										onClick={async () => {
-											item.quantity = item.quantity - 1;
+											if (item.quantity == 1) {
+												return (item.quantity = 1);
+											} else {
+												item.quantity = item.quantity - 1;
+											}
 											await modifyItem(item, index);
 										}}
 										className={item.quantity == 1 ? "disableBtn" : ""}
@@ -95,12 +102,14 @@ const UserCart = () => {
 						);
 					})}
 			</section>
-			<section>
+			<section className="total">
 				<p>Total:</p>
 				<p>€</p>
 			</section>
-			<button>Checkout</button>
-			<Navigation />
+			<div className="btnWrapper">
+				<SquareButton>Checkout</SquareButton>
+				<Navigation />
+			</div>
 		</main>
 	);
 };

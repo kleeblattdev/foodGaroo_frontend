@@ -1,23 +1,50 @@
 @import "../variables.scss";
 
 .userCart {
-	.product {
+	display: flex;
+	flex-direction: column;
+	.cartList {
+		height: 62vh;
+		overflow: scroll;
 		display: flex;
-		align-items: center;
-		img {
-			height: 80px;
-			width: 80px;
-		}
-		div {
-			width: 200px;
+		flex-direction: column;
+		padding: 10px;
+		gap: 15px;
+		.product {
+			display: flex;
 			font-size: 0.7rem;
+			justify-content: space-between;
+			align-items: center;
+			border-radius: 10px;
+			box-shadow: 10px 10px 56px -26px rgba(0, 0, 0, 0.75);
+			img {
+				height: 80px;
+				width: 80px;
+			}
+			.info {
+				margin: 0 5px;
+				width: 150px;
+			}
 		}
 	}
+
 	.quantity {
 		display: flex;
-		justify-content: space-between;
 		align-items: center;
-		margin: 20px 0;
+		justify-content: space-between;
+		border: 1px solid $boulderGray;
+		border-radius: 30px;
+		padding: 10px;
+		height: 40px;
+		overflow: hidden;
+		margin-right: 10px;
+		button {
+			color: $rhinoBlue;
+			margin: 0 5px;
+		}
+		.disableBtn {
+			color: $emperorGray;
+		}
 	}
 	#bin {
 		height: 20px;
@@ -25,5 +52,20 @@
 		background-image: url("../images/bin.svg");
 		background-repeat: no-repeat;
 		background-position: center;
+		padding: 5px;
+		margin: 0 10px;
+	}
+	.total {
+		display: flex;
+		padding: 20px 0 10px;
+		justify-content: space-between;
+		border-bottom: 1px solid $boulderGray;
+	}
+	.btnWrapper {
+		margin-top: 30px;
+		align-self: center;
+	}
+	.squareButton {
+		padding: 10px 50px;
 	}
 }
