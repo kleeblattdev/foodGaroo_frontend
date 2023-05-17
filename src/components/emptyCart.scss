@@ -1,5 +1,9 @@
 .emptyCart {
+	height: 60vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	background-image: url("../images/empty_cart.svg");
-	background-position: center;
+	background-position: center bottom 30%;
 	background-repeat: no-repeat;
 }

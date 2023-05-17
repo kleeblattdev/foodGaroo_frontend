@@ -1,9 +1,15 @@
+//library import
 import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../shared/Logo";
+import { ToastContainer, toast } from "react-toastify";
 
-import "./register.scss";
+//component import
 import RoundedButton from "../shared/buttons/RoundedButton";
+
+//scss import
+import "./register.scss";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
 	const [availiableEmail, setAvailiableEmail] = useState(null);
@@ -31,6 +37,11 @@ const Register = () => {
 			});
 			if (res.ok) {
 				navigate("/successRegistration");
+			} else if (res.status == 400) {
+				toast.error(
+					"Your password should be at least 8 characters long, containing at least one upper case letter, one lower case letter, one number and one symbol",
+					{ autoClose: false }
+				);
 			}
 		} catch (err) {
 			console.log(err);
@@ -80,7 +91,14 @@ const Register = () => {
 					/>
 				</div>
 				<div>
-					<label htmlFor="password">Password</label>
+					<label htmlFor="password">
+						Password
+						<span>
+							(should be at least 8 characters long, containing at least one
+							upper case letter, one lower case letter, one number and one
+							symbol)
+						</span>
+					</label>
 					<input type="password" ref={passwordRef} placeholder="password" />
 				</div>
 				<div>
@@ -93,11 +111,13 @@ const Register = () => {
 						className={passwordCompare}
 					/>
 				</div>
+
 				<RoundedButton type="submit">Sign Up</RoundedButton>
 			</form>
 			<p>
 				Already have an account? <Link to="/login">Sign In</Link>
 			</p>
+			<ToastContainer />
 		</main>
 	);
 };

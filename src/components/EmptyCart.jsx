@@ -1,11 +1,10 @@
-import SquareButton from "../shared/buttons/SquareButton";
+import "./emptyCart.scss";
 
 const EmptyCart = () => {
 	return (
-		<main className="emptyCart">
-			<h1>Your Cart is Empty</h1>
-			<SquareButton to="/home">Start Shopping</SquareButton>
-		</main>
+		<section className="emptyCart">
+			<h2>Your Cart is Empty</h2>
+		</section>
 	);
 };
 

@@ -1,15 +1,17 @@
+//library import
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useNeuRenderTotal } from "../store/neuRenderTotal.jsx";
 import { plusNeuRenderTotal } from "../store/neuRenderTotal.jsx";
+import { ToastContainer, toast } from "react-toastify";
 
-
-
+//component import
 import Header from "../shared/Header";
 import Navigation from "../shared/Navigation";
-
-import "./productDetail.scss";
 import WishlistButton from "../shared/buttons/WishlistButton";
+//scss import
+import "./productDetail.scss";
+import "react-toastify/dist/ReactToastify.css";
 
 const ProductDetail = () => {
 	const params = useParams();
@@ -23,11 +25,11 @@ const ProductDetail = () => {
 	const price = product?.price?.toFixed(2);
 
 	// const neuRendernTotal = useNeuRenderTotal((state) => state.neuRenderTotal);
-	const plusNeuRenderTotal = useNeuRenderTotal((state) => state.plusNeuRenderTotal);
+	const plusNeuRenderTotal = useNeuRenderTotal(
+		(state) => state.plusNeuRenderTotal
+	);
 
-
-
-	const nav = useNavigate()
+	const nav = useNavigate();
 
 	useEffect(() => {
 		fetch(url + "/product/" + params.id, {
@@ -79,13 +81,12 @@ const ProductDetail = () => {
 				body: JSON.stringify(body),
 			});
 			if (response.ok) {
-				//! 
+				//!
 				//	window.location.reload() // ! besser wäre mit reload state und neu rendern
-				plusNeuRenderTotal()
-				alert("Item successfully added to Cart");
+				plusNeuRenderTotal();
+				toast("Item successfully added to Cart");
 				// setReload(true);
-				return
-
+				return;
 			}
 		} catch (err) {
 			console.log(err);
@@ -95,7 +96,7 @@ const ProductDetail = () => {
 	useEffect(() => {
 		// getCartCount();
 		// setReload(false);
-	}, []); // reload 
+	}, []); // reload
 
 	return (
 		<main className="productDetail">
@@ -153,6 +154,7 @@ const ProductDetail = () => {
 				<button onClick={handleAddToCart} id="addToCartBtn">
 					Add to Cart
 				</button>
+				<ToastContainer />
 				<Navigation />
 			</section>
 		</main>

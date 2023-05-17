@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import Header from "../shared/Header";
 import Navigation from "../shared/Navigation";
 import WishlistItem from "../components/WishlistItem";
+import EmptyWishlist from "../components/EmptyWishlist";
 
 //scss import
 import "./wishlist.scss";
@@ -24,6 +25,7 @@ const Wishlist = () => {
 			});
 			const data = await result.json();
 			setWishlistItem(data);
+			console.log(data);
 			return data;
 		} catch (err) {
 			console.log(err);
@@ -34,23 +36,26 @@ const Wishlist = () => {
 		getWishlistWithFetch();
 	}, [neuRender]);
 
-
 	return (
 		<main className="wishlist">
 			<Header>My Wishlist</Header>
 			<Navigation />
-			<section>
-				{wishlistItem?.items?.map((item) => {
-					return (
-						<WishlistItem
-							key={uuidv4()}
-							item={item}
-							neuRender={neuRender}
-							setNeuRender={setNeuRender}
-						></WishlistItem>
-					);
-				})}
-			</section>
+			{wishlistItem?.items?.length == 0 ? (
+				<EmptyWishlist />
+			) : (
+				<section className="wishlistWrapper">
+					{wishlistItem?.items?.map((item) => {
+						return (
+							<WishlistItem
+								key={uuidv4()}
+								item={item}
+								neuRender={neuRender}
+								setNeuRender={setNeuRender}
+							></WishlistItem>
+						);
+					})}
+				</section>
+			)}
 		</main>
 	);
 };
