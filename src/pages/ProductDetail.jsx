@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useNeuRenderTotal } from "../store/neuRenderTotal.jsx";
+import { plusNeuRenderTotal } from "../store/neuRenderTotal.jsx";
+
+
 
 import Header from "../shared/Header";
 import Navigation from "../shared/Navigation";
@@ -17,6 +21,11 @@ const ProductDetail = () => {
 	const [ingredient, setIngredient] = useState(false);
 	const [quantity, setQuantity] = useState(1);
 	const price = product?.price?.toFixed(2);
+
+	// const neuRendernTotal = useNeuRenderTotal((state) => state.neuRenderTotal);
+	const plusNeuRenderTotal = useNeuRenderTotal((state) => state.plusNeuRenderTotal);
+
+
 
 	const nav = useNavigate()
 
@@ -70,8 +79,9 @@ const ProductDetail = () => {
 				body: JSON.stringify(body),
 			});
 			if (response.ok) {
-				window.location.reload() // ! besser wäre mit reload state und neu rendern
-
+				//! 
+				//	window.location.reload() // ! besser wäre mit reload state und neu rendern
+				plusNeuRenderTotal()
 				alert("Item successfully added to Cart");
 				// setReload(true);
 				return
