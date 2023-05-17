@@ -3,10 +3,10 @@
 header {
 	display: flex;
 	align-items: center;
-	margin: 10px;
+	margin: 10px 0;
 	button {
-		width: 20px;
-		height: 20px;
+		width: 40px;
+		height: 40px;
 		border: none;
 		background-color: $background;
 		background-image: url("../images/previous_icon.svg");
