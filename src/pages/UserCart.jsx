@@ -31,7 +31,8 @@ const UserCart = () => {
 		getCart();
 		getTotal();
 		//	setNeuRendern(false)
-	}, []);
+	}, [neuRendernTotal]);
+	console.log(neuRendernTotal)
 
 	const getCart = async () => {
 		const response = await fetch(url + "/cart", {
@@ -66,8 +67,10 @@ const UserCart = () => {
 				headers: { "content-type": "application/json" },
 				body: JSON.stringify(body),
 			});
-			if (response.ok) return await getCart();
+			plusNeuRenderTotal()
+			if (response.ok) return await getCart() , plusNeuRenderTotal();
 		} catch (err) {
+			plusNeuRenderTotal()
 			console.log(err);
 		}
 	};
@@ -152,6 +155,7 @@ const UserCart = () => {
 									onClick={() => {
 										plusNeuRenderTotal()
 										handleDelete(item);
+
 									}}
 									id="bin"
 								></button>
@@ -164,7 +168,10 @@ const UserCart = () => {
 				<p>{total}€</p>
 			</section>
 			<div className="btnWrapper">
-				<SquareButton onClick={handlCheckout}>Checkout</SquareButton>
+				<SquareButton onClick={() => {
+					handlCheckout(),
+						plusNeuRenderTotal()
+				}}>Checkout</SquareButton>
 				<Navigation setNeuRendern={setNeuRendern} neuRendern={neuRendern} />
 			</div>
 		</main>
