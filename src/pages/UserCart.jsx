@@ -6,6 +6,9 @@ import { v4 as uuidv4 } from "uuid";
 import Header from "../shared/Header";
 import Navigation from "../shared/Navigation";
 import SquareButton from "../shared/buttons/SquareButton";
+import { useNeuRenderTotal } from "../store/neuRenderTotal.jsx";
+import { setNeuRenderTotal, plusNeuRenderTotal, minusNeuRenderTotal, setTrueNeuRenderTotal, setFalseNeuRenderTotal, resetNeuRenderTotal } from "../store/neuRenderTotal";
+
 //scss import
 import "./userCart.scss";
 
@@ -15,12 +18,20 @@ const UserCart = () => {
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
 
 	const [neuRendern, setNeuRendern] = useState(false);
+	const neuRendernTotal = useNeuRenderTotal((state) => state.neuRenderTotal);
+
+	const setNeuRenderTotal = useNeuRenderTotal((state) => state.setNeuRenderTotal);
+	const plusNeuRenderTotal = useNeuRenderTotal((state) => state.plusNeuRenderTotal);
+	const minusNeuRenderTotal = useNeuRenderTotal((state) => state.minusNeuRenderTotal);
+	const setTrueNeuRenderTotal = useNeuRenderTotal((state) => state.setTrueNeuRenderTotal);
+	const setFalseNeuRendernTotal = useNeuRenderTotal((state) => state.setFalseNeuRenderTotal);
+	const resetNeuRenderTotal = useNeuRenderTotal((state) => state.resetNeuRenderTotal);
 
 	useEffect(() => {
 		getCart();
 		getTotal();
-		setNeuRendern(false)
-	}, [neuRendern]);
+		//	setNeuRendern(false)
+	}, []);
 
 	const getCart = async () => {
 		const response = await fetch(url + "/cart", {
@@ -72,8 +83,9 @@ const UserCart = () => {
 	}
 
 	const handlCheckout = async () => {
-		setNeuRendern(true)
-		window.location.reload()  // !  hartes neuRendern, weil Item oder Einkaufswagen nicht wollen
+		// setNeuRendern(true)
+		plusNeuRenderTotal()
+		// window.location.reload()  // !  hartes neuRendern, weil Item oder Einkaufswagen nicht wollen
 		const response = await fetch(url + '/cart/checkout', {
 			method: 'GET',
 			credentials: 'include',
@@ -83,9 +95,14 @@ const UserCart = () => {
 		if (data.ok) {
 			setCart(null)
 			setTotal('')
-			setNeuRendern(false)
+			// 	setNeuRendern(false)
 		}
 	}
+
+	// löst neuRendern aus
+	useEffect(() => {
+		getTotal('')
+	}, [neuRendernTotal])
 
 
 	return (
@@ -108,6 +125,7 @@ const UserCart = () => {
 								<div className="quantity">
 									<button
 										onClick={async () => {
+											minusNeuRenderTotal()
 											if (item.quantity == 1) {
 												return (item.quantity = 1);
 											} else {
@@ -122,6 +140,7 @@ const UserCart = () => {
 									<h3>{item.quantity}</h3>
 									<button
 										onClick={async () => {
+											plusNeuRenderTotal()
 											item.quantity = item.quantity + 1;
 											await modifyItem(item, index);
 										}}
@@ -131,6 +150,7 @@ const UserCart = () => {
 								</div>
 								<button
 									onClick={() => {
+										plusNeuRenderTotal()
 										handleDelete(item);
 									}}
 									id="bin"
@@ -145,7 +165,7 @@ const UserCart = () => {
 			</section>
 			<div className="btnWrapper">
 				<SquareButton onClick={handlCheckout}>Checkout</SquareButton>
-				<Navigation  setNeuRendern={setNeuRendern} neuRendern={neuRendern} />
+				<Navigation setNeuRendern={setNeuRendern} neuRendern={neuRendern} />
 			</div>
 		</main>
 	);
