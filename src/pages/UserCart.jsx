@@ -7,7 +7,7 @@ import Header from "../shared/Header";
 import Navigation from "../shared/Navigation";
 import SquareButton from "../shared/buttons/SquareButton";
 import { useNeuRenderTotal } from "../store/neuRenderTotal.jsx";
-import { setNeuRenderTotal, plusNeuRenderTotal, minusNeuRenderTotal, setTrueNeuRenderTotal, setFalseNeuRenderTotal, resetNeuRenderTotal } from "../store/neuRenderTotal";
+import {  plusNeuRenderTotal, minusNeuRenderTotal  } from "../store/neuRenderTotal.jsx";
 
 //scss import
 import "./userCart.scss";
@@ -18,20 +18,17 @@ const UserCart = () => {
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
 
 	const [neuRendern, setNeuRendern] = useState(false);
+	
 	const neuRendernTotal = useNeuRenderTotal((state) => state.neuRenderTotal);
-
-	const setNeuRenderTotal = useNeuRenderTotal((state) => state.setNeuRenderTotal);
 	const plusNeuRenderTotal = useNeuRenderTotal((state) => state.plusNeuRenderTotal);
 	const minusNeuRenderTotal = useNeuRenderTotal((state) => state.minusNeuRenderTotal);
-	const setTrueNeuRenderTotal = useNeuRenderTotal((state) => state.setTrueNeuRenderTotal);
-	const setFalseNeuRendernTotal = useNeuRenderTotal((state) => state.setFalseNeuRenderTotal);
-	const resetNeuRenderTotal = useNeuRenderTotal((state) => state.resetNeuRenderTotal);
 
 	useEffect(() => {
 		getCart();
 		getTotal();
 		//	setNeuRendern(false)
-	}, []);
+	}, [neuRendernTotal]);
+	console.log(neuRendernTotal)
 
 	const getCart = async () => {
 		const response = await fetch(url + "/cart", {
@@ -66,8 +63,10 @@ const UserCart = () => {
 				headers: { "content-type": "application/json" },
 				body: JSON.stringify(body),
 			});
-			if (response.ok) return await getCart();
+			plusNeuRenderTotal()
+			if (response.ok) return await getCart() , plusNeuRenderTotal();
 		} catch (err) {
+			plusNeuRenderTotal()
 			console.log(err);
 		}
 	};
@@ -91,8 +90,10 @@ const UserCart = () => {
 			credentials: 'include',
 			headers: { 'content-type': 'application/json' },
 		})
+		plusNeuRenderTotal()
 		const data = await response.json()
 		if (data.ok) {
+			plusNeuRenderTotal()
 			setCart(null)
 			setTotal('')
 			// 	setNeuRendern(false)
@@ -152,6 +153,7 @@ const UserCart = () => {
 									onClick={() => {
 										plusNeuRenderTotal()
 										handleDelete(item);
+
 									}}
 									id="bin"
 								></button>
@@ -164,7 +166,10 @@ const UserCart = () => {
 				<p>{total}€</p>
 			</section>
 			<div className="btnWrapper">
-				<SquareButton onClick={handlCheckout}>Checkout</SquareButton>
+				<SquareButton onClick={() => {
+					handlCheckout(),
+						plusNeuRenderTotal()
+				}}>Checkout</SquareButton>
 				<Navigation setNeuRendern={setNeuRendern} neuRendern={neuRendern} />
 			</div>
 		</main>
