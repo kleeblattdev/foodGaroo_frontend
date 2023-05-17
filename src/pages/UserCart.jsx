@@ -36,7 +36,7 @@ const UserCart = () => {
 		getTotal();
 		//	setNeuRendern(false)
 	}, [neuRendernTotal]);
-	
+
 
 	const getCart = async () => {
 		const response = await fetch(url + "/cart", {
@@ -88,6 +88,7 @@ const UserCart = () => {
 		});
 		const data = await response.json();
 		setTotal(data.totalPrice);
+		console.log(data)
 	};
 
 	const handlCheckout = async () => {
@@ -111,11 +112,20 @@ const UserCart = () => {
 
 	// löst neuRendern aus
 	useEffect(() => {
-		getTotal('')
-				
+		const warten = async () => {
+			getTotal('')
+			await handleRabattPreisGesOrder()
+			await handleRabattPreisGesOrder() // 2x weil sonst totalRabatt nicht richtig auf 0 gesetzt wird beim checkout
+		}
+		warten()
 	}, [neuRendernTotal])
+	console.log(total)
 
-	const [rabattPreisGesOrder, setRabattPreisGesOrder] = useState(null)
+	const [rabattPreisGesOrder, setRabattPreisGesOrder] = useState(0)
+	let totalRabatt = rabattPreisGesOrder.toFixed(2)
+	console.log(totalRabatt)
+
+	console.log(rabattPreisGesOrder)
 
 	const handleRabattPreisGesOrder = async () => {
 		const response = await fetch(url + '/cart/rabattPreisGesOrder', {
@@ -125,6 +135,7 @@ const UserCart = () => {
 		})
 		const data = await response.json()
 		setRabattPreisGesOrder(data)
+		console.log(data)
 		if (data.ok) {
 			plusNeuRenderTotal()
 			//setCart(null)
@@ -132,8 +143,8 @@ const UserCart = () => {
 		}
 	}
 
-	
 
+	console.log(cart?.items.length)
 	return (
 		<main className="userCart">
 			<Header>My Cart</Header>
@@ -196,11 +207,15 @@ const UserCart = () => {
 			<section className="total">
 				<p>Total:</p>
 				<p>{total}€</p>
-				<p>{rabattPreisGesOrder}</p>
+				<p>Total inkl deal: {totalRabatt}€</p>
 			</section>
 			<div className="btnWrapper">
 				<SquareButton
+					dectivate={cart?.items.length == 0 ? true : false}
+					
 					onClick={() => {
+						if (cart?.items.length == 0) return;    /* // damit Checkout Button nicht 2 mal gedrückt werden kann
+						sonst Problem im BackEnd */
 						handlCheckout(), plusNeuRenderTotal();
 					}}
 				>
