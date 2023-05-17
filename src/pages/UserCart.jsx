@@ -94,8 +94,10 @@ const UserCart = () => {
 			credentials: 'include',
 			headers: { 'content-type': 'application/json' },
 		})
+		plusNeuRenderTotal()
 		const data = await response.json()
 		if (data.ok) {
+			plusNeuRenderTotal()
 			setCart(null)
 			setTotal('')
 			// 	setNeuRendern(false)
