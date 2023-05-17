@@ -28,7 +28,7 @@ const UserCart = () => {
 		getTotal();
 		//	setNeuRendern(false)
 	}, [neuRendernTotal]);
-	console.log(neuRendernTotal)
+	
 
 	const getCart = async () => {
 		const response = await fetch(url + "/cart", {
@@ -103,8 +103,27 @@ const UserCart = () => {
 	// löst neuRendern aus
 	useEffect(() => {
 		getTotal('')
+				
 	}, [neuRendernTotal])
 
+	const [rabattPreisGesOrder, setRabattPreisGesOrder] = useState(null)
+
+	const handleRabattPreisGesOrder = async () => {
+		const response = await fetch(url + '/cart/rabattPreisGesOrder', {
+			method: 'GET',
+			credentials: 'include',
+			headers: { 'content-type': 'application/json' },
+		})
+		const data = await response.json()
+		setRabattPreisGesOrder(data)
+		if (data.ok) {
+			plusNeuRenderTotal()
+			//setCart(null)
+			// setTotal('')
+		}
+	}
+
+	
 
 	return (
 		<main className="userCart">
@@ -164,6 +183,7 @@ const UserCart = () => {
 			<section className="total">
 				<p>Total:</p>
 				<p>{total}€</p>
+				<p>{rabattPreisGesOrder}</p>
 			</section>
 			<div className="btnWrapper">
 				<SquareButton onClick={() => {
