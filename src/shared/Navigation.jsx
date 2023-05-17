@@ -2,6 +2,8 @@
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { useNeuRenderTotal } from "../store/neuRenderTotal.jsx";
+
 
 //scss import
 import "./navigation.scss";
@@ -10,6 +12,11 @@ const Navigation = ({ setNeuRendern, neuRendern }) => {
 	const [cartCount, setCartCount] = useState(false);
 
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
+
+	const neuRendernTotal = useNeuRenderTotal((state) => state.neuRenderTotal);
+
+
+
 
 	const getCartCount = async () => {
 		setNeuRendern = false;
@@ -29,8 +36,7 @@ const Navigation = ({ setNeuRendern, neuRendern }) => {
 	useEffect(() => {
 		getCartCount();
 
-		getCartCount();
-	}, []); // reload
+	}, [neuRendernTotal]); // neuRendern wird ausgelöst über CheckoutButton
 
 	return (
 		<nav className="navigation">
