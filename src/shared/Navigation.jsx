@@ -6,13 +6,13 @@ import { v4 as uuidv4 } from "uuid";
 //scss import
 import "./navigation.scss";
 
-const Navigation = ( {setNeuRendern, neuRendern}) => {
+const Navigation = ({ setNeuRendern, neuRendern }) => {
 	const [cartCount, setCartCount] = useState(false);
 
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
 
 	const getCartCount = async () => {
-		setNeuRendern = false
+		setNeuRendern = false;
 		try {
 			const result = await fetch(url + "/cart/count", {
 				method: "GET",
@@ -20,19 +20,17 @@ const Navigation = ( {setNeuRendern, neuRendern}) => {
 			});
 			const data = await result.json();
 			setCartCount(data.count);
-			return 
+			return;
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
-
 	useEffect(() => {
 		getCartCount();
-	
-				getCartCount();
-	}, []);  // reload
 
+		getCartCount();
+	}, []); // reload
 
 	return (
 		<nav className="navigation">
@@ -43,7 +41,7 @@ const Navigation = ( {setNeuRendern, neuRendern}) => {
 				Orders
 			</NavLink>
 			<NavLink to="/userCart" id="myCart">
-				<p key={uuidv4()}>{cartCount}  </p>
+				<p key={uuidv4()}>{cartCount || 0} </p>
 			</NavLink>
 			<NavLink to="/wishlist" id="wishlist">
 				Wishlist
@@ -51,9 +49,7 @@ const Navigation = ( {setNeuRendern, neuRendern}) => {
 			<NavLink to="/profile" id="profile">
 				Profile
 			</NavLink>
-	
-	</nav>
-
+		</nav>
 	);
 };
 

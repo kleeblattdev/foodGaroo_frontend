@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import "./categoryList.scss";
 
@@ -24,13 +24,13 @@ const CategoryList = () => {
 			{categories &&
 				categories.map((category) => {
 					return (
-						<Link
+						<NavLink
 							key={uuidv4()}
 							to={`/category`}
 							state={{ category: category.aisle }}
 						>
 							{category.aisle}
-						</Link>
+						</NavLink>
 					);
 				})}
 		</nav>

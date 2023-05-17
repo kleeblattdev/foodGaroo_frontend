@@ -51,7 +51,9 @@ const Home = () => {
 	return (
 		<main className="home">
 			<Header>Home</Header>
-			<h2 id="intro">Hello {userName?.firstname}, find your daily goods.</h2>
+			<h2 id="intro">
+				Hello {userName?.firstname || "John Doe"}, find your daily goods.
+			</h2>
 			<section className="searchbarWrapper">
 				<Link to="/filter" id="filterIcon"></Link>
 				<Searchbar />

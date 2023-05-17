@@ -1,11 +1,13 @@
 import ProductItem from "../shared/ProductItem";
 import { v4 as uuidv4 } from "uuid";
 const Deals = ({ deal, items }) => {
+	const schoenesDatumDeals = new Date(deal?.date)?.toLocaleDateString("de-DE");
+	const dealEndDate = new Date(deal?.dateEnd)?.toLocaleDateString("de-DE");
 	console.log(items);
 	return (
 		<section className="deals">
 			<h4>
-				Weekly Deals: {deal.date.slice(0, 9)} - {deal.dateEnd.slice(0, 10)}
+				Weekly Deals: {schoenesDatumDeals} - {dealEndDate}
 			</h4>
 			<section>
 				{items &&

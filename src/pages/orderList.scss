@@ -1,0 +1,10 @@
+@import "../variables.scss";
+.orderList {
+	h4 {
+		border-bottom: 1px solid $boulderGray;
+	}
+	.orderListing {
+		height: 75vh;
+		overflow: scroll;
+	}
+}
