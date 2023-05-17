@@ -10,12 +10,47 @@
 		text-align: center;
 	}
 	form {
+		display: flex;
+		flex-direction: column;
 		div {
 			display: flex;
 			flex-direction: column;
 			margin-bottom: 10px;
+			label span {
+				font-size: 0.6rem;
+			}
 			input {
 				border-bottom: 1px solid $boulderGray;
+			}
+			.passwordNotSecure {
+				animation: shake-bottom 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955)
+					both;
+				@keyframes shake-bottom {
+					0%,
+					100% {
+						transform: rotate(0deg);
+						transform-origin: 50% 100%;
+					}
+					10% {
+						transform: rotate(1deg);
+					}
+					20%,
+					40%,
+					60% {
+						transform: rotate(-3deg);
+					}
+					30%,
+					50%,
+					70% {
+						transform: rotate(3deg);
+					}
+					80% {
+						transform: rotate(-1deg);
+					}
+					90% {
+						transform: rotate(1deg);
+					}
+				}
 			}
 		}
 		button {
