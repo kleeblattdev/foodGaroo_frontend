@@ -2,6 +2,8 @@
 import { v4 as uuidv4 } from "uuid";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+/* import InfiniteScroll from "react-infinite-scroll-component"; */
+
 // component import
 import Header from "../shared/Header";
 import Searchbar from "../shared/Searchbar";
@@ -17,9 +19,40 @@ const Category = () => {
 	// ! import und durchreichen von den daten aus filter
 	const location = useLocation();
 	const category = useLocation();
+	/* 	const LIMIT = 20; */
+
+	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
 
 	const [categoryItems, setCategoryItems] = useState([]);
-	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
+
+	/* const [visible, setVisible] = useState(LIMIT);
+	const [hasMore, setHasMore] = useState(true);
+
+	const fetchData = () => {
+		console.log("fetch data");
+		const newLimit = visible + LIMIT;
+		const dataToAdd = categoryItems.slice(visible, newLimit);
+
+		if (dataToAdd.length > categoryItems.length) {
+			fetch(
+				url +
+					`/products?category=${category?.state?.category}&offset=${newLimit}&limit=${LIMIT}&sort=price&order=asc&minPrice=0&maxPrice=100`,
+				{
+					method: "GET",
+					credentials: "include",
+				}
+			)
+				.then((response) => response.json())
+				.then((data) => {
+					console.log(data.length);
+					setCategoryItems(data);
+					setCategoryItems([...categoryItems].concat(dataToAdd));
+				});
+			setVisible(newLimit);
+		} else {
+			setHasMore(false);
+		}
+	}; */
 
 	useEffect(() => {
 		fetch(
@@ -32,6 +65,7 @@ const Category = () => {
 		)
 			.then((response) => response.json())
 			.then((data) => {
+				console.log(data.length);
 				setCategoryItems(data);
 			});
 	}, [category?.state?.category, url]);
@@ -48,13 +82,21 @@ const Category = () => {
 
 			<h4>Results: {location?.state?.searchCount}</h4>
 			<section className="productList">
+				{/* 				<InfiniteScroll
+					dataLength={categoryItems?.length}
+					next={fetchData}
+					hasMore={hasMore}
+					loader={<h4>Loading...</h4>}
+					scrollableTarget="productList"
+				> */}
 				{categoryItems &&
 					categoryItems.map((item) => {
 						return <ProductItem key={uuidv4()} item={item} />;
 					})}
-				{location?.state?.searchResult?.map((item) => {
-					return <ProductItem key={uuidv4()} item={item}></ProductItem>;
-				})}
+				{/* 					{location?.state?.searchResult?.map((item) => {
+						return <ProductItem key={uuidv4()} item={item}></ProductItem>;
+					})} */}
+				{/* </InfiniteScroll> */}
 			</section>
 		</main>
 	);

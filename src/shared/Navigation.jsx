@@ -3,9 +3,10 @@ import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useNeuRenderTotal } from "../store/neuRenderTotal.jsx";
-import {  plusNeuRenderTotal, minusNeuRenderTotal  } from "../store/neuRenderTotal.jsx";
-
-
+import {
+	plusNeuRenderTotal,
+	minusNeuRenderTotal,
+} from "../store/neuRenderTotal.jsx";
 
 //scss import
 import "./navigation.scss";
@@ -16,14 +17,13 @@ const Navigation = ({ setNeuRendern, neuRendern }) => {
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
 
 	const neuRendernTotal = useNeuRenderTotal((state) => state.neuRenderTotal);
-	const plusNeuRenderTotal = useNeuRenderTotal((state) => state.plusNeuRenderTotal);
-
-
-
+	const plusNeuRenderTotal = useNeuRenderTotal(
+		(state) => state.plusNeuRenderTotal
+	);
 
 	const getCartCount = async () => {
 		setNeuRendern = false;
-		
+
 		try {
 			const result = await fetch(url + "/cart/count", {
 				method: "GET",
@@ -36,11 +36,8 @@ const Navigation = ({ setNeuRendern, neuRendern }) => {
 			console.log(error);
 		}
 	};
-
-	console.log(neuRendernTotal)
 	useEffect(() => {
 		getCartCount();
-
 	}, [neuRendernTotal]); // neuRendern wird ausgelöst über CheckoutButton
 
 	return (
