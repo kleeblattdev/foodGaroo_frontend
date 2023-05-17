@@ -95,7 +95,7 @@ const ProductDetail = () => {
 	useEffect(() => {
 		// getCartCount();
 		// setReload(false);
-	}, []); // reload 
+	}, [useNeuRenderTotal]); // reload 
 
 	return (
 		<main className="productDetail">
