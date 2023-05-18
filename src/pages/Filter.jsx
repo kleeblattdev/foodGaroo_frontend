@@ -4,8 +4,6 @@ import MultiRangeSlider from "multi-range-slider-react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
-
-
 //component import
 import SquareButtonLight from "../shared/buttons/SquareButtonLight";
 import Header from "../shared/Header";
@@ -16,7 +14,6 @@ import "./filter.scss";
 const Filter = () => {
 	const navigate = useNavigate();
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
-
 
 	// Slider
 	const [minValue, set_minValue] = useState(0);
@@ -45,9 +42,9 @@ const Filter = () => {
 
 	// offste = 0  limit = 20  => die 1. 20Stk
 	// const offset = 0;
-	const offset = 0   
+	const offset = 0;
 	// const limit = 200;
-	const limit = 2000     
+	const limit = 20;
 	const importantBadges = "";
 	const handelInputToFetch = async (e) => {
 		e.preventDefault();

@@ -6,5 +6,7 @@
 	.orderListing {
 		height: 75vh;
 		overflow: scroll;
+		display: flex;
+		flex-direction: column-reverse;
 	}
 }

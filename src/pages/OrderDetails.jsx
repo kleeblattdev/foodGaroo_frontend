@@ -29,6 +29,7 @@ const OrderDetails = ({ order, index }) => {
 					headers: { "content-type": "application/json" },
 				});
 				const data = await result.json();
+				console.log(data);
 				setOrderDetails(data);
 			};
 			fetchOrderDetails();
@@ -36,6 +37,9 @@ const OrderDetails = ({ order, index }) => {
 			console.log(err);
 		}
 	}, []);
+	const schoenesDatum = new Date(orderDetails[0]?.date)?.toLocaleDateString(
+		"de-DE"
+	);
 
 	return (
 		<main className="orderDetails">
@@ -45,7 +49,7 @@ const OrderDetails = ({ order, index }) => {
 			{orderDetails?.map?.((order) => {
 				return (
 					<section key={uuidv4} className="orderInfo">
-						<p>date: {order?.date} </p>
+						<p>date: {schoenesDatum} </p>
 						{/* <h3>deals: {order?.deals} %</h3> */}
 						<p>sum: {(order?.sum).toFixed(2)} €</p>
 						<p>payment status: {order?.payment_status}</p>

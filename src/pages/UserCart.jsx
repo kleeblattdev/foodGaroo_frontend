@@ -85,6 +85,7 @@ const UserCart = () => {
 			headers: { "content-type": "application/json" },
 		});
 		const data = await response.json();
+		console.log(data.totalPrice);
 		setTotal(data.totalPrice);
 	};
 
@@ -196,9 +197,14 @@ const UserCart = () => {
 			)}
 
 			<section className="total">
-				<p>Total:</p>
-				<p>{total}€</p>
-				<p>Total inkl deal: {totalRabatt}€</p>
+				<div>
+					<p>Total:</p>
+					<p>Total incl deal: </p>
+				</div>
+				<div>
+					<p>{total}€</p>
+					<p>{totalRabatt}€</p>
+				</div>
 			</section>
 			<div className="btnWrapper">
 				<SquareButton
