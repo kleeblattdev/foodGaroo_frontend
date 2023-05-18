@@ -15,7 +15,7 @@ const OrderDetails = ({ order, index }) => {
 	const id = params.id;
 	const orderId = id.slice(0, 10);
 
-	const [orderDetails, setOrderDetails] = useState();
+	const [orderDetails, setOrderDetails] = useState([]);
 	console.log(orderDetails);
 
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
@@ -31,15 +31,15 @@ const OrderDetails = ({ order, index }) => {
 				const data = await result.json();
 				console.log(data);
 				setOrderDetails(data);
+				console.log(data)
 			};
 			fetchOrderDetails();
 		} catch (err) {
 			console.log(err);
 		}
 	}, []);
-	const schoenesDatum = new Date(orderDetails[0]?.date)?.toLocaleDateString(
-		"de-DE"
-	);
+	 const schoenesDatum = new Date(orderDetails[0]?.date)?.toLocaleDateString("de-DE");
+	console.log( new Date(orderDetails[0]?.date)?.toLocaleDateString("de-DE"))
 
 	return (
 		<main className="orderDetails">
@@ -48,7 +48,7 @@ const OrderDetails = ({ order, index }) => {
 			 */}{" "}
 			{orderDetails?.map?.((order) => {
 				return (
-					<section key={uuidv4} className="orderInfo">
+					<section key={uuidv4()} className="orderInfo">
 						<p>date: {schoenesDatum} </p>
 						{/* <h3>deals: {order?.deals} %</h3> */}
 						<p>sum: {(order?.sum).toFixed(2)} €</p>
@@ -64,7 +64,7 @@ const OrderDetails = ({ order, index }) => {
 				{orderDetails?.map?.((order) => {
 					return order?.items?.map((item) => {
 						return (
-							<article key={uuidv4}>
+							<article key={uuidv4()}>
 								<div>
 									<img src={item?.images[0]} alt={item?.title} />
 									<h4>{item?.title}</h4>
@@ -73,11 +73,11 @@ const OrderDetails = ({ order, index }) => {
 								<div>
 									<p>quantity: {item?.quantity}</p>
 									{/* <p>rabattstatus: {item?.rabattStatus}</p> */}
-									<p>price: {(item?.priceOld).toFixed(2)}€</p>
+									<p>price: {(item?.priceOld)?.toFixed(2)}€</p>
 								</div>
 								<div>
 									<p>deal: {item?.rabatt} %</p>
-									<p>deal price: {(item?.priceNeu).toFixed(2)}€</p>
+									<p>deal price: {(item?.priceNeu)?.toFixed(2)}€</p>
 								</div>
 								{/* 								<p>status: {item?.status}</p>
 								<p>payment_status: {item?.payment_status}</p> */}
