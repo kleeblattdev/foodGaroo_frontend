@@ -18,7 +18,7 @@ import "./userCart.scss";
 
 const UserCart = () => {
 	const [cart, setCart] = useState(null);
-	const [total, setTotal] = useState('');  // []
+	const [total, setTotal] = useState(0.00);  // []
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
 
 	const [neuRendern, setNeuRendern] = useState(false);
@@ -85,15 +85,13 @@ const UserCart = () => {
 			headers: { "content-type": "application/json" },
 		});
 		const data = await response.json();
-		console.log(data.totalPrice);
 		setTotal(data.totalPrice);
-		console.log(data.totalPrice);
 	};
 
 	const handlCheckout = async () => {
 		// setNeuRendern(true)
-		plusNeuRenderTotal();
-		// window.location.reload()  // !  hartes neuRendern, weil Item oder Einkaufswagen nicht wollen
+		// plusNeuRenderTotal();
+		 window.location.reload()  // !  hartes neuRendern, weil Item oder Einkaufswagen nicht wollen
 		const response = await fetch(url + "/cart/checkout", {
 			method: "GET",
 			credentials: "include",
@@ -113,15 +111,17 @@ const UserCart = () => {
 	useEffect(() => {
 		const warten = async () => {
 			getTotal("");
-			await handleRabattPreisGesOrder();
-			await handleRabattPreisGesOrder();
-			await handleRabattPreisGesOrder(); // 2x weil sonst totalRabatt nicht richtig auf 0 gesetzt wird beim checkout
-		};
+		//	await handleRabattPreisGesOrder();
+		//	await handleRabattPreisGesOrder();
+			// await
+			 handleRabattPreisGesOrder(); // 2x weil sonst totalRabatt nicht richtig auf 0 gesetzt wird beim checkout
+			};
 		warten();
 	}, [neuRendernTotal]);
 
 	const [rabattPreisGesOrder, setRabattPreisGesOrder] = useState(0);
 	let totalRabatt = rabattPreisGesOrder?.toFixed(2);
+
 
 	const handleRabattPreisGesOrder = async () => {
 		const response = await fetch(url + "/cart/rabattPreisGesOrder", {
@@ -133,6 +133,7 @@ const UserCart = () => {
 		setRabattPreisGesOrder(data);
 		if (data.ok) {
 			plusNeuRenderTotal();
+
 			//setCart(null)
 			// setTotal('')
 		}
@@ -203,21 +204,21 @@ const UserCart = () => {
 					<p>Total incl deal: </p>
 				</div>
 				<div>
-					<p>{total}€</p>
-					<p>{totalRabatt}€</p>
+					<p>{total || 0.00 }€</p>
+					<p>{totalRabatt || 0.00 }€</p>
 				</div>
 			</section>
 			<div className="btnWrapper">
 				<SquareButton
-					dectivate={cart?.items.length == 0 ? true : false}
+					dectivate={cart?.items?.length == 0 ? true : false}
 					onClick={() => {
-						if (cart?.items.length == 0)
+						if (cart?.items?.length == 0)
 							return; /* // damit Checkout Button nicht 2 mal gedrückt werden kann
 						sonst Problem im BackEnd */
+						handleRabattPreisGesOrder(),
 
 						handlCheckout(),
-							plusNeuRenderTotal(),
-							handleRabattPreisGesOrder()
+							plusNeuRenderTotal()
 							 // 2x handlCheckout weil sonst totalRabatt nicht richtig auf 0 gesetzt wird beim checkout
 
 					}}
