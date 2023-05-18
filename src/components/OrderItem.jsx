@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import "./orderItem.scss";
 
 const OrderItem = ({ items, order, index }) => {
-	console.log(items); // daten kommen an
-
 	// datum formatieren
 	const schoenesDatum = new Date(order[index]?.date)?.toLocaleDateString(
 		"de-DE"

@@ -3,8 +3,6 @@ import "./wishlistItem.scss";
 import { useNavigate } from "react-router-dom";
 
 const WishlistItem = ({ item, neuRender, setNeuRender }) => {
-	console.log(item);
-
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
 	const navigate = useNavigate();
 	const price = (item?.price).toFixed(2);
@@ -31,8 +29,6 @@ const WishlistItem = ({ item, neuRender, setNeuRender }) => {
 	useEffect(() => {
 		setNeuRender(false);
 	}, [neuRender]);
-
-	console.log(item._id);
 
 	return (
 		<article className="wishlistItem">

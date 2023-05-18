@@ -37,7 +37,6 @@ const UserCart = () => {
 		//	setNeuRendern(false)
 	}, [neuRendernTotal]);
 
-
 	const getCart = async () => {
 		const response = await fetch(url + "/cart", {
 			method: "get",
@@ -111,34 +110,31 @@ const UserCart = () => {
 	// löst neuRendern aus
 	useEffect(() => {
 		const warten = async () => {
-			getTotal('')
-			await handleRabattPreisGesOrder()
-			await handleRabattPreisGesOrder()
+			getTotal("");
+			await handleRabattPreisGesOrder();
+			await handleRabattPreisGesOrder();
+			await handleRabattPreisGesOrder(); // 2x weil sonst totalRabatt nicht richtig auf 0 gesetzt wird beim checkout
+		};
+		warten();
+	}, [neuRendernTotal]);
 
-			await handleRabattPreisGesOrder() // 2x weil sonst totalRabatt nicht richtig auf 0 gesetzt wird beim checkout
-		}
-		warten()
-	}, [neuRendernTotal])
-
-	const [rabattPreisGesOrder, setRabattPreisGesOrder] = useState(0)
-	let totalRabatt = rabattPreisGesOrder.toFixed(2)
-
+	const [rabattPreisGesOrder, setRabattPreisGesOrder] = useState(0);
+	let totalRabatt = rabattPreisGesOrder.toFixed(2);
 
 	const handleRabattPreisGesOrder = async () => {
-		const response = await fetch(url + '/cart/rabattPreisGesOrder', {
-			method: 'GET',
-			credentials: 'include',
-			headers: { 'content-type': 'application/json' },
-		})
-		const data = await response.json()
-		setRabattPreisGesOrder(data)
+		const response = await fetch(url + "/cart/rabattPreisGesOrder", {
+			method: "GET",
+			credentials: "include",
+			headers: { "content-type": "application/json" },
+		});
+		const data = await response.json();
+		setRabattPreisGesOrder(data);
 		if (data.ok) {
-			plusNeuRenderTotal()
+			plusNeuRenderTotal();
 			//setCart(null)
 			// setTotal('')
 		}
-	}
-
+	};
 
 	return (
 		<main className="userCart">
@@ -207,13 +203,15 @@ const UserCart = () => {
 			<div className="btnWrapper">
 				<SquareButton
 					dectivate={cart?.items.length == 0 ? true : false}
-					
 					onClick={() => {
-						if (cart?.items.length == 0) return;    /* // damit Checkout Button nicht 2 mal gedrückt werden kann
+						if (cart?.items.length == 0)
+							return; /* // damit Checkout Button nicht 2 mal gedrückt werden kann
 						sonst Problem im BackEnd */
 
-						handlCheckout(), plusNeuRenderTotal(),			 handleRabattPreisGesOrder(),handlCheckout() // 2x handlCheckout weil sonst totalRabatt nicht richtig auf 0 gesetzt wird beim checkout
-
+						handlCheckout(),
+							plusNeuRenderTotal(),
+							handleRabattPreisGesOrder(),
+							handlCheckout(); // 2x handlCheckout weil sonst totalRabatt nicht richtig auf 0 gesetzt wird beim checkout
 					}}
 				>
 					Checkout

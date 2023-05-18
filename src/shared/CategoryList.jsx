@@ -24,13 +24,11 @@ const CategoryList = () => {
 			{categories &&
 				categories.map((category) => {
 					return (
-						<NavLink
-							key={uuidv4()}
-							to={`/category`}
-							state={{ category: category.aisle }}
-						>
-							{category.aisle}
-						</NavLink>
+						<div key={uuidv4()}>
+							<NavLink to={`/category`} state={{ category: category.aisle }}>
+								{category.aisle}
+							</NavLink>
+						</div>
 					);
 				})}
 		</nav>

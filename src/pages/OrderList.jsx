@@ -23,10 +23,7 @@ const OrderList = () => {
 			if (response.ok) {
 				const data = await response.json();
 				setOrderItems(data?.orders[0]?.items);
-				console.log(orderItems);
-				console.log(data[0]?.items[0]?.price);
 				setOrder(data?.orders);
-				console.log(order);
 				setOrderCount(data.ordersCount);
 			}
 		} catch (err) {

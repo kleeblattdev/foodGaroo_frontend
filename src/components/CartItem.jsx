@@ -9,7 +9,6 @@ const CartItem = ({ item, index }) => {
 			headers: { "content-type": "application/json" },
 		});
 		const data = await response.json();
-		console.log(data);
 		setCart(data);
 	};
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
