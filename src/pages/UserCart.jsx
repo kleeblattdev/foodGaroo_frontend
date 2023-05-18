@@ -18,7 +18,7 @@ import "./userCart.scss";
 
 const UserCart = () => {
 	const [cart, setCart] = useState(null);
-	const [total, setTotal] = useState("");
+	const [total, setTotal] = useState('');  // []
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
 
 	const [neuRendern, setNeuRendern] = useState(false);
@@ -87,6 +87,7 @@ const UserCart = () => {
 		});
 		const data = await response.json();
 		setTotal(data.totalPrice);
+		console.log(data.totalPrice);
 	};
 
 	const handlCheckout = async () => {
@@ -212,7 +213,7 @@ const UserCart = () => {
 						if (cart?.items.length == 0) return;    /* // damit Checkout Button nicht 2 mal gedrückt werden kann
 						sonst Problem im BackEnd */
 
-						handlCheckout(), plusNeuRenderTotal(),			 handleRabattPreisGesOrder(),handlCheckout() // 2x handlCheckout weil sonst totalRabatt nicht richtig auf 0 gesetzt wird beim checkout
+						handlCheckout(), plusNeuRenderTotal(),			 handleRabattPreisGesOrder() // 2x handlCheckout weil sonst totalRabatt nicht richtig auf 0 gesetzt wird beim checkout
 
 					}}
 				>
