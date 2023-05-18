@@ -4,9 +4,6 @@ import MultiRangeSlider from "multi-range-slider-react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
-// store import  für infinite scroll
-import { useInfinityScrollCategoryZuFilter } from '../store/useInfinityScrollCategoryZuFilter.jsx'
-import { setNeuLimit, setNeuOffset, plusNeuLimit, minusNeuLimit, plusNeuOffset, minusNeuOffset, resetNeuLimit, resetNeuOffset } from '../store/useInfinityScrollCategoryZuFilter.jsx'
 
 
 //component import
@@ -20,13 +17,7 @@ const Filter = () => {
 	const navigate = useNavigate();
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
 
-	// store import  für infinite scroll
-	const setNeuLimit = useInfinityScrollCategoryZuFilter((state) => state.setNeuLimit);
-	const setNeuOffset = useInfinityScrollCategoryZuFilter((state) => state.setNeuOffset);
-	const plusNeuOffset = useInfinityScrollCategoryZuFilter((state) => state.plusNeuOffset);
-	const plusNeuLimit = useInfinityScrollCategoryZuFilter((state) => state.plusNeuLimit);
 
-	
 	// Slider
 	const [minValue, set_minValue] = useState(0);
 	const [maxValue, set_maxValue] = useState(400);
@@ -51,15 +42,12 @@ const Filter = () => {
 	const [searchResult, setSearchResult] = useState([]);
 	// eslint-disable-next-line no-unused-vars
 	const [searchCount, setSearchCount] = useState(0);
-	console.log(searchCount)
 
 	// offste = 0  limit = 20  => die 1. 20Stk
 	// const offset = 0;
-	const offset = setNeuOffset   // von store für infinite scroll
-	console.log(setNeuOffset)
+	const offset = 0   
 	// const limit = 200;
-	const limit = setNeuLimit     // von store für infinite scroll
-	console.log(setNeuLimit)
+	const limit = 2000     
 	const importantBadges = "";
 	const handelInputToFetch = async (e) => {
 		e.preventDefault();
