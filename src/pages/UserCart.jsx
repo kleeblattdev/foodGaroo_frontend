@@ -121,7 +121,7 @@ const UserCart = () => {
 	}, [neuRendernTotal]);
 
 	const [rabattPreisGesOrder, setRabattPreisGesOrder] = useState(0);
-	let totalRabatt = rabattPreisGesOrder.toFixed(2);
+	let totalRabatt = rabattPreisGesOrder?.toFixed(2);
 
 	const handleRabattPreisGesOrder = async () => {
 		const response = await fetch(url + "/cart/rabattPreisGesOrder", {
