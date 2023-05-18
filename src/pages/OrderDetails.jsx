@@ -11,10 +11,8 @@ import "./orderDetails.scss";
 const OrderDetails = ({ order, index }) => {
 	const params = useParams();
 	const nav = useNavigate();
-	// console.log(order[index]?._id)
 
 	const id = params.id;
-	console.log(id);
 	const orderId = id.slice(0, 10);
 
 	const [orderDetails, setOrderDetails] = useState();
@@ -31,7 +29,6 @@ const OrderDetails = ({ order, index }) => {
 					headers: { "content-type": "application/json" },
 				});
 				const data = await result.json();
-				console.log(data);
 				setOrderDetails(data);
 			};
 			fetchOrderDetails();

@@ -41,7 +41,6 @@ const WishlistButton = ({ item }) => {
 				body: JSON.stringify(item),
 			});
 			const data = await result.json();
-			console.log(data);
 		} catch (err) {
 			console.log(err);
 		}

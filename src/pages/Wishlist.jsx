@@ -25,7 +25,6 @@ const Wishlist = () => {
 			});
 			const data = await result.json();
 			setWishlistItem(data);
-			console.log(data);
 			return data;
 		} catch (err) {
 			console.log(err);

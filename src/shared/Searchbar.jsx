@@ -19,7 +19,6 @@ const Searchbar = () => {
 			.then((data) => {
 				setSearchItem(data);
 				setSearchState(true);
-				console.log(data);
 			});
 		if (setSearchItem == "") {
 			setSearchState(false);

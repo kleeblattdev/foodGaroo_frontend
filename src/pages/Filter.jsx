@@ -65,6 +65,12 @@ const Filter = () => {
 				state: {
 					searchCount: data.resultCount,
 					searchResult: data.resultCursor,
+					sortBy,
+					priceFrom,
+					priceTo,
+					category,
+					badges,
+					importantBadges,
 				},
 			});
 		} catch (err) {

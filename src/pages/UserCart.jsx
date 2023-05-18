@@ -36,7 +36,6 @@ const UserCart = () => {
 		getTotal();
 		//	setNeuRendern(false)
 	}, [neuRendernTotal]);
-	
 
 	const getCart = async () => {
 		const response = await fetch(url + "/cart", {
@@ -45,7 +44,6 @@ const UserCart = () => {
 			headers: { "content-type": "application/json" },
 		});
 		const data = await response.json();
-		console.log(data);
 		setCart(data);
 	};
 
@@ -111,28 +109,25 @@ const UserCart = () => {
 
 	// löst neuRendern aus
 	useEffect(() => {
-		getTotal('')
-				
-	}, [neuRendernTotal])
+		getTotal("");
+	}, [neuRendernTotal]);
 
-	const [rabattPreisGesOrder, setRabattPreisGesOrder] = useState(null)
+	const [rabattPreisGesOrder, setRabattPreisGesOrder] = useState(null);
 
 	const handleRabattPreisGesOrder = async () => {
-		const response = await fetch(url + '/cart/rabattPreisGesOrder', {
-			method: 'GET',
-			credentials: 'include',
-			headers: { 'content-type': 'application/json' },
-		})
-		const data = await response.json()
-		setRabattPreisGesOrder(data)
+		const response = await fetch(url + "/cart/rabattPreisGesOrder", {
+			method: "GET",
+			credentials: "include",
+			headers: { "content-type": "application/json" },
+		});
+		const data = await response.json();
+		setRabattPreisGesOrder(data);
 		if (data.ok) {
-			plusNeuRenderTotal()
+			plusNeuRenderTotal();
 			//setCart(null)
 			// setTotal('')
 		}
-	}
-
-	
+	};
 
 	return (
 		<main className="userCart">

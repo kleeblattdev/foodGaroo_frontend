@@ -41,7 +41,6 @@ const Home = () => {
 				credentials: "include",
 			});
 			const data = await response.json();
-			console.log(data);
 			setDeals(data);
 		} catch (err) {
 			console.log(err);
@@ -61,11 +60,7 @@ const Home = () => {
 			<CategoryList />
 			{deals &&
 				deals.map((deal) => {
-					return (
-						<>
-							<Deals key={uuidv4()} deal={deal} items={deal.items} />
-						</>
-					);
+					return <Deals key={uuidv4()} deal={deal} items={deal.items} />;
 				})}
 			<Navigation />
 		</main>

@@ -9,6 +9,7 @@
 			display: block;
 			width: 38px;
 			height: 38px;
+			background-color: $white;
 			background-image: url("../images/filter_menu_icon.svg");
 			background-repeat: no-repeat;
 			background-position: center;
@@ -17,11 +18,13 @@
 			box-shadow: 6px 15px 62px -8px rgba(0, 0, 0, 0.75);
 		}
 	}
-	.productList {
-		display: flex;
-		flex-wrap: wrap;
+	#productList {
 		justify-content: space-between;
 		height: 60vh;
 		overflow: auto;
+		.infinite-scroll-component {
+			display: flex;
+			flex-wrap: wrap;
+		}
 	}
 }
