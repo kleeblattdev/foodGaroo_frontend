@@ -197,6 +197,12 @@ const Profile = () => {
 		neuRendern();
 	}, [neuRendernBeiInputs]);
 
+
+
+
+
+
+
 	return (
 		<main className="profile">
 			<Header>My Profile</Header>
@@ -217,7 +223,9 @@ const Profile = () => {
 				</form>
 			</section>
 
-			<form className="userInfo">
+			<form className="userInfo"
+			
+			>
 				<div className="name">
 					<label htmlFor="firstname">
 						Firstname

@@ -45,7 +45,6 @@ const UserCart = () => {
 			headers: { "content-type": "application/json" },
 		});
 		const data = await response.json();
-		console.log(data);
 		setCart(data);
 	};
 
@@ -88,7 +87,6 @@ const UserCart = () => {
 		});
 		const data = await response.json();
 		setTotal(data.totalPrice);
-		console.log(data)
 	};
 
 	const handlCheckout = async () => {
@@ -119,13 +117,10 @@ const UserCart = () => {
 		}
 		warten()
 	}, [neuRendernTotal])
-	console.log(total)
 
 	const [rabattPreisGesOrder, setRabattPreisGesOrder] = useState(0)
 	let totalRabatt = rabattPreisGesOrder.toFixed(2)
-	console.log(totalRabatt)
 
-	console.log(rabattPreisGesOrder)
 
 	const handleRabattPreisGesOrder = async () => {
 		const response = await fetch(url + '/cart/rabattPreisGesOrder', {
@@ -135,7 +130,6 @@ const UserCart = () => {
 		})
 		const data = await response.json()
 		setRabattPreisGesOrder(data)
-		console.log(data)
 		if (data.ok) {
 			plusNeuRenderTotal()
 			//setCart(null)
@@ -144,7 +138,6 @@ const UserCart = () => {
 	}
 
 
-	console.log(cart?.items.length)
 	return (
 		<main className="userCart">
 			<Header>My Cart</Header>

@@ -1,6 +1,8 @@
 //library import
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import useInfiniteScroll from 'react-infinite-scroll-hook';
+
 
 //component import
 import Header from "../shared/Header";
@@ -36,6 +38,39 @@ const Wishlist = () => {
 		getWishlistWithFetch();
 	}, [neuRender]);
 
+
+
+
+	// infinite scroll
+	// import useInfiniteScroll from 'react-infinite-scroll-hook';
+
+
+	const [loading, setLoading] = useState(false);
+	const [hasNextPage, setHasNextPage] = useState(true);
+	const [error, setError] = useState(false);
+
+	const loadMore = () => {
+		if (!loading) {
+			setLoading(true);
+			// setTimeout(() => {
+			setLoading(false);
+			//	}, 2000);
+		}
+	}
+
+	// dieses Item      mit ref={sentryRef} wird überwacht und das nachladen scrollen wird ausgelöst überwacht
+	// deshalb erst am Ende vom .map Item einfügen
+	// mit Intersection Observer
+	const [sentryRef] = useInfiniteScroll({
+		loading,
+		hasNextPage,
+		onLoadMore: loadMore,
+		disabled: !!error,
+		rootMargin: '0px 0px 400px 0px',
+	})
+
+
+
 	return (
 		<main className="wishlist">
 			<Header>My Wishlist</Header>
@@ -43,7 +78,8 @@ const Wishlist = () => {
 			{wishlistItem?.items?.length == 0 ? (
 				<EmptyWishlist />
 			) : (
-				<section className="wishlistWrapper">
+				<section className="wishlistWrapper"
+				>
 					{wishlistItem?.items?.map((item) => {
 						return (
 							<WishlistItem
@@ -52,8 +88,17 @@ const Wishlist = () => {
 								neuRender={neuRender}
 								setNeuRender={setNeuRender}
 							></WishlistItem>
+
 						);
 					})}
+					{/* // infinity scroll */}
+					{
+						loading && hasNextPage && <p>...Loading</p>}
+						{!hasNextPage && <p>End of results</p>}
+						{error && <p>Error occurred </p>}
+					<div ref={sentryRef}> </div>
+
+
 				</section>
 			)}
 		</main>
