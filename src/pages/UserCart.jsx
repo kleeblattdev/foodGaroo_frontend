@@ -113,6 +113,8 @@ const UserCart = () => {
 		const warten = async () => {
 			getTotal('')
 			await handleRabattPreisGesOrder()
+			await handleRabattPreisGesOrder()
+
 			await handleRabattPreisGesOrder() // 2x weil sonst totalRabatt nicht richtig auf 0 gesetzt wird beim checkout
 		}
 		warten()
@@ -209,7 +211,9 @@ const UserCart = () => {
 					onClick={() => {
 						if (cart?.items.length == 0) return;    /* // damit Checkout Button nicht 2 mal gedrückt werden kann
 						sonst Problem im BackEnd */
-						handlCheckout(), plusNeuRenderTotal();
+
+						handlCheckout(), plusNeuRenderTotal(),			 handleRabattPreisGesOrder(),handlCheckout() // 2x handlCheckout weil sonst totalRabatt nicht richtig auf 0 gesetzt wird beim checkout
+
 					}}
 				>
 					Checkout
