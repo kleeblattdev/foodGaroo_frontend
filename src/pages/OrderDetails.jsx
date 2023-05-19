@@ -15,7 +15,7 @@ const OrderDetails = ({ order, index }) => {
 	const id = params.id;
 	const orderId = id.slice(0, 10);
 
-	const [orderDetails, setOrderDetails] = useState();
+	const [orderDetails, setOrderDetails] = useState([]);
 	console.log(orderDetails);
 
 	const url = import.meta.env.VITE_BACKEND + import.meta.env.VITE_API_VERSION;
@@ -31,6 +31,7 @@ const OrderDetails = ({ order, index }) => {
 				const data = await result.json();
 				console.log(data);
 				setOrderDetails(data);
+				console.log(data);
 			};
 			fetchOrderDetails();
 		} catch (err) {
@@ -40,6 +41,7 @@ const OrderDetails = ({ order, index }) => {
 	const schoenesDatum = new Date(orderDetails?.date)?.toLocaleDateString(
 		"de-DE"
 	);
+	console.log(new Date(orderDetails[0]?.date)?.toLocaleDateString("de-DE"));
 
 	return (
 		<main className="orderDetails">
@@ -48,7 +50,7 @@ const OrderDetails = ({ order, index }) => {
 			 */}{" "}
 			{orderDetails?.map?.((order) => {
 				return (
-					<section key={uuidv4} className="orderInfo">
+					<section key={uuidv4()} className="orderInfo">
 						<p>date: {schoenesDatum} </p>
 						{/* <h3>deals: {order?.deals} %</h3> */}
 						<p>sum: {(order?.sum).toFixed(2)} €</p>
@@ -66,7 +68,7 @@ const OrderDetails = ({ order, index }) => {
 						const oldPrice = (item?.priceOld).toFixed(2);
 						const newPrice = (item?.priceNeu).toFixed(2);
 						return (
-							<article key={uuidv4}>
+							<article key={uuidv4()}>
 								<div>
 									<img src={item?.images[0]} alt={item?.title} />
 									<h4>{item?.title}</h4>
