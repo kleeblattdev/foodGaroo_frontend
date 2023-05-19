@@ -37,7 +37,7 @@ const OrderDetails = ({ order, index }) => {
 			console.log(err);
 		}
 	}, []);
-	const schoenesDatum = new Date(orderDetails[0]?.date)?.toLocaleDateString(
+	const schoenesDatum = new Date(orderDetails?.date)?.toLocaleDateString(
 		"de-DE"
 	);
 
@@ -63,6 +63,8 @@ const OrderDetails = ({ order, index }) => {
 			<section className="orderItemWrapper">
 				{orderDetails?.map?.((order) => {
 					return order?.items?.map((item) => {
+						const oldPrice = (item?.priceOld).toFixed(2);
+						const newPrice = (item?.priceNeu).toFixed(2);
 						return (
 							<article key={uuidv4}>
 								<div>
@@ -73,11 +75,11 @@ const OrderDetails = ({ order, index }) => {
 								<div>
 									<p>quantity: {item?.quantity}</p>
 									{/* <p>rabattstatus: {item?.rabattStatus}</p> */}
-									<p>price: {(item?.priceOld).toFixed(2)}€</p>
+									<p>price: {oldPrice}€</p>
 								</div>
 								<div>
 									<p>deal: {item?.rabatt} %</p>
-									<p>deal price: {(item?.priceNeu).toFixed(2)}€</p>
+									<p>deal price: {newPrice}€</p>
 								</div>
 								{/* 								<p>status: {item?.status}</p>
 								<p>payment_status: {item?.payment_status}</p> */}
